@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="ca">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Comunitat i Validació | COOLTURE</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .page-header { background-color: var(--azul); padding: 80px 0; text-align: center; color: var(--blanco-os); }
+        .page-header h1 { color: var(--blanco); font-size: 42px; }
+        
+        .manifest { text-align: center; padding: 80px 0; background-color: var(--blanco); }
+        .manifest-box { background: var(--blanco-os); padding: 40px; border-radius: 20px; margin: 0 auto 50px auto; max-width: 800px; text-align: left; box-shadow: 0 10px 30px rgba(0,0,0,0.03); }
+        .manifest-box h3 { color: var(--azul); margin-bottom: 15px; }
+
+        /* Sección de Niveles Visuales */
+        .levels-section { padding: 80px 0; }
+        .levels-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 40px; }
+        .level-card { background-color: var(--blanco); padding: 40px 30px; border-radius: 20px; text-align: center; transition: var(--transition-fast); position: relative; overflow: hidden; box-shadow: 0 10px 30px rgba(0,0,0,0.03);}
+        .level-card:hover { transform: translateY(-10px); }
+        
+        .level-icon { font-size: 50px; margin-bottom: 20px; display: block; }
+        .level-card h3 { font-size: 24px; margin-bottom: 15px; color: var(--azul); }
+        .level-card p { font-size: 15px; color: var(--gris-pissarra); opacity: 0.8; }
+        
+        .level-badge { position: absolute; top: 15px; right: 15px; padding: 5px 10px; border-radius: 10px; font-weight: 700; font-size: 12px; color: var(--blanco); text-transform: uppercase;}
+
+        .cta-comunitat { background-color: var(--oro); color: var(--blanco); text-align: center; padding: 80px 0; border-radius: 30px; margin-top: 50px; }
+        .cta-comunitat h2 { font-size: 36px; margin-bottom: 20px; color: var(--blanco); }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="container navbar">
+            <div class="logo">COOL<span>TURE</span></div>
+            <nav class="nav-links">
+                <a href="index.html">Inici</a>
+                <a href="com-funciona.html">Com Funciona</a>
+                <a href="comunitat.html" class="active">La Comunitat</a>
+            </nav>
+            <div class="nav-buttons">
+                <a href="index.html#descarrega" class="btn btn-primary">Descarrega l'App</a>
+            </div>
+        </div>
+    </header>
+
+    <div class="page-header animate-fade-in">
+        <div class="container">
+            <div class="tag" style="background: rgba(255,255,255,0.1); color: var(--blanco);">Validació i Experiència</div>
+            <h1>Una comunitat basada en el coneixement</h1>
+            <p class="section-subtitle" style="color: var(--blanco-os);">COOLTURE no premia la popularitat superficial, sinó la comprensió cultural real i l'aportació de valor veridica.</p>
+        </div>
+    </div>
+
+    <section class="manifest container animate-fade-in delay-1">
+        <div class="manifest-box">
+            <h3>Conocimiento Real vs. "Likes"</h3>
+            <p style="margin-bottom: 20px;">A diferència de moltes xarxes socials, COOLTURE no es basa en contingut superficial o en la popularitat de les publicacions. Valorem:</p>
+            <ul style="color: var(--gris-pissarra); font-size: 16px; margin-left: 20px; list-style: disc; margin-bottom: 20px;">
+                <li>El <strong>coneixement cultural</strong> demostrat.</li>
+                <li>La <strong>qualitat i veracitat</strong> de la informació compartida.</li>
+                <li>La <strong>participació educativa</strong> i el respecte intercultural.</li>
+            </ul>
+            <p>El nostre sistema de reconeixement es fonamenta en l'aportació de coneixement verificat i en la comprensió profunda.</p>
+        </div>
+    </section>
+
+    <section class="container levels-section">
+        <div class="section-header animate-fade-in delay-2">
+            <h2 class="section-title">Sistema de Nivells i Progrés</h2>
+            <p class="section-subtitle">El teu estatus a la plataforma creix a mesura que demostres la teva expertesa cultural.</p>
+        </div>
+        
+        <div class="levels-grid">
+            <div class="level-card animate-fade-in delay-1">
+                <div class="level-badge" style="background-color: #cd7f32;">Bronze</div>
+                <span class="level-icon">🥉</span>
+                <h3>Explorador</h3>
+                <p>Nivell inicial. Tens accés a quizzes bàsics i pots començar a participar al fòrum cultural.</p>
+            </div>
+            
+            <div class="level-card animate-fade-in delay-2">
+                <div class="level-badge" style="background-color: var(--azul);">Plata</div>
+                <span class="level-icon">🥈</span>
+                <h3>Contribuïdor</h3>
+                <p>Has demostrat coneixement. Pots votar la veracitat dels continguts i tenir major participació.</p>
+            </div>
+            
+            <div class="level-card animate-fade-in delay-3">
+                <div class="level-badge" style="background-color: var(--oro);">Or</div>
+                <span class="level-icon">🥇</span>
+                <h3>Expert</h3>
+                <p>Usuari clau. Tens més pes en la validació, proposes quizzes i participes en la moderació.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="container animate-fade-in delay-1" style="animation-delay: 0.8s;">
+        <div class="cta-comunitat">
+            <h2>Vols construir l'Atles Cultural?</h2>
+            <p style="margin-bottom: 30px; font-size: 18px; max-width: 600px; margin-left: auto; margin-right: auto;">Únete a una comunitat digital segura, respectuosa i educadora. Empieza a explorar i compartir coneixement real avui mateix.</p>
+            <a href="index.html#descarrega" class="btn btn-primary" style="background: var(--blanco); color: var(--azul); border: none;">📱 Descarrega COOLTURE</a>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <div class="footer-bottom">
+                &copy; 2026 Coolture Platform. Tots els drets reservats.
+            </div>
+        </div>
+    </footer>
+
+</body>
+</html>
