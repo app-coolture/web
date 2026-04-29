@@ -8,7 +8,7 @@
     <link rel="apple-touch-icon" href="icon.png">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <style>
         * {
@@ -19,25 +19,29 @@
 
         :root {
             --oro: #c6a75e;
-            --azul: #25387D;
+            --oro-claro: #d4b87a;
             --blanco-hueso: #F5F1E8;
             --gris-pizarra: #2E2E2E;
             --verde-header: #667F57;
+            --verde-oscuro: #4a6341;
             --negro: #0f0f0f;
             --blanco: #ffffff;
             --verde: #a3e635;
-            --verde-oscuro: #65a30d;
+            --verde-claro: #8BA87A;
             --transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
             --transition-bounce: all 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
-            --shadow-sm: 0 10px 30px -10px rgba(0, 0, 0, 0.1);
+            --shadow-sm: 0 10px 30px -10px rgba(0, 0, 0, 0.08);
+            --shadow-md: 0 20px 40px -15px rgba(0, 0, 0, 0.15);
             --shadow-lg: 0 30px 60px -15px rgba(0, 0, 0, 0.2);
+            --shadow-glow: 0 0 30px rgba(198, 167, 94, 0.3);
+            --border-radius: 32px;
         }
 
         body {
             font-family: 'Inter', sans-serif;
             background-color: var(--blanco-hueso);
             color: var(--gris-pizarra);
-            line-height: 1.5;
+            line-height: 1.6;
             overflow-x: hidden;
             -webkit-font-smoothing: antialiased;
         }
@@ -48,16 +52,17 @@
             padding: 0 2rem;
         }
 
-        /* ---------- HEADER (LIMPIO, SIN BOTÓN APP) ---------- */
+        /* ---------- HEADER ---------- */
         header {
             padding: 1rem 0;
             position: fixed;
             width: 100%;
             top: 0;
             z-index: 1000;
-            background: var(--blanco);
-            border-bottom: 1px solid rgba(46, 46, 46, 0.08);
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.03);
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(46, 46, 46, 0.06);
+            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.04);
         }
 
         .navbar {
@@ -82,12 +87,12 @@
         }
 
         .logo-img:hover {
-            transform: scale(1.02);
+            transform: scale(1.03);
         }
 
         .nav-links {
             display: flex;
-            gap: 2rem;
+            gap: 2.5rem;
             flex-wrap: wrap;
             justify-content: center;
             align-items: center;
@@ -101,7 +106,8 @@
             padding-bottom: 6px;
             transition: var(--transition);
             white-space: nowrap;
-            font-size: 0.95rem;
+            font-size: 1rem;
+            letter-spacing: -0.01em;
         }
 
         .nav-links a::after {
@@ -111,7 +117,7 @@
             left: 0;
             width: 0;
             height: 3px;
-            background: var(--oro);
+            background: linear-gradient(90deg, var(--oro), var(--verde-claro));
             transition: var(--transition);
             border-radius: 2px;
         }
@@ -125,23 +131,31 @@
             padding-top: 90px;
         }
 
-        /* ---------- PAGE HEADER ---------- */
+        /* ---------- PAGE HEADER (más impactante) ---------- */
         .page-header {
-            background: linear-gradient(135deg, var(--verde-header) 0%, #4a6341 100%);
-            padding: 80px 0 60px;
+            background: linear-gradient(135deg, #3a4d32 0%, var(--verde-header) 40%, #4a6341 100%);
+            padding: 100px 0 80px;
             text-align: center;
-            color: var(--blanco-hueso);
+            color: white;
             position: relative;
             overflow: hidden;
         }
+        .page-header::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(circle at 30% 70%, rgba(198, 167, 94, 0.2) 0%, transparent 50%),
+                        radial-gradient(circle at 70% 20%, rgba(163, 230, 53, 0.1) 0%, transparent 40%);
+            pointer-events: none;
+        }
         .page-header::after {
             content: "🤝";
-            font-size: 200px;
-            opacity: 0.05;
+            font-size: 260px;
+            opacity: 0.06;
             position: absolute;
-            bottom: -30px;
-            right: -20px;
-            transform: rotate(15deg);
+            bottom: -40px;
+            right: -30px;
+            transform: rotate(10deg);
             pointer-events: none;
         }
         .page-header .container {
@@ -149,35 +163,104 @@
             z-index: 2;
         }
         .page-header .tag {
-            background: var(--oro);
+            background: rgba(198, 167, 94, 0.9);
+            backdrop-filter: blur(4px);
             color: var(--gris-pizarra);
-            padding: 6px 20px;
-            border-radius: 40px;
+            padding: 8px 24px;
+            border-radius: 60px;
             font-weight: 700;
             font-size: 0.9rem;
             text-transform: uppercase;
-            letter-spacing: 1px;
+            letter-spacing: 1.5px;
             display: inline-block;
-            margin-bottom: 20px;
+            margin-bottom: 25px;
+            border: 1px solid rgba(255,255,255,0.3);
         }
         .page-header h1 {
-            font-size: 3.8rem;
-            font-weight: 800;
-            letter-spacing: -0.02em;
+            font-size: 4rem;
+            font-weight: 900;
+            letter-spacing: -0.03em;
             color: white;
             margin-bottom: 20px;
+            text-shadow: 0 2px 10px rgba(0,0,0,0.2);
+        }
+        .page-header h1 .highlight {
+            background: linear-gradient(135deg, var(--oro), #f0d78c);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
         }
         .page-header p {
-            font-size: 1.3rem;
+            font-size: 1.4rem;
             opacity: 0.9;
             max-width: 700px;
             margin: 0 auto;
+            font-weight: 400;
+            line-height: 1.6;
         }
 
-        /* ---------- MANIFEST SECTION ---------- */
-        .manifest-section {
-            padding: 80px 0 40px;
+        .community-stats {
+            display: flex;
+            justify-content: center;
+            gap: 60px;
+            margin-top: 50px;
+            flex-wrap: wrap;
         }
+        .stat-item {
+            text-align: center;
+            color: white;
+        }
+        .stat-number {
+            font-size: 3rem;
+            font-weight: 900;
+            background: linear-gradient(135deg, var(--oro), #f0d78c);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            line-height: 1;
+        }
+        .stat-label {
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            opacity: 0.8;
+            margin-top: 8px;
+        }
+
+        /* ---------- SECCIÓN FILOSOFÍA (Manifest) ---------- */
+        .manifest-section {
+            padding: 100px 0 60px;
+        }
+        .section-intro {
+            text-align: center;
+            max-width: 700px;
+            margin: 0 auto 70px;
+        }
+        .section-intro .icon-circle {
+            display: inline-flex;
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(135deg, var(--oro), var(--oro-claro));
+            border-radius: 50%;
+            align-items: center;
+            justify-content: center;
+            font-size: 2.5rem;
+            color: white;
+            margin-bottom: 25px;
+            box-shadow: var(--shadow-glow);
+        }
+        .section-intro h2 {
+            font-size: 2.8rem;
+            font-weight: 800;
+            letter-spacing: -0.02em;
+            margin-bottom: 15px;
+        }
+        .section-intro p {
+            font-size: 1.2rem;
+            opacity: 0.7;
+            line-height: 1.6;
+        }
+
         .manifest-grid {
             display: grid;
             grid-template-columns: 1fr 1fr;
@@ -186,118 +269,129 @@
         }
         .manifest-card {
             background: var(--blanco);
-            border-radius: 30px;
-            padding: 40px;
+            border-radius: var(--border-radius);
+            padding: 45px 40px;
             box-shadow: var(--shadow-sm);
-            border: 1px solid rgba(198, 167, 94, 0.15);
+            border: 1px solid rgba(198, 167, 94, 0.1);
             transition: var(--transition-bounce);
+            position: relative;
+            overflow: hidden;
+        }
+        .manifest-card::after {
+            content: '';
+            position: absolute;
+            top: -50px;
+            right: -50px;
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            opacity: 0.05;
+            transition: 0.5s;
+        }
+        .manifest-card.negative::after {
+            background: tomato;
+        }
+        .manifest-card.positive::after {
+            background: var(--oro);
         }
         .manifest-card:hover {
-            transform: translateY(-8px);
+            transform: translateY(-12px);
             box-shadow: var(--shadow-lg);
-            border-color: var(--oro);
+        }
+        .manifest-card:hover::after {
+            transform: scale(2.5);
+            opacity: 0.08;
         }
         .manifest-card .icon-large {
-            font-size: 3rem;
-            color: var(--oro);
-            margin-bottom: 20px;
+            font-size: 3.2rem;
+            margin-bottom: 25px;
+            display: inline-block;
         }
         .manifest-card h3 {
-            font-size: 1.8rem;
-            font-weight: 700;
-            margin-bottom: 20px;
+            font-size: 2rem;
+            font-weight: 800;
+            margin-bottom: 25px;
             color: var(--gris-pizarra);
+            position: relative;
+            z-index: 1;
         }
         .manifest-card ul {
             list-style: none;
+            position: relative;
+            z-index: 1;
         }
         .manifest-card li {
-            padding: 12px 0;
-            border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+            padding: 14px 0;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.04);
             display: flex;
             align-items: center;
-            gap: 12px;
-            flex-wrap: wrap;
+            gap: 14px;
+            font-size: 1.05rem;
+            font-weight: 500;
         }
         .manifest-card li i {
-            color: var(--oro);
-            font-size: 1.2rem;
+            font-size: 1.3rem;
             flex-shrink: 0;
-        }
-        .manifest-card li:last-child {
-            border-bottom: none;
         }
 
         .versus-badge {
             display: flex;
             align-items: center;
             justify-content: center;
-            gap: 30px;
+            gap: 40px;
             margin: 40px 0;
             flex-wrap: wrap;
         }
         .vs-item {
             text-align: center;
-            padding: 20px 30px;
-            border-radius: 20px;
-            min-width: 180px;
+            padding: 25px 35px;
+            border-radius: 24px;
+            min-width: 200px;
+            transition: var(--transition-bounce);
         }
         .vs-item.negative {
-            background: rgba(255, 99, 71, 0.1);
-            border: 1px dashed tomato;
+            background: rgba(255, 99, 71, 0.06);
+            border: 1px dashed rgba(255, 99, 71, 0.3);
         }
         .vs-item.positive {
-            background: rgba(102, 127, 87, 0.1);
+            background: rgba(102, 127, 87, 0.06);
             border: 2px solid var(--oro);
+            box-shadow: var(--shadow-glow);
+        }
+        .vs-item:hover {
+            transform: scale(1.03);
         }
         .vs-icon {
-            font-size: 2.5rem;
-            color: var(--oro);
-        }
-
-        /* ---------- NIVELES SECTION, joel cambiar las medallas a las imaganes , no estan por aqui, es solo que no se omcentar y ya estaba pùesto esto  ---------- */
-        .levels-section {
-            padding: 80px 0;
-        }
-        .section-header {
-            text-align: center;
-            margin-bottom: 60px;
-        }
-        .section-header h2 {
             font-size: 3rem;
-            font-weight: 700;
-            letter-spacing: -0.02em;
-            color: var(--gris-pizarra);
             margin-bottom: 15px;
         }
-        .section-header h2 span {
-            background: linear-gradient(135deg, var(--verde-header), var(--oro));
-            -webkit-background-clip: text;
-            background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-        .section-header p {
-            font-size: 1.2rem;
-            opacity: 0.7;
-            max-width: 600px;
-            margin: 0 auto;
+        .vs-item p {
+            font-weight: 600;
+            font-size: 1rem;
+            line-height: 1.5;
         }
 
+        /* ---------- NIVELES (más visual) ---------- */
+        .levels-section {
+            padding: 100px 0;
+            background: linear-gradient(180deg, var(--blanco-hueso) 0%, #fff 50%, var(--blanco-hueso) 100%);
+        }
         .levels-grid {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
-            gap: 30px;
+            gap: 35px;
+            margin-top: 40px;
         }
         .level-card {
             background: var(--blanco);
-            border-radius: 30px;
-            padding: 40px 30px;
+            border-radius: var(--border-radius);
+            padding: 45px 30px;
             text-align: center;
             transition: var(--transition-bounce);
             position: relative;
-            overflow: hidden;
             box-shadow: var(--shadow-sm);
-            border: 1px solid rgba(0, 0, 0, 0.05);
+            border: 1px solid rgba(0, 0, 0, 0.04);
+            overflow: hidden;
         }
         .level-card::before {
             content: '';
@@ -305,93 +399,110 @@
             top: 0;
             left: 0;
             width: 100%;
-            height: 6px;
-        }
-        .level-card:hover {
-            transform: translateY(-15px);
-            box-shadow: var(--shadow-lg);
+            height: 8px;
         }
         .level-card.turista::before {
-            background: #cd7f32;
+            background: linear-gradient(90deg, #cd7f32, #e6a563);
         }
         .level-card.explorador::before {
-            background: #c0c0c0;
+            background: linear-gradient(90deg, #b0b0b0, #d0d0d0);
         }
         .level-card.ambaixador::before {
-            background: var(--oro);
+            background: linear-gradient(90deg, var(--oro), var(--oro-claro));
         }
-
+        .level-card:hover {
+            transform: translateY(-18px);
+            box-shadow: var(--shadow-lg);
+        }
         .level-icon {
-            font-size: 4rem;
-            margin-bottom: 25px;
-            display: inline-flex;
-            background: var(--blanco-hueso);
-            width: 100px;
-            height: 100px;
-            align-items: center;
-            justify-content: center;
-            border-radius: 50%;
-            margin-left: auto;
-            margin-right: auto;
-            box-shadow: var(--shadow-sm);
+            font-size: 4.5rem;
+            margin-bottom: 20px;
+            display: block;
+            transition: transform 0.3s;
         }
-        .level-card h3 {
-            font-size: 1.8rem;
-            font-weight: 700;
-            margin-bottom: 10px;
+        .level-card:hover .level-icon {
+            transform: scale(1.1) rotate(-5deg);
         }
         .level-badge-tag {
             display: inline-block;
-            padding: 5px 20px;
-            border-radius: 30px;
+            padding: 6px 22px;
+            border-radius: 40px;
             font-weight: 700;
             font-size: 0.8rem;
             text-transform: uppercase;
+            letter-spacing: 1px;
             margin-bottom: 20px;
+        }
+        .level-card h3 {
+            font-size: 2rem;
+            font-weight: 800;
+            margin-bottom: 12px;
+        }
+        .level-card .level-desc {
+            font-size: 0.95rem;
+            opacity: 0.7;
+            margin-bottom: 30px;
+            min-height: 40px;
         }
         .level-perks {
             text-align: left;
-            margin-top: 25px;
             list-style: none;
+            border-top: 1px solid rgba(0,0,0,0.05);
+            padding-top: 20px;
         }
         .level-perks li {
-            padding: 8px 0;
+            padding: 10px 0;
             display: flex;
             align-items: center;
-            gap: 10px;
+            gap: 12px;
             font-size: 0.95rem;
-            flex-wrap: wrap;
+            font-weight: 500;
         }
         .level-perks i {
-            color: var(--oro);
-            width: 20px;
+            font-size: 1.1rem;
+            width: 22px;
             flex-shrink: 0;
         }
 
-        /* ---------- VERIFICACIÓN SECTION ---------- */
+        /* ---------- VERIFICACIÓN (más dinámica) ---------- */
         .verification-section {
-            padding: 60px 0 100px;
+            padding: 80px 0;
         }
         .verification-showcase {
-            background: linear-gradient(145deg, var(--verde-header), #4a6341);
+            background: linear-gradient(145deg, #3a4d32, var(--verde-header), #4a6341);
             border-radius: 40px;
-            padding: 60px;
+            padding: 70px 60px;
             color: white;
             display: grid;
             grid-template-columns: 1fr 1fr;
-            gap: 50px;
+            gap: 60px;
             align-items: center;
+            box-shadow: var(--shadow-lg);
+            position: relative;
+            overflow: hidden;
+        }
+        .verification-showcase::after {
+            content: "✓";
+            font-size: 300px;
+            position: absolute;
+            bottom: -60px;
+            right: -40px;
+            opacity: 0.04;
+            color: white;
+            pointer-events: none;
         }
         .verification-text h3 {
-            font-size: 2.5rem;
-            font-weight: 700;
+            font-size: 2.6rem;
+            font-weight: 800;
             margin-bottom: 25px;
             color: var(--oro);
+            line-height: 1.2;
         }
         .verification-text p {
             font-size: 1.2rem;
             opacity: 0.9;
-            margin-bottom: 30px;
+            margin-bottom: 35px;
+            line-height: 1.6;
         }
         .verification-steps {
             list-style: none;
@@ -399,112 +510,131 @@
         .verification-steps li {
             display: flex;
             gap: 20px;
-            margin-bottom: 25px;
+            margin-bottom: 28px;
             align-items: flex-start;
         }
         .step-number {
-            width: 45px;
-            height: 45px;
+            width: 50px;
+            height: 50px;
             background: var(--oro);
             color: var(--gris-pizarra);
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-weight: 800;
-            font-size: 1.3rem;
+            font-weight: 900;
+            font-size: 1.4rem;
             flex-shrink: 0;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
         }
         .verification-card {
-            background: rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(10px);
-            border-radius: 24px;
-            padding: 30px;
-            border: 1px solid var(--oro);
+            background: rgba(255, 255, 255, 0.08);
+            backdrop-filter: blur(12px);
+            border-radius: 28px;
+            padding: 35px;
+            border: 1px solid rgba(198, 167, 94, 0.4);
+            position: relative;
+            z-index: 1;
         }
         .expert-badge {
             display: flex;
             align-items: center;
-            gap: 15px;
-            margin-bottom: 25px;
-            flex-wrap: wrap;
+            gap: 18px;
+            margin-bottom: 30px;
         }
         .expert-avatar {
-            width: 60px;
-            height: 60px;
-            background: var(--oro);
+            width: 65px;
+            height: 65px;
+            background: linear-gradient(135deg, var(--oro), var(--oro-claro));
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 1.8rem;
+            font-size: 2rem;
             color: var(--gris-pizarra);
             flex-shrink: 0;
         }
         .verified-content {
-            background: rgba(0, 0, 0, 0.2);
-            padding: 20px;
-            border-radius: 16px;
+            background: rgba(0, 0, 0, 0.25);
+            padding: 22px;
+            border-radius: 18px;
             margin-top: 20px;
+            font-style: italic;
         }
         .verified-badge {
             background: var(--oro);
             color: var(--gris-pizarra);
-            padding: 5px 15px;
-            border-radius: 30px;
+            padding: 6px 18px;
+            border-radius: 40px;
             font-weight: 700;
             font-size: 0.8rem;
             display: inline-block;
-            margin-top: 15px;
+            margin-top: 18px;
+            letter-spacing: 0.5px;
         }
 
-        /* ---------- CTA SECTION ---------- */
+        /* ---------- CTA ---------- */
         .cta-section {
-            padding: 80px 0;
+            padding: 80px 0 100px;
             text-align: center;
         }
         .cta-box {
             background: linear-gradient(135deg, var(--oro) 0%, #d4b87a 100%);
             border-radius: 50px;
-            padding: 70px 50px;
+            padding: 80px 60px;
             color: var(--gris-pizarra);
+            box-shadow: var(--shadow-lg);
+            position: relative;
+            overflow: hidden;
+        }
+        .cta-box::before {
+            content: "🌍";
+            font-size: 200px;
+            position: absolute;
+            bottom: -30px;
+            left: -30px;
+            opacity: 0.08;
+            pointer-events: none;
         }
         .cta-box h2 {
-            font-size: 3rem;
-            font-weight: 800;
+            font-size: 3.2rem;
+            font-weight: 900;
             margin-bottom: 20px;
+            position: relative;
+            z-index: 1;
         }
         .cta-box p {
             font-size: 1.3rem;
-            margin-bottom: 40px;
-            opacity: 0.9;
+            margin-bottom: 45px;
+            opacity: 0.85;
             max-width: 600px;
             margin-left: auto;
             margin-right: auto;
+            position: relative;
+            z-index: 1;
         }
         .cta-buttons {
             display: flex;
             gap: 20px;
             justify-content: center;
             flex-wrap: wrap;
+            position: relative;
+            z-index: 1;
         }
 
         .btn {
             display: inline-flex;
             align-items: center;
-            gap: 8px;
-            padding: 12px 24px;
+            gap: 10px;
+            padding: 14px 30px;
             border-radius: 60px;
-            font-weight: 600;
+            font-weight: 700;
             text-decoration: none;
             transition: var(--transition-bounce);
             border: none;
             cursor: pointer;
-            background: transparent;
-            font-size: 0.95rem;
-            white-space: nowrap;
-            justify-content: center;
-            text-align: center;
+            font-size: 1rem;
+            letter-spacing: -0.01em;
         }
 
         .btn-primary {
@@ -515,18 +645,20 @@
 
         .btn-primary:hover {
             background: #1a1a1a;
-            transform: scale(1.05) translateY(-3px);
+            transform: scale(1.06) translateY(-4px);
             box-shadow: var(--shadow-lg);
         }
 
         .btn-outline {
-            border: 2px solid var(--negro);
-            color: var(--negro);
+            border: 2.5px solid var(--gris-pizarra);
+            color: var(--gris-pizarra);
+            background: transparent;
         }
 
         .btn-outline:hover {
-            background: var(--negro);
+            background: var(--gris-pizarra);
             color: white;
+            transform: scale(1.06) translateY(-4px);
         }
 
         /* ---------- FOOTER ---------- */
@@ -608,8 +740,8 @@
 
         .reveal {
             opacity: 0;
-            transform: translateY(30px);
-            transition: 0.7s ease;
+            transform: translateY(40px);
+            transition: 0.8s ease;
         }
         .reveal.visible {
             opacity: 1;
@@ -619,13 +751,10 @@
         /* ============ RESPONSIVE ============ */
         @media (max-width: 1024px) {
             .page-header h1 {
-                font-size: 2.8rem;
+                font-size: 3rem;
             }
-            .section-header h2 {
-                font-size: 2.4rem;
-            }
-            .cta-box h2 {
-                font-size: 2.4rem;
+            .community-stats {
+                gap: 40px;
             }
             .levels-grid {
                 grid-template-columns: repeat(2, 1fr);
@@ -636,15 +765,11 @@
                 justify-self: center;
             }
             .verification-showcase {
-                padding: 40px;
-                gap: 30px;
+                padding: 50px 40px;
+                gap: 40px;
             }
-            .verification-text h3 {
-                font-size: 2rem;
-            }
-            .footer-grid {
-                grid-template-columns: 1fr 1fr 1fr;
-                gap: 30px;
+            .cta-box {
+                padding: 60px 40px;
             }
         }
 
@@ -653,19 +778,13 @@
                 flex-direction: row;
                 flex-wrap: wrap;
                 justify-content: space-between;
-                gap: 0.8rem;
             }
             .nav-links {
                 order: 3;
                 width: 100%;
                 justify-content: center;
                 gap: 1.5rem;
-                padding-top: 0.5rem;
             }
-            .nav-links a {
-                font-size: 0.9rem;
-            }
-
             .manifest-grid {
                 grid-template-columns: 1fr;
             }
@@ -681,7 +800,7 @@
             }
             .verification-showcase {
                 grid-template-columns: 1fr;
-                padding: 35px;
+                padding: 40px 30px;
             }
             .footer-grid {
                 grid-template-columns: 1fr 1fr;
@@ -690,24 +809,11 @@
             .page-header h1 {
                 font-size: 2.5rem;
             }
-            .page-header p {
-                font-size: 1.1rem;
-            }
-            .logo-img {
-                height: 38px;
-            }
-            .section-header h2 {
-                font-size: 2rem;
-            }
-            .cta-box {
-                padding: 50px 30px;
-                border-radius: 35px;
+            .section-intro h2 {
+                font-size: 2.2rem;
             }
             .cta-box h2 {
-                font-size: 2rem;
-            }
-            .cta-box p {
-                font-size: 1.1rem;
+                font-size: 2.4rem;
             }
         }
 
@@ -715,27 +821,8 @@
             .container {
                 padding: 0 1.2rem;
             }
-            header {
-                padding: 0.8rem 0;
-            }
-            .logo-img {
-                height: 32px;
-            }
-            .nav-links {
-                gap: 1rem;
-                flex-wrap: wrap;
-                justify-content: center;
-            }
-            .nav-links a {
-                font-size: 0.8rem;
-                padding-bottom: 4px;
-            }
-            main {
-                padding-top: 80px;
-            }
-
             .page-header {
-                padding: 50px 0 40px;
+                padding: 70px 0 50px;
             }
             .page-header h1 {
                 font-size: 2rem;
@@ -743,99 +830,40 @@
             .page-header p {
                 font-size: 1rem;
             }
-            .page-header .tag {
-                font-size: 0.75rem;
-                padding: 5px 16px;
+            .community-stats {
+                gap: 25px;
             }
-
+            .stat-number {
+                font-size: 2.2rem;
+            }
             .manifest-card {
-                padding: 25px 20px;
-                border-radius: 20px;
+                padding: 30px 20px;
             }
             .manifest-card h3 {
-                font-size: 1.4rem;
-            }
-            .manifest-card .icon-large {
-                font-size: 2.2rem;
+                font-size: 1.5rem;
             }
             .manifest-card li {
                 font-size: 0.9rem;
-                padding: 10px 0;
             }
-
-            .versus-badge {
-                gap: 15px;
+            .levels-grid {
+                gap: 25px;
             }
-            .vs-item {
-                padding: 15px 20px;
-                min-width: 130px;
-                border-radius: 16px;
-            }
-            .vs-icon {
-                font-size: 1.8rem;
-            }
-
-            .section-header h2 {
-                font-size: 1.7rem;
-            }
-            .section-header p {
-                font-size: 1rem;
-            }
-            .section-header {
-                margin-bottom: 35px;
-            }
-
             .level-card {
                 padding: 30px 20px;
-                border-radius: 24px;
             }
-            .level-card h3 {
-                font-size: 1.5rem;
-            }
-            .level-icon {
-                width: 80px;
-                height: 80px;
-                font-size: 3rem;
-            }
-            .level-perks li {
-                font-size: 0.85rem;
-            }
-
             .verification-showcase {
-                padding: 25px 20px;
-                border-radius: 28px;
-            }
-            .verification-text h3 {
-                font-size: 1.6rem;
-            }
-            .verification-text p {
-                font-size: 1rem;
-            }
-            .verification-steps li {
-                gap: 12px;
-                margin-bottom: 18px;
-            }
-            .step-number {
-                width: 36px;
-                height: 36px;
-                font-size: 1.1rem;
-            }
-            .verification-card {
-                padding: 20px;
-                border-radius: 18px;
-            }
-            .expert-avatar {
-                width: 50px;
-                height: 50px;
-                font-size: 1.4rem;
-            }
-
-            .cta-box {
-                padding: 40px 20px;
+                padding: 30px 20px;
                 border-radius: 30px;
             }
+            .verification-text h3 {
+                font-size: 1.8rem;
+            }
+            .cta-box {
+                padding: 50px 25px;
+                border-radius: 35px;
+            }
             .cta-box h2 {
-                font-size: 1.6rem;
+                font-size: 1.8rem;
             }
             .cta-box p {
                 font-size: 1rem;
@@ -843,38 +871,21 @@
             .cta-buttons {
                 flex-direction: column;
                 align-items: center;
-                gap: 15px;
             }
-            .cta-buttons .btn {
-                width: 100%;
-                max-width: 300px;
-                justify-content: center;
-            }
-
             .footer-grid {
                 grid-template-columns: 1fr;
-                gap: 25px;
                 text-align: center;
             }
             .footer-grid>div {
-                display: flex;
-                flex-direction: column;
                 align-items: center;
             }
             .footer-decoration {
                 justify-content: center;
             }
             .footer-grid ul {
-                display: flex;
+                justify-content: center;
                 flex-wrap: wrap;
                 gap: 15px;
-                justify-content: center;
-            }
-            .footer-grid ul li {
-                margin-bottom: 0;
-            }
-            .footer-bottom {
-                margin-top: 40px;
             }
         }
     </style>
@@ -891,7 +902,6 @@
                 <a href="com-funciona.html">Com Funciona</a>
                 <a href="comunitat.html" class="active">La Comunitat</a>
             </nav>
-            <!-- ❌ Botón App eliminado -->
         </div>
     </header>
 
@@ -899,89 +909,111 @@
         <div class="page-header">
             <div class="container">
                 <span class="tag"><i class="fas fa-users"></i> Validació i Experiència</span>
-                <h1>Una comunitat basada en el coneixement</h1>
-                <p>COOLTURE no premia la popularitat superficial, sinó la comprensió cultural real i l'aportació de valor verídica.</p>
+                <h1>Una comunitat basada en el <span class="highlight">coneixement real</span></h1>
+                <p>COOLTURE no premia la popularitat superficial, sinó la comprensió cultural profunda i l'aportació de valor verificat per la mateixa comunitat.</p>
+                <div class="community-stats">
+                    <div class="stat-item">
+                        <div class="stat-number">+12k</div>
+                        <div class="stat-label">Exploradors actius</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number">98%</div>
+                        <div class="stat-label">Contingut verificat</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number">140+</div>
+                        <div class="stat-label">Països representats</div>
+                    </div>
+                </div>
             </div>
         </div>
 
         <div class="container">
             <section class="manifest-section reveal">
+                <div class="section-intro">
+                    <div class="icon-circle"><i class="fas fa-gem"></i></div>
+                    <h2>Els nostres valors fonamentals</h2>
+                    <p>A COOLTURE, el que importa no és quants seguidors tens, sinó la qualitat del que comparteixes. Cada aportació compta per construir un mosaic global de cultures vives.</p>
+                </div>
                 <div class="manifest-grid">
-                    <div class="manifest-card">
-                        <div class="icon-large"><i class="fas fa-thumbs-down"></i></div>
-                        <h3>El que NO som</h3>
+                    <div class="manifest-card negative">
+                        <div class="icon-large">🚫</div>
+                        <h3>El que <span style="color: tomato;">NO</span> som</h3>
                         <ul>
-                            <li><i class="fas fa-times-circle" style="color: tomato;"></i> Contingut superficial o estereotipat</li>
-                            <li><i class="fas fa-times-circle" style="color: tomato;"></i> Cursa pels "likes" o popularitat</li>
-                            <li><i class="fas fa-times-circle" style="color: tomato;"></i> Informació no verificada</li>
-                            <li><i class="fas fa-times-circle" style="color: tomato;"></i> Comunitats tòxiques</li>
+                            <li><i class="fas fa-times-circle" style="color: tomato;"></i> Contingut superficial o ple d'estereotips</li>
+                            <li><i class="fas fa-times-circle" style="color: tomato;"></i> Una cursa pels "likes" o la popularitat efímera</li>
+                            <li><i class="fas fa-times-circle" style="color: tomato;"></i> Informació sense contrastar ni verificar</li>
+                            <li><i class="fas fa-times-circle" style="color: tomato;"></i> Espais tòxics o poc respectuosos</li>
                         </ul>
                     </div>
-                    <div class="manifest-card">
-                        <div class="icon-large"><i class="fas fa-gem"></i></div>
-                        <h3>El que VALOREM</h3>
+                    <div class="manifest-card positive">
+                        <div class="icon-large">💎</div>
+                        <h3>El que <span style="color: var(--oro);">VALOREM</span></h3>
                         <ul>
-                            <li><i class="fas fa-check-circle" style="color: var(--oro);"></i> <strong>Coneixement cultural</strong> demostrat</li>
-                            <li><i class="fas fa-check-circle" style="color: var(--oro);"></i> <strong>Qualitat i veracitat</strong> de la informació</li>
-                            <li><i class="fas fa-check-circle" style="color: var(--oro);"></i> Participació educativa i respecte</li>
-                            <li><i class="fas fa-check-circle" style="color: var(--oro);"></i> Construcció col·lectiva del saber</li>
+                            <li><i class="fas fa-check-circle" style="color: var(--oro);"></i> <strong>Coneixement cultural</strong> demostrat amb fets</li>
+                            <li><i class="fas fa-check-circle" style="color: var(--oro);"></i> <strong>Veracitat i profunditat</strong> en cada publicació</li>
+                            <li><i class="fas fa-check-circle" style="color: var(--oro);"></i> Participació educativa, positiva i constructiva</li>
+                            <li><i class="fas fa-check-circle" style="color: var(--oro);"></i> Construcció col·lectiva del saber global</li>
                         </ul>
                     </div>
                 </div>
 
                 <div class="versus-badge reveal">
                     <div class="vs-item negative">
-                        <i class="fas fa-heart" style="color: tomato; font-size: 2rem;"></i>
-                        <p style="font-weight: 600; margin-top: 10px;">Xarxes socials:<br>Popularitat efímera</p>
+                        <div class="vs-icon">❤️</div>
+                        <p style="font-weight: 700; color: tomato;">Xarxes socials</p>
+                        <p style="font-size: 0.9rem;">Popularitat efímera, superficialitat</p>
                     </div>
-                    <div class="vs-icon"><i class="fas fa-arrow-right"></i></div>
+                    <div style="font-size: 2.5rem; color: var(--oro);">➤</div>
                     <div class="vs-item positive">
-                        <i class="fas fa-brain" style="color: var(--oro); font-size: 2rem;"></i>
-                        <p style="font-weight: 600; margin-top: 10px;">COOLTURE:<br>Coneixement real</p>
+                        <div class="vs-icon">🧠</div>
+                        <p style="font-weight: 700; color: var(--verde-header);">COOLTURE</p>
+                        <p style="font-size: 0.9rem;">Aprenentatge profund, impacte real</p>
                     </div>
                 </div>
             </section>
 
             <section class="levels-section reveal">
-                <div class="section-header">
-                    <h2>Sistema de <span>Nivells</span> i Progrés</h2>
-                    <p>El teu estatus a la plataforma creix a mesura que demostres la teva expertesa cultural.</p>
+                <div class="section-intro">
+                    <div class="icon-circle"><i class="fas fa-crown"></i></div>
+                    <h2>Sistema de <span style="background: linear-gradient(135deg, var(--verde-header), var(--oro)); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent;">Nivells</span> i Progrés</h2>
+                    <p>El teu estatus creix a mesura que demostres la teva expertesa cultural. Cada nivell desbloqueja noves capacitats dins de la comunitat.</p>
                 </div>
                 <div class="levels-grid">
                     <div class="level-card turista">
                         <div class="level-icon">🥉</div>
-                        <span class="level-badge-tag" style="background: #cd7f32; color: white;">Turista</span>
+                        <span class="level-badge-tag" style="background: #cd7f32; color: white;">Nivell 1</span>
                         <h3 style="color: #cd7f32;">Turista</h3>
-                        <p>El primer pas en el teu viatge cultural</p>
+                        <p class="level-desc">El primer pas en el teu viatge cultural. Explora, aprèn i comença a participar.</p>
                         <ul class="level-perks">
-                            <li><i class="fas fa-check"></i> Accés a quizzes bàsics</li>
-                            <li><i class="fas fa-check"></i> Participació al fòrum</li>
-                            <li><i class="fas fa-check"></i> Passaport cultural inicial</li>
-                            <li><i class="fas fa-lock" style="opacity: 0.5;"></i> Votació de continguts</li>
+                            <li><i class="fas fa-check" style="color: #cd7f32;"></i> Accés a quizzes bàsics</li>
+                            <li><i class="fas fa-check" style="color: #cd7f32;"></i> Participació al fòrum</li>
+                            <li><i class="fas fa-check" style="color: #cd7f32;"></i> Passaport cultural inicial</li>
+                            <li><i class="fas fa-lock" style="opacity: 0.4;"></i> Votació de continguts</li>
                         </ul>
                     </div>
                     <div class="level-card explorador">
                         <div class="level-icon">🥈</div>
-                        <span class="level-badge-tag" style="background: silver; color: var(--gris-pizarra);">Explorador</span>
-                        <h3 style="color: silver;">Explorador</h3>
-                        <p>Has demostrat coneixement. Major participació dins de la comunitat.</p>
+                        <span class="level-badge-tag" style="background: silver; color: var(--gris-pizarra);">Nivell 2</span>
+                        <h3 style="color: #a0a0a0;">Explorador</h3>
+                        <p class="level-desc">Has demostrat coneixement real. La comunitat confia en tu per valorar continguts.</p>
                         <ul class="level-perks">
-                            <li><i class="fas fa-check"></i> Quizzes avançats</li>
-                            <li><i class="fas fa-check"></i> Votar veracitat de continguts</li>
-                            <li><i class="fas fa-check"></i> Crear fils al fòrum</li>
-                            <li><i class="fas fa-check"></i> Segells especials al passaport</li>
+                            <li><i class="fas fa-check" style="color: #a0a0a0;"></i> Quizzes avançats</li>
+                            <li><i class="fas fa-check" style="color: #a0a0a0;"></i> Votar veracitat de continguts</li>
+                            <li><i class="fas fa-check" style="color: #a0a0a0;"></i> Crear fils al fòrum</li>
+                            <li><i class="fas fa-check" style="color: #a0a0a0;"></i> Segells especials al passaport</li>
                         </ul>
                     </div>
                     <div class="level-card ambaixador">
                         <div class="level-icon">🥇</div>
-                        <span class="level-badge-tag" style="background: var(--oro); color: var(--gris-pizarra);">Ambaixador</span>
+                        <span class="level-badge-tag" style="background: var(--oro); color: var(--gris-pizarra);">Nivell 3</span>
                         <h3 style="color: var(--oro);">Ambaixador</h3>
-                        <p>Usuari clau. Reconeixement màxim de la comunitat.</p>
+                        <p class="level-desc">Reconeixement màxim. Ets un pilar de la comunitat i ajudes a validar el coneixement global.</p>
                         <ul class="level-perks">
-                            <li><i class="fas fa-check"></i> Validar continguts publicats</li>
-                            <li><i class="fas fa-check"></i> Proposar nous quizzes</li>
-                            <li><i class="fas fa-check"></i> Moderació cultural</li>
-                            <li><i class="fas fa-check"></i> Insígnia d'Ambaixador verificat</li>
+                            <li><i class="fas fa-check" style="color: var(--oro);"></i> Validar continguts publicats</li>
+                            <li><i class="fas fa-check" style="color: var(--oro);"></i> Proposar nous quizzes</li>
+                            <li><i class="fas fa-check" style="color: var(--oro);"></i> Moderació cultural</li>
+                            <li><i class="fas fa-check" style="color: var(--oro);"></i> Insígnia d'Ambaixador verificat</li>
                         </ul>
                     </div>
                 </div>
@@ -990,20 +1022,20 @@
             <section class="verification-section reveal">
                 <div class="verification-showcase">
                     <div class="verification-text">
-                        <h3><i class="fas fa-shield-alt"></i> Sistema de Verificació</h3>
-                        <p>Els usuaris amb nivell Ambaixador tenen un paper clau en la validació dels continguts, garantint informació fiable i culturalment precisa.</p>
+                        <h3><i class="fas fa-shield-alt"></i> Verificació comunitària</h3>
+                        <p>Els Ambaixadors són el filtre humà que assegura que cada dada cultural sigui precisa, respectuosa i enriquidora. Gràcies a ells, el 98% del contingut està verificat.</p>
                         <ul class="verification-steps">
                             <li>
                                 <span class="step-number">1</span>
-                                <div><strong>Publicació</strong><br>Un usuari comparteix contingut cultural</div>
+                                <div><strong>Publicació</strong><br>Un membre comparteix una tradició, recepta o llegenda.</div>
                             </li>
                             <li>
                                 <span class="step-number">2</span>
-                                <div><strong>Revisió comunitària</strong><br>Usuaris Explorador i Ambaixador voten la veracitat</div>
+                                <div><strong>Revisió oberta</strong><br>Exploradors i Ambaixadors voten i comenten la veracitat.</div>
                             </li>
                             <li>
                                 <span class="step-number">3</span>
-                                <div><strong>Validació final</strong><br>Ambaixadors confirmen i segellen com a verificat</div>
+                                <div><strong>Segell de qualitat</strong><br>Un Ambaixador confirma i el contingut queda validat.</div>
                             </li>
                         </ul>
                     </div>
@@ -1011,17 +1043,17 @@
                         <div class="expert-badge">
                             <div class="expert-avatar"><i class="fas fa-crown"></i></div>
                             <div>
-                                <h4 style="color: var(--oro); font-size: 1.3rem;">Maria Chen</h4>
+                                <h4 style="color: var(--oro); font-size: 1.4rem;">Maria Chen</h4>
                                 <p style="opacity: 0.8;">Ambaixadora Cultural · Nivell Or</p>
                             </div>
                         </div>
-                        <p style="margin-bottom: 15px;"><i class="fas fa-quote-left" style="color: var(--oro); opacity: 0.5;"></i> Ha verificat recentment:</p>
+                        <p style="margin-bottom: 20px;"><i class="fas fa-quote-left" style="color: var(--oro); opacity: 0.6; font-size: 1.2rem;"></i> Ha verificat recentment:</p>
                         <div class="verified-content">
-                            <p style="font-style: italic;">"La tradició del te a Marroc és un símbol d'hospitalitat i respecte. Servir te a un convidat representa benvinguda i honor."</p>
+                            <p>"La tradició del te a Marroc és un símbol d'hospitalitat i respecte. Servir te a un convidat representa benvinguda i honor."</p>
                             <span class="verified-badge"><i class="fas fa-check-circle"></i> Verificat per Ambaixador</span>
                         </div>
-                        <p style="margin-top: 25px; text-align: right;">
-                            <i class="fas fa-arrow-right"></i> Proposa nou quiz (només Ambaixadors)
+                        <p style="margin-top: 30px; text-align: right; font-weight: 600;">
+                            <i class="fas fa-arrow-right" style="color: var(--oro);"></i> Proposa un nou quiz
                         </p>
                     </div>
                 </div>
@@ -1029,18 +1061,18 @@
 
             <section class="cta-section reveal">
                 <div class="cta-box">
-                    <h2><i class="fas fa-globe-americas"></i> Vols construir el Fòrum Cultural?</h2>
-                    <p>Uneix-te a una comunitat digital segura, respectuosa i educadora. Comença a explorar i compartir coneixement real avui mateix.</p>
+                    <h2><i class="fas fa-globe-americas"></i> Vols formar part del canvi?</h2>
+                    <p>Uneix-te a una comunitat digital segura, respectuosa i apassionada per les cultures del món. El teu coneixement pot inspirar milers d'exploradors.</p>
                     <div class="cta-buttons">
-                        <a href="https://app-coolture.github.io/app/index.html" class="btn btn-primary" style="background: var(--negro); color: white; padding: 16px 40px;"><i class="fas fa-download"></i> Descarrega COOLTURE</a>
-                        <a href="com-funciona.html" class="btn btn-outline" style="padding: 16px 40px; border-color: var(--gris-pizarra);">Descobreix com funciona</a>
+                        <a href="index.html#descarrega" class="btn btn-primary"><i class="fas fa-download"></i> Descarrega COOLTURE</a>
+                        <a href="com-funciona.html" class="btn btn-outline">Descobreix com funciona</a>
                     </div>
                 </div>
             </section>
         </div>
     </main>
 
-    <footer id="descarrega">
+    <footer>
         <div class="container">
             <div class="footer-grid">
                 <div>
@@ -1100,22 +1132,8 @@
             window.addEventListener('load', checkReveal);
             checkReveal();
 
-            // Modal de Privacidad
-            const privacyModal = document.getElementById('privacyModal');
-            const privacyLink = document.getElementById('privacyLink');
-            const closePrivacyBtn = document.getElementById('closePrivacyModalBtn');
-
-            privacyLink.addEventListener('click', (e) => {
-                e.preventDefault();
-                alert('Política de Privacitat');
-            });
-
-            // Modal de FAQ
-            const faqLink = document.getElementById('faqLink');
-            faqLink.addEventListener('click', (e) => {
-                e.preventDefault();
-                alert('FAQ de COOLTURE');
-            });
+            document.getElementById('faqLink').addEventListener('click', (e) => { e.preventDefault(); alert('FAQ de COOLTURE'); });
+            document.getElementById('privacyLink').addEventListener('click', (e) => { e.preventDefault(); alert('Política de Privacitat'); });
         })();
     </script>
 </body>
