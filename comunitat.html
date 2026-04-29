@@ -4,12 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>La Comunitat · COOLTURE</title>
-
-    <!-- Favicon: icono pasaporte.png en la misma carpeta que este código -->
     <link rel="icon" type="image/png" href="icon.png">
     <link rel="apple-touch-icon" href="icon.png">
-
-    <!-- Fonts & Icons -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
@@ -31,12 +27,10 @@
             --blanco: #ffffff;
             --verde: #a3e635;
             --verde-oscuro: #65a30d;
-
             --transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
             --transition-bounce: all 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
             --shadow-sm: 0 10px 30px -10px rgba(0, 0, 0, 0.1);
             --shadow-lg: 0 30px 60px -15px rgba(0, 0, 0, 0.2);
-            --shadow-glow: 0 0 30px rgba(198, 167, 94, 0.3);
         }
 
         body {
@@ -46,7 +40,6 @@
             line-height: 1.5;
             overflow-x: hidden;
             -webkit-font-smoothing: antialiased;
-            -moz-osx-font-smoothing: grayscale;
         }
 
         .container {
@@ -55,7 +48,7 @@
             padding: 0 2rem;
         }
 
-        /* ---------- HEADER ESTÁTICO BLANCO ---------- */
+        /* ---------- HEADER (LIMPIO, SIN BOTÓN APP) ---------- */
         header {
             padding: 1rem 0;
             position: fixed;
@@ -126,127 +119,6 @@
         .nav-links a:hover::after,
         .nav-links a.active::after {
             width: 100%;
-        }
-
-        .nav-buttons {
-            position: relative;
-            flex-shrink: 0;
-        }
-
-        .btn {
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            padding: 12px 24px;
-            border-radius: 60px;
-            font-weight: 600;
-            text-decoration: none;
-            transition: var(--transition-bounce);
-            border: none;
-            cursor: pointer;
-            background: transparent;
-            font-size: 0.95rem;
-            white-space: nowrap;
-            justify-content: center;
-            text-align: center;
-        }
-
-        .btn-primary {
-            background: var(--negro);
-            color: white;
-            box-shadow: var(--shadow-sm);
-        }
-
-        .btn-primary:hover {
-            background: #1a1a1a;
-            transform: scale(1.05) translateY(-3px);
-            box-shadow: var(--shadow-lg);
-        }
-
-        .btn-oro {
-            background: var(--oro);
-            color: var(--gris-pizarra);
-            font-weight: 700;
-            box-shadow: 0 10px 20px -5px rgba(198, 167, 94, 0.3);
-        }
-
-        .btn-oro:hover {
-            background: #d4b87a;
-            transform: scale(1.05) translateY(-3px);
-        }
-
-        .btn-outline {
-            border: 2px solid var(--negro);
-            color: var(--negro);
-        }
-
-        .btn-outline:hover {
-            background: var(--negro);
-            color: white;
-        }
-
-        .dropdown {
-            position: relative;
-            display: inline-block;
-        }
-
-        .dropdown-content {
-            display: none;
-            position: absolute;
-            top: 100%;
-            right: 0;
-            margin-top: 10px;
-            background: var(--blanco);
-            min-width: 220px;
-            border-radius: 20px;
-            box-shadow: var(--shadow-lg);
-            z-index: 1001;
-            overflow: hidden;
-            animation: slideDown 0.3s ease;
-            border: 1px solid rgba(0, 0, 0, 0.05);
-        }
-
-        @keyframes slideDown {
-            from {
-                opacity: 0;
-                transform: translateY(-10px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        .dropdown-content.show {
-            display: block;
-        }
-
-        .dropdown-content a {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            padding: 16px 20px;
-            color: var(--negro);
-            text-decoration: none;
-            font-weight: 500;
-            transition: var(--transition);
-            border-bottom: 1px solid rgba(0, 0, 0, 0.05);
-            white-space: nowrap;
-        }
-
-        .dropdown-content a:last-child {
-            border-bottom: none;
-        }
-
-        .dropdown-content a:hover {
-            background: var(--blanco-hueso);
-            padding-left: 25px;
-        }
-
-        .dropdown-content a i {
-            font-size: 1.3rem;
-            width: 24px;
-            color: var(--verde-header);
         }
 
         main {
@@ -383,7 +255,7 @@
             color: var(--oro);
         }
 
-        /* ---------- NIVELES SECTION ---------- */
+        /* ---------- NIVELES SECTION, joel cambiar las medallas a las imaganes , no estan por aqui, es solo que no se omcentar y ya estaba pùesto esto  ---------- */
         .levels-section {
             padding: 80px 0;
         }
@@ -434,7 +306,6 @@
             left: 0;
             width: 100%;
             height: 6px;
-            background: linear-gradient(90deg, var(--oro), var(--verde-header));
         }
         .level-card:hover {
             transform: translateY(-15px);
@@ -618,118 +489,44 @@
             flex-wrap: wrap;
         }
 
-        /* ---------- MODALES (FAQ y Privacidad) ---------- */
-        .modal-overlay {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.4);
-            backdrop-filter: blur(8px);
-            display: flex;
+        .btn {
+            display: inline-flex;
             align-items: center;
-            justify-content: center;
-            z-index: 2000;
-            opacity: 0;
-            pointer-events: none;
-            transition: opacity 0.3s ease;
-            padding: 1rem;
-        }
-
-        .modal-overlay.show {
-            opacity: 1;
-            pointer-events: auto;
-        }
-
-        .modal-card {
-            background: var(--blanco);
-            max-width: 600px;
-            width: 100%;
-            border-radius: 40px;
-            padding: 25px;
-            box-shadow: var(--shadow-lg), 0 0 0 2px var(--verde);
-            transform: scale(0.9);
-            transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
-            position: relative;
-            border: 1px solid rgba(163, 230, 53, 0.3);
-            max-height: 92vh;
-            overflow-y: auto;
-            scrollbar-width: none;
-            -ms-overflow-style: none;
-        }
-        .modal-card::-webkit-scrollbar {
-            display: none;
-        }
-
-        .modal-overlay.show .modal-card {
-            transform: scale(1);
-        }
-
-        .modal-header {
-            display: flex;
-            align-items: center;
-            gap: 15px;
-            margin-bottom: 20px;
-            border-bottom: 2px dashed var(--verde);
-            padding-bottom: 15px;
-            flex-wrap: wrap;
-        }
-
-        .modal-title {
-            font-size: 2rem;
-            font-weight: 700;
-            color: var(--negro);
-        }
-
-        .modal-subtitle {
-            font-size: 1rem;
-            color: var(--verde-oscuro);
-            font-weight: 500;
-            letter-spacing: 1px;
-        }
-
-        .modal-close {
-            position: absolute;
-            top: 20px;
-            right: 25px;
-            background: none;
+            gap: 8px;
+            padding: 12px 24px;
+            border-radius: 60px;
+            font-weight: 600;
+            text-decoration: none;
+            transition: var(--transition-bounce);
             border: none;
-            font-size: 1.8rem;
             cursor: pointer;
-            color: var(--negro);
-            opacity: 0.5;
-            transition: var(--transition);
-            z-index: 10;
-        }
-
-        .modal-close:hover {
-            opacity: 1;
-            transform: rotate(90deg);
-            color: var(--verde-oscuro);
-        }
-
-        .privacy-content,
-        .faq-content {
+            background: transparent;
             font-size: 0.95rem;
-            line-height: 1.6;
-            color: #333;
+            white-space: nowrap;
+            justify-content: center;
+            text-align: center;
         }
-        .privacy-content h3,
-        .faq-content h3 {
-            margin: 20px 0 10px;
+
+        .btn-primary {
+            background: var(--negro);
+            color: white;
+            box-shadow: var(--shadow-sm);
+        }
+
+        .btn-primary:hover {
+            background: #1a1a1a;
+            transform: scale(1.05) translateY(-3px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .btn-outline {
+            border: 2px solid var(--negro);
             color: var(--negro);
         }
-        .privacy-content p,
-        .faq-content p {
-            margin-bottom: 15px;
-        }
-        .faq-content ul {
-            margin-left: 20px;
-            margin-bottom: 15px;
-        }
-        .faq-content ul li {
-            margin-bottom: 8px;
+
+        .btn-outline:hover {
+            background: var(--negro);
+            color: white;
         }
 
         /* ---------- FOOTER ---------- */
@@ -899,10 +696,6 @@
             .logo-img {
                 height: 38px;
             }
-            .dropdown-content {
-                left: 0;
-                right: auto;
-            }
             .section-header h2 {
                 font-size: 2rem;
             }
@@ -936,24 +729,6 @@
             .nav-links a {
                 font-size: 0.8rem;
                 padding-bottom: 4px;
-            }
-            .btn {
-                padding: 10px 18px;
-                font-size: 0.85rem;
-                gap: 6px;
-            }
-            .btn-primary {
-                padding: 10px 18px;
-                font-size: 0.85rem;
-            }
-            .dropdown-content {
-                min-width: 190px;
-                right: -20px;
-                left: auto;
-            }
-            .dropdown-content a {
-                padding: 12px 16px;
-                font-size: 0.9rem;
             }
             main {
                 padding-top: 80px;
@@ -1101,64 +876,6 @@
             .footer-bottom {
                 margin-top: 40px;
             }
-
-            .modal-card {
-                border-radius: 28px;
-                padding: 20px 18px;
-            }
-            .modal-title {
-                font-size: 1.5rem;
-            }
-            .modal-close {
-                top: 15px;
-                right: 18px;
-                font-size: 1.5rem;
-            }
-            .modal-header {
-                gap: 10px;
-            }
-            .modal-header i {
-                font-size: 2rem;
-            }
-        }
-
-        @media (max-width: 380px) {
-            .nav-links {
-                gap: 0.7rem;
-            }
-            .nav-links a {
-                font-size: 0.75rem;
-            }
-            .btn {
-                padding: 8px 14px;
-                font-size: 0.8rem;
-            }
-            .page-header h1 {
-                font-size: 1.6rem;
-            }
-            .page-header::after {
-                font-size: 120px;
-                bottom: -20px;
-                right: -15px;
-            }
-            .manifest-card {
-                padding: 20px 16px;
-            }
-            .level-card {
-                padding: 24px 16px;
-            }
-            .verification-showcase {
-                padding: 20px 16px;
-            }
-            .cta-box {
-                padding: 30px 16px;
-            }
-            .cta-box h2 {
-                font-size: 1.4rem;
-            }
-            .section-header h2 {
-                font-size: 1.4rem;
-            }
         }
     </style>
 </head>
@@ -1174,20 +891,7 @@
                 <a href="com-funciona.html">Com Funciona</a>
                 <a href="comunitat.html" class="active">La Comunitat</a>
             </nav>
-            <div class="nav-buttons dropdown">
-                <button class="btn btn-primary" id="appDropdownBtn">
-                    <i class="fas fa-download"></i> App
-                    <i class="fas fa-chevron-down" style="font-size: 0.8rem;"></i>
-                </button>
-                <div class="dropdown-content" id="appDropdown">
-                    <a href="#" target="_blank">
-                        <i class="fab fa-apple"></i> Descarregar a l'App Store
-                    </a>
-                    <a href="#" target="_blank">
-                        <i class="fab fa-google-play"></i> Descarregar a Google Play
-                    </a>
-                </div>
-            </div>
+            <!-- ❌ Botón App eliminado -->
         </div>
     </header>
 
@@ -1244,7 +948,6 @@
                     <p>El teu estatus a la plataforma creix a mesura que demostres la teva expertesa cultural.</p>
                 </div>
                 <div class="levels-grid">
-                    <!-- Turista -->
                     <div class="level-card turista">
                         <div class="level-icon">🥉</div>
                         <span class="level-badge-tag" style="background: #cd7f32; color: white;">Turista</span>
@@ -1257,7 +960,6 @@
                             <li><i class="fas fa-lock" style="opacity: 0.5;"></i> Votació de continguts</li>
                         </ul>
                     </div>
-                    <!-- Explorador -->
                     <div class="level-card explorador">
                         <div class="level-icon">🥈</div>
                         <span class="level-badge-tag" style="background: silver; color: var(--gris-pizarra);">Explorador</span>
@@ -1270,7 +972,6 @@
                             <li><i class="fas fa-check"></i> Segells especials al passaport</li>
                         </ul>
                     </div>
-                    <!-- Ambaixador -->
                     <div class="level-card ambaixador">
                         <div class="level-icon">🥇</div>
                         <span class="level-badge-tag" style="background: var(--oro); color: var(--gris-pizarra);">Ambaixador</span>
@@ -1331,97 +1032,13 @@
                     <h2><i class="fas fa-globe-americas"></i> Vols construir el Fòrum Cultural?</h2>
                     <p>Uneix-te a una comunitat digital segura, respectuosa i educadora. Comença a explorar i compartir coneixement real avui mateix.</p>
                     <div class="cta-buttons">
-                        <a href="index.html#descarrega" class="btn btn-primary" style="background: var(--negro); color: white; padding: 16px 40px;"><i class="fas fa-download"></i> Descarrega COOLTURE</a>
+                        <a href="https://app-coolture.github.io/app/index.html" class="btn btn-primary" style="background: var(--negro); color: white; padding: 16px 40px;"><i class="fas fa-download"></i> Descarrega COOLTURE</a>
                         <a href="com-funciona.html" class="btn btn-outline" style="padding: 16px 40px; border-color: var(--gris-pizarra);">Descobreix com funciona</a>
                     </div>
                 </div>
             </section>
         </div>
     </main>
-
-    <!-- MODAL DE FAQ -->
-    <div class="modal-overlay" id="faqModal">
-        <div class="modal-card">
-            <button class="modal-close" id="closeFaqModalBtn">&times;</button>
-            <div class="modal-header">
-                <i class="fas fa-question-circle" style="font-size: 2.5rem; color: var(--oro);"></i>
-                <div>
-                    <div class="modal-title">Preguntes Freqüents</div>
-                    <div class="modal-subtitle">COOLTURE · Fòrum Cultural del Món</div>
-                </div>
-            </div>
-            <div class="faq-content">
-                <h3>🌍 Què és COOLTURE?</h3>
-                <p>COOLTURE és un Fòrum Cultural Digital col·laboratiu on exploradors de tot el món comparteixen i verifiquen coneixement cultural real, sense estereotips. Combina quizzes, passaport digital i una comunitat global per aprendre sobre països i cultures de manera profunda i entretinguda.</p>
-
-                <h3>📱 Com puc descarregar l'app?</h3>
-                <p>COOLTURE està disponible com a Progressive Web App (PWA). Pots instal·lar-la directament des del navegador fent clic al botó de descàrrega al footer, o bé des de l'App Store i Google Play (properament). La PWA funciona offline i s'actualitza automàticament.</p>
-
-                <h3>🛂 Com funciona el Passaport Digital?</h3>
-                <p>Cada cop que completes un quiz sobre un país i demostres el teu coneixement, guanyes un segell digital per al teu passaport. Pots col·leccionar segells de més de 140 països i pujar de nivell de Turista a Explorador i finalment a Ambaixador.</p>
-
-                <h3>✅ Com es verifica la informació?</h3>
-                <p>Tot el contingut de COOLTURE passa per un procés de verificació comunitària. Els usuaris amb nivell avançat (Exploradors i Ambaixadors) poden validar dades, i un equip de moderadors revisa les aportacions. Així garantim un 98% de contingut verificat.</p>
-
-                <h3>💰 És gratuït?</h3>
-                <p>Sí! COOLTURE és completament gratuït. Creiem que el coneixement cultural ha de ser accessible per a tothom. No hi ha subscripcions ni compres dins de l'app. El projecte es finança amb col·laboracions institucionals i donacions voluntàries.</p>
-
-                <h3>👥 Puc contribuir amb contingut?</h3>
-                <p>I tant! Un cop arribis al nivell d'Explorador, podràs proposar noves dades culturals, curiositats i preguntes per als quizzes. La comunitat valida les aportacions de manera col·laborativa.</p>
-
-                <h3>📧 Com puc contactar amb l'equip?</h3>
-                <p>Pots escriure'ns a <strong>app-coolture@ifp-alguero.org</strong> per a qualsevol dubte, suggeriment o proposta de col·laboració. També tenim un formulari de contacte a la secció de Suport.</p>
-
-                <p style="margin-top: 20px; font-style: italic; text-align: center;">🌱 COOLTURE · Coneixement real, comunitat global.</p>
-            </div>
-        </div>
-    </div>
-
-    <!-- MODAL DE PRIVACIDAD -->
-    <div class="modal-overlay" id="privacyModal">
-        <div class="modal-card">
-            <button class="modal-close" id="closePrivacyModalBtn">&times;</button>
-            <div class="modal-header">
-                <i class="fas fa-shield-alt" style="font-size: 2.5rem; color: var(--verde-oscuro);"></i>
-                <div>
-                    <div class="modal-title">Política de Privacitat</div>
-                    <div class="modal-subtitle">COOLTURE · Fòrum Cultural del Món</div>
-                </div>
-            </div>
-            <div class="privacy-content">
-                <p><strong>Última actualització:</strong> 13 d'abril de 2026</p>
-
-                <h3>1. Informació que recopilem</h3>
-                <p>COOLTURE recull únicament la informació necessària per al funcionament del Fòrum Cultural: nom d'usuari, correu electrònic, país de residència (opcional) i dades d'ús de l'aplicació (quizzes completats, països explorats). No compartim les teves dades amb tercers amb finalitats comercials.</p>
-
-                <h3>2. Ús de les dades</h3>
-                <p>Les teves dades s'utilitzen exclusivament per a:</p>
-                <ul style="margin-left: 20px; margin-bottom: 15px;">
-                    <li>Personalitzar la teva experiència al Fòrum.</li>
-                    <li>Emmagatzemar el teu progrés (passaport digital, nivells).</li>
-                    <li>Enviar-te notificacions opcionals sobre noves funcionalitats.</li>
-                    <li>Millorar els continguts culturals de la plataforma.</li>
-                </ul>
-
-                <h3>3. Cookies i tecnologies similars</h3>
-                <p>Utilitzem cookies tècniques essencials per al funcionament del lloc web (inici de sessió, preferències d'idioma). No utilitzem cookies de publicitat ni de seguiment de tercers.</p>
-
-                <h3>4. Drets de l'usuari</h3>
-                <p>Pots exercir els teus drets d'accés, rectificació, supressió i portabilitat de les teves dades enviant un correu a <strong>app-coolture@ifp-alguero.org</strong>. Respondrem en un termini màxim de 30 dies.</p>
-
-                <h3>5. Menors d'edat</h3>
-                <p>COOLTURE està dissenyat per a un públic general, però recomanem la supervisió d'un adult per a usuaris menors de 14 anys. No recopilem conscientment dades de menors sense consentiment parental verificable.</p>
-
-                <h3>6. Canvis en la política</h3>
-                <p>Qualsevol modificació d'aquesta política serà notificada a través del lloc web i, si és substancial, per correu electrònic.</p>
-
-                <h3>7. Contacte</h3>
-                <p>Per a qualsevol consulta sobre privacitat, pots escriure'ns a <strong>app-coolture@ifp-alguero.org</strong>.</p>
-
-                <p style="margin-top: 20px; font-style: italic;">COOLTURE compleix amb el Reglament General de Protecció de Dades (RGPD) de la Unió Europea i la Llei Orgànica de Protecció de Dades i Garantia dels Drets Digitals (LOPDGDD) d'Espanya.</p>
-            </div>
-        </div>
-    </div>
 
     <footer id="descarrega">
         <div class="container">
@@ -1483,27 +1100,6 @@
             window.addEventListener('load', checkReveal);
             checkReveal();
 
-            const dropdownBtn = document.getElementById('appDropdownBtn');
-            const dropdownContent = document.getElementById('appDropdown');
-
-            dropdownBtn.addEventListener('click', function(e) {
-                e.preventDefault();
-                e.stopPropagation();
-                dropdownContent.classList.toggle('show');
-            });
-
-            window.addEventListener('click', function(e) {
-                if (!dropdownBtn.contains(e.target) && !dropdownContent.contains(e.target)) {
-                    dropdownContent.classList.remove('show');
-                }
-            });
-
-            window.addEventListener('keydown', function(e) {
-                if (e.key === 'Escape' && dropdownContent.classList.contains('show')) {
-                    dropdownContent.classList.remove('show');
-                }
-            });
-
             // Modal de Privacidad
             const privacyModal = document.getElementById('privacyModal');
             const privacyLink = document.getElementById('privacyLink');
@@ -1511,51 +1107,16 @@
 
             privacyLink.addEventListener('click', (e) => {
                 e.preventDefault();
-                privacyModal.classList.add('show');
-            });
-
-            closePrivacyBtn.addEventListener('click', () => {
-                privacyModal.classList.remove('show');
-            });
-
-            privacyModal.addEventListener('click', (e) => {
-                if (e.target === privacyModal) {
-                    privacyModal.classList.remove('show');
-                }
+                alert('Política de Privacitat');
             });
 
             // Modal de FAQ
-            const faqModal = document.getElementById('faqModal');
             const faqLink = document.getElementById('faqLink');
-            const closeFaqBtn = document.getElementById('closeFaqModalBtn');
-
             faqLink.addEventListener('click', (e) => {
                 e.preventDefault();
-                faqModal.classList.add('show');
-            });
-
-            closeFaqBtn.addEventListener('click', () => {
-                faqModal.classList.remove('show');
-            });
-
-            faqModal.addEventListener('click', (e) => {
-                if (e.target === faqModal) {
-                    faqModal.classList.remove('show');
-                }
-            });
-
-            window.addEventListener('keydown', (e) => {
-                if (e.key === 'Escape') {
-                    if (privacyModal.classList.contains('show')) {
-                        privacyModal.classList.remove('show');
-                    }
-                    if (faqModal.classList.contains('show')) {
-                        faqModal.classList.remove('show');
-                    }
-                }
+                alert('FAQ de COOLTURE');
             });
         })();
     </script>
-
 </body>
 </html>
