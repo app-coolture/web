@@ -4,12 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Com Funciona · COOLTURE</title>
-
-    <!-- Favicon: icono icon.png en la misma carpeta -->
     <link rel="icon" type="image/png" href="icon.png">
     <link rel="apple-touch-icon" href="icon.png">
-
-    <!-- Fonts & Icons -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
@@ -31,7 +27,13 @@
             --blanco: #ffffff;
             --verde: #a3e635;
             --verde-oscuro: #65a30d;
-
+            --green-coolture: #667F57;
+            --gold-tag: #C6A75E;
+            --green-tag: #667F57;
+            --text-dark: #1c1c1c;
+            --text-grey: #7c7c7c;
+            --danger: #e67e22;
+            --correct: #2ecc71;
             --transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
             --transition-bounce: all 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
             --shadow-sm: 0 10px 30px -10px rgba(0,0,0,0.1);
@@ -53,7 +55,6 @@
             padding: 0 2rem;
         }
 
-        /* ---------- HEADER ---------- */
         header {
             padding: 1rem 0;
             position: fixed;
@@ -120,102 +121,10 @@
             width: 100%;
         }
 
-        .nav-buttons {
-            position: relative;
-        }
-
-        .btn {
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            padding: 12px 24px;
-            border-radius: 60px;
-            font-weight: 600;
-            text-decoration: none;
-            transition: var(--transition-bounce);
-            border: none;
-            cursor: pointer;
-            background: transparent;
-            font-size: 0.95rem;
-            white-space: nowrap;
-            justify-content: center;
-            text-align: center;
-        }
-
-        .btn-primary {
-            background: var(--negro);
-            color: white;
-            box-shadow: var(--shadow-sm);
-        }
-
-        .btn-primary:hover {
-            background: #1a1a1a;
-            transform: scale(1.05) translateY(-3px);
-            box-shadow: var(--shadow-lg);
-        }
-
-        .dropdown {
-            position: relative;
-            display: inline-block;
-        }
-
-        .dropdown-content {
-            display: none;
-            position: absolute;
-            top: 100%;
-            right: 0;
-            margin-top: 10px;
-            background: var(--blanco);
-            min-width: 220px;
-            border-radius: 20px;
-            box-shadow: var(--shadow-lg);
-            z-index: 1001;
-            overflow: hidden;
-            animation: slideDown 0.3s ease;
-            border: 1px solid rgba(0,0,0,0.05);
-        }
-
-        @keyframes slideDown {
-            from { opacity: 0; transform: translateY(-10px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        .dropdown-content.show {
-            display: block;
-        }
-
-        .dropdown-content a {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            padding: 16px 20px;
-            color: var(--negro);
-            text-decoration: none;
-            font-weight: 500;
-            transition: var(--transition);
-            border-bottom: 1px solid rgba(0,0,0,0.05);
-        }
-
-        .dropdown-content a:last-child {
-            border-bottom: none;
-        }
-
-        .dropdown-content a:hover {
-            background: var(--blanco-hueso);
-            padding-left: 25px;
-        }
-
-        .dropdown-content a i {
-            font-size: 1.3rem;
-            width: 24px;
-            color: var(--verde-header);
-        }
-
         main {
             padding-top: 90px;
         }
 
-        /* ---------- PAGE HEADER ---------- */
         .page-header {
             background: linear-gradient(135deg, var(--verde-header) 0%, #4a6341 100%);
             padding: 80px 0 60px;
@@ -261,7 +170,6 @@
             margin: 0 auto;
         }
 
-        /* ---------- FUNCIO SECTIONS ---------- */
         .funcio-section {
             padding: 100px 0;
             border-bottom: 1px solid rgba(0,0,0,0.05);
@@ -303,10 +211,14 @@
             letter-spacing: -0.02em;
             margin-bottom: 25px;
             color: var(--gris-pizarra);
+            display: flex;
+            align-items: center;
         }
-        .funcio-text h2 i {
-            color: var(--oro);
-            margin-right: 10px;
+        .funcio-text h2 img {
+            width: 80px;
+            height: auto;
+            margin-right: 8px;
+            vertical-align: middle;
         }
         .funcio-text p {
             font-size: 1.2rem;
@@ -333,7 +245,6 @@
             flex-shrink: 0;
         }
 
-        /* MOCKUPS */
         .mockup-card {
             background: var(--blanco);
             border-radius: 32px;
@@ -361,111 +272,317 @@
         .mockup-header .dot:nth-child(2) { background: #ffbd2e; }
         .mockup-header .dot:nth-child(3) { background: #27c93f; }
 
+        /* ================================================================ */
+        /*               ESTILOS DE LOS MOCKUPS ACTUALIZADOS                */
+        /* ================================================================ */
+
         .forum-mockup {
-            padding: 24px;
+            padding: 16px;
             background: var(--blanco-hueso);
+            max-height: 450px;
+            overflow-y: auto;
+            scrollbar-width: thin;
         }
-        .forum-nav {
-            display: flex;
-            gap: 15px;
-            border-bottom: 2px solid var(--oro);
-            padding-bottom: 15px;
-            margin-bottom: 20px;
-            font-weight: 700;
-            color: var(--verde-header);
-            flex-wrap: wrap;
-        }
-        .forum-category {
-            background: white;
-            padding: 16px 20px;
+        .post-card {
+            background: #F4F1E8;
+            border-bottom: 1px solid #cccbc4;
+            padding: 12px;
+            margin-bottom: 8px;
             border-radius: 16px;
-            margin-bottom: 12px;
+        }
+        .user-header {
             display: flex;
             align-items: center;
-            gap: 15px;
-            font-weight: 600;
-            box-shadow: var(--shadow-sm);
-            border-left: 5px solid var(--oro);
-            transition: var(--transition);
+            gap: 10px;
+            margin-bottom: 5px;
+        }
+        .avatar {
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            border: 2px solid #232323;
+            object-fit: cover;
+            background: #e0e0e0;
+            flex-shrink: 0;
+        }
+        .username-line {
+            font-size: 13px;
+            font-weight: bold;
+            color: #1c1c1c;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+        .tags {
+            display: flex;
+            gap: 8px;
+            margin-bottom: 10px;
+            margin-top: 8px;
             flex-wrap: wrap;
         }
-        .forum-category:hover {
-            background: var(--verde-header);
-            color: white;
-            transform: translateX(8px);
+        .tag-pill {
+            display: inline-block;
+            font-size: 11px;
+            font-weight: 600;
+            padding: 5px 14px;
+            border-radius: 40px;
+            color: #ffffff !important;
+            background: #aaa;
         }
-        .forum-category i {
-            color: var(--oro);
-            font-size: 1.4rem;
-            flex-shrink: 0;
+        .tag-tema {
+            background-color: var(--green-tag);
+        }
+        .tag-continent {
+            background-color: var(--gold-tag);
+        }
+        .post-title {
+            font-size: 16px;
+            margin: 5px 0;
+            color: #1c1c1c;
+            font-weight: 700;
+        }
+        .post-text {
+            font-size: 14px;
+            color: #444;
+            line-height: 1.4;
+        }
+        .post-image {
+            width: 100%;
+            max-width: 100%;
+            display: block;
+            margin: 10px 0;
+            border-radius: 12px;
+            border: 2px solid #232323;
+            object-fit: cover;
+            max-height: 150px;
+        }
+        .actions {
+            display: flex;
+            gap: 15px;
+            font-size: 13px;
+            font-weight: bold;
+            color: var(--text-grey);
+            margin-top: 10px;
         }
 
         .quizz-mockup {
-            background: var(--gris-pizarra);
-            color: var(--blanco-hueso);
-            padding: 30px;
+            background: #F5F1E8;
+            padding: 20px;
+            color: var(--text-dark);
+            max-height: 450px;
+            overflow-y: auto;
         }
-        .quizz-q {
-            font-size: 1.3rem;
-            font-weight: 600;
-            margin-bottom: 25px;
-            color: var(--oro);
+        .quiz-title {
+            text-align: center;
+            margin-bottom: 15px;
         }
-        .quizz-option {
-            background: rgba(255,255,255,0.05);
-            padding: 16px 20px;
-            border-radius: 50px;
-            margin-bottom: 12px;
-            font-weight: 500;
-            cursor: pointer;
-            transition: var(--transition);
-            border: 1px solid transparent;
+        .quiz-title .emoji {
+            font-size: 32px;
+            display: inline-block;
+            margin-right: 8px;
+            vertical-align: middle;
         }
-        .quizz-option:hover {
-            background: var(--verde-header);
-            border-color: var(--oro);
-            transform: scale(1.02);
+        .quiz-title h1 {
+            font-size: 22px;
+            font-weight: 800;
+            background: linear-gradient(135deg, #667F57, #8BA87A);
+            background-clip: text;
+            -webkit-background-clip: text;
+            color: transparent;
         }
-        .quizz-option.correct {
-            background: var(--oro);
-            color: var(--gris-pizarra);
+        .progress-area {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+        .question-counter {
+            font-size: 12px;
+            background: var(--green-coolture);
+            color: white;
+            padding: 4px 12px;
+            border-radius: 30px;
+        }
+        .timer-box {
+            background: white;
+            padding: 4px 12px;
+            border-radius: 30px;
+            font-weight: bold;
+            color: var(--text-dark);
+            box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+        }
+        .question-text {
+            background: white;
+            border-radius: 28px;
+            padding: 18px;
+            font-size: 16px;
             font-weight: 700;
+            color: var(--text-dark);
+            margin-bottom: 20px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+        }
+        .options-list {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+        .option-btn {
+            background: white;
+            border: 1px solid #ddd;
+            border-radius: 60px;
+            padding: 12px 16px;
+            font-size: 14px;
+            font-weight: 500;
+            color: var(--text-dark);
+            text-align: left;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+        .option-btn.correct {
+            background: var(--correct);
+            color: white;
+            border-color: var(--correct);
+            font-weight: 600;
+        }
+        .option-btn.wrong {
+            background: var(--danger);
+            color: white;
+            border-color: var(--danger);
+        }
+        .next-btn {
+            background: var(--green-coolture);
+            border: none;
+            width: 100%;
+            padding: 12px;
+            border-radius: 40px;
+            color: white;
+            font-weight: bold;
+            font-size: 14px;
+            cursor: pointer;
+            transition: 0.2s;
+            text-align: center;
         }
 
         .passport-mockup {
-            background: linear-gradient(145deg, #3a4d32, var(--verde-header));
-            padding: 30px;
+            background: #F5F1E8;
+            padding: 20px;
+            max-height: 450px;
+            overflow-y: auto;
+        }
+        .targeta-verda {
+            background-color: var(--green-coolture);
+            border-radius: 18px;
+            padding: 16px 24px 18px;
+            margin-bottom: 20px;
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: space-between;
+            box-shadow: 0 6px 14px rgba(0, 0, 0, 0.2);
             color: white;
         }
-        .passport-header {
+        .info-esquerra {
+            flex: 2;
+            min-width: 150px;
+        }
+        .nom-pais-blanc {
+            font-size: 38px;
+            font-weight: 800;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: white;
+            line-height: 1.1;
+            margin-bottom: 8px;
+        }
+        .progres-label {
+            font-size: 11px;
+            font-weight: 300;
+            letter-spacing: 1px;
+            opacity: 0.9;
+            margin-top: 10px;
+            margin-bottom: 2px;
+        }
+        .barra-progres {
+            width: 100%;
+            height: 6px;
+            background-color: rgba(255, 255, 255, 0.3);
+            border-radius: 20px;
+            margin-top: 2px;
+            overflow: hidden;
+        }
+        .progres-omplert {
+            width: 68%;
+            height: 100%;
+            background-color: white;
+            border-radius: 20px;
+        }
+        .mapa-container {
+            flex: 1;
+            display: flex;
+            justify-content: flex-end;
+            align-items: center;
+            min-width: 80px;
+            margin-left: 16px;
+        }
+        .mapa-img {
+            width: 80px;
+            height: 80px;
+            border-radius: 8px;
+            background-size: cover;
+            background-position: center;
+            background-color: rgba(255,255,255,0.2);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+        }
+        .categorias-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px 16px;
+        }
+        .cat-item {
+            display: flex;
+            flex-direction: column;
+        }
+        .cat-header {
             display: flex;
             justify-content: space-between;
-            margin-bottom: 30px;
-            flex-wrap: wrap;
-            gap: 10px;
+            align-items: center;
+            width: 100%;
+            margin-bottom: 8px;
         }
-        .stamp-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 15px;
+        .cat-titulo {
+            font-size: 11px;
+            font-weight: 600;
+            text-transform: uppercase;
+            color: #2e3b40;
         }
-        .stamp-item {
-            background: rgba(255,255,255,0.1);
-            backdrop-filter: blur(4px);
-            padding: 15px 5px;
-            border-radius: 16px;
-            text-align: center;
-            border: 1px dashed var(--oro);
-            transition: var(--transition);
+        .circles {
+            display: flex;
+            gap: 6px;
         }
-        .stamp-item.oro {
-            border: 2px solid var(--oro);
-            background: rgba(198, 167, 94, 0.2);
+        .circle {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            display: inline-block;
         }
-        .stamp-item i {
+        .circle.gris { background-color: #b0b0b0; }
+        .circle.verde { background-color: var(--green-coolture); }
+        .circle.oro { background-color: var(--oro); }
+        .imagen-captura {
+            width: 100%;
+            aspect-ratio: 4 / 2.5;
+            background-color: #d9d2c5;
+            border-radius: 12px;
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.05);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 1px solid #cbc1b3;
             font-size: 2rem;
-            color: var(--oro);
-            margin-bottom: 5px;
         }
 
         .levels-showcase {
@@ -487,99 +604,16 @@
         .level-badge.explorador { border-top: 5px solid #c0c0c0; }
         .level-badge.ambaixador { border-top: 5px solid var(--oro); }
 
-        /* ---------- MODALES ---------- */
-        .modal-overlay {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0,0,0,0.4);
-            backdrop-filter: blur(8px);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            z-index: 2000;
-            opacity: 0;
-            pointer-events: none;
-            transition: opacity 0.3s ease;
-            padding: 1rem;
-        }
-
-        .modal-overlay.show {
-            opacity: 1;
-            pointer-events: auto;
-        }
-
-        .modal-card {
-            background: var(--blanco);
-            max-width: 600px;
-            width: 100%;
-            border-radius: 40px;
-            padding: 25px;
-            box-shadow: var(--shadow-lg), 0 0 0 2px var(--verde);
-            transform: scale(0.9);
-            transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
-            position: relative;
-            border: 1px solid rgba(163, 230, 53, 0.3);
-            max-height: 92vh;
-            overflow-y: auto;
-            scrollbar-width: none;
-            -ms-overflow-style: none;
-        }
-        .modal-card::-webkit-scrollbar { display: none; }
-
-        .modal-overlay.show .modal-card { transform: scale(1); }
-
-        .modal-header {
-            display: flex;
-            align-items: center;
-            gap: 15px;
-            margin-bottom: 20px;
-            border-bottom: 2px dashed var(--verde);
-            padding-bottom: 15px;
-        }
-        .modal-title { font-size: 2rem; font-weight: 700; color: var(--negro); }
-        .modal-subtitle { font-size: 1rem; color: var(--verde-oscuro); font-weight: 500; letter-spacing: 1px; }
-
-        .modal-close {
-            position: absolute;
-            top: 20px;
-            right: 25px;
-            background: none;
-            border: none;
-            font-size: 1.8rem;
-            cursor: pointer;
-            color: var(--negro);
-            opacity: 0.5;
-            transition: var(--transition);
-        }
-
-        .modal-close:hover { opacity: 1; transform: rotate(90deg); color: var(--verde-oscuro); }
-
-        .privacy-content, .faq-content {
-            font-size: 0.95rem;
-            line-height: 1.6;
-            color: #333;
-        }
-        .privacy-content h3, .faq-content h3 { margin: 20px 0 10px; color: var(--negro); }
-        .privacy-content p, .faq-content p { margin-bottom: 15px; }
-        .faq-content ul { margin-left: 20px; margin-bottom: 15px; }
-        .faq-content ul li { margin-bottom: 8px; }
-
-        /* ---------- FOOTER ---------- */
         footer {
             background: var(--gris-pizarra);
             color: #ccc;
             padding: 60px 0 30px;
         }
-
         .footer-grid {
             display: grid;
             grid-template-columns: 2fr 1fr 1fr 1.5fr;
             gap: 40px;
         }
-
         .footer-logo-img { height: 40px; width: auto; margin-bottom: 15px; }
         .footer-text { margin-top: 20px; opacity: 0.8; }
         .footer-decoration {
@@ -592,7 +626,6 @@
         }
         .footer-decoration i { font-size: 1.2rem; color: var(--oro); }
         .footer-bottom { margin-top: 60px; text-align: center; opacity: 0.6; }
-
         .pwa-button { display: inline-block; transition: var(--transition-bounce); }
         .pwa-button:hover { transform: scale(1.05) translateY(-3px); }
         .pwa-button img { height: 55px; width: auto; display: block; }
@@ -604,13 +637,11 @@
         }
         .reveal.visible { opacity: 1; transform: translateY(0); }
 
-        /* ============ RESPONSIVE ============ */
         @media (max-width: 1024px) {
             .funcio-row { gap: 40px; }
             .funcio-text h2 { font-size: 2.2rem; }
             .page-header h1 { font-size: 2.8rem; }
         }
-
         @media (max-width: 900px) {
             .navbar {
                 flex-direction: row;
@@ -626,7 +657,6 @@
                 padding-top: 0.5rem;
             }
             .nav-links a { font-size: 0.9rem; }
-
             .funcio-row {
                 flex-direction: column;
                 gap: 40px;
@@ -634,81 +664,28 @@
             .funcio-row.reverse { flex-direction: column; }
             .funcio-text h2 { font-size: 2rem; }
             .funcio-text p { font-size: 1.1rem; }
-
             .page-header h1 { font-size: 2.5rem; }
             .logo-img { height: 38px; }
-            .dropdown-content { left: 0; right: auto; }
-
             .footer-grid {
                 grid-template-columns: 1fr 1fr 1fr;
                 gap: 30px;
             }
         }
-
         @media (max-width: 600px) {
             .container { padding: 0 1.2rem; }
             header { padding: 0.8rem 0; }
             .logo-img { height: 32px; }
             .nav-links { gap: 1rem; }
             .nav-links a { font-size: 0.8rem; padding-bottom: 4px; }
-            .btn { padding: 10px 18px; font-size: 0.85rem; gap: 6px; }
-            .btn-primary { padding: 10px 18px; font-size: 0.85rem; }
-            .dropdown-content { min-width: 190px; right: -20px; left: auto; }
-            .dropdown-content a { padding: 12px 16px; font-size: 0.9rem; }
-            main { padding-top: 80px; }
-
             .page-header { padding: 50px 0 40px; }
             .page-header h1 { font-size: 2rem; }
             .page-header p { font-size: 1rem; }
-            .page-header .tag { font-size: 0.75rem; padding: 5px 16px; }
-            .page-header::after { font-size: 120px; bottom: -20px; right: -15px; }
-
             .funcio-section { padding: 60px 0; }
             .funcio-text h2 { font-size: 1.6rem; }
             .funcio-text p { font-size: 1rem; }
-            .funcio-text .tag { font-size: 0.7rem; padding: 4px 14px; }
-
             .mockup-card { border-radius: 24px; }
-            .forum-mockup { padding: 16px; }
-            .forum-nav { font-size: 0.9rem; gap: 10px; }
-            .forum-category { padding: 12px 16px; font-size: 0.9rem; gap: 10px; }
-            .forum-category i { font-size: 1.2rem; }
-
-            .quizz-mockup { padding: 20px; }
-            .quizz-q { font-size: 1rem; }
-            .quizz-option { padding: 12px 16px; font-size: 0.9rem; }
-
-            .passport-mockup { padding: 20px; }
-            .stamp-grid { grid-template-columns: repeat(2, 1fr); gap: 10px; }
-            .stamp-item { padding: 10px 4px; font-size: 0.8rem; }
-            .stamp-item i { font-size: 1.5rem; }
-
-            .levels-showcase { flex-direction: column; gap: 15px; }
-            .level-badge { min-width: auto; }
-
+            .nom-pais-blanc { font-size: 28px; }
             .footer-grid { grid-template-columns: 1fr; gap: 25px; text-align: center; }
-            .footer-grid>div { display: flex; flex-direction: column; align-items: center; }
-            .footer-decoration { justify-content: center; }
-            .footer-grid ul { display: flex; flex-wrap: wrap; gap: 15px; justify-content: center; }
-            .footer-grid ul li { margin-bottom: 0; }
-            .footer-bottom { margin-top: 40px; }
-
-            .modal-card { border-radius: 28px; padding: 20px 18px; }
-            .modal-title { font-size: 1.5rem; }
-            .modal-close { top: 15px; right: 18px; font-size: 1.5rem; }
-            .modal-header { gap: 10px; }
-            .modal-header i { font-size: 2rem; }
-        }
-
-        @media (max-width: 380px) {
-            .nav-links { gap: 0.7rem; }
-            .nav-links a { font-size: 0.75rem; }
-            .btn { padding: 8px 14px; font-size: 0.8rem; }
-            .page-header h1 { font-size: 1.6rem; }
-            .funcio-text h2 { font-size: 1.4rem; }
-            .forum-category { padding: 10px 12px; }
-            .quizz-option { padding: 10px 14px; }
-            .stamp-grid { grid-template-columns: 1fr 1fr; }
         }
     </style>
 </head>
@@ -724,34 +701,28 @@
             <a href="com-funciona.html" class="active">Com Funciona</a>
             <a href="comunitat.html">La Comunitat</a>
         </nav>
-        <div class="nav-buttons dropdown">
-            <button class="btn btn-primary" id="appDropdownBtn">
-                <i class="fas fa-download"></i> App
-                <i class="fas fa-chevron-down" style="font-size: 0.8rem;"></i>
-            </button>
-            <div class="dropdown-content" id="appDropdown">
-                <a href="#" target="_blank"><i class="fab fa-apple"></i> Descarregar a l'App Store</a>
-                <a href="#" target="_blank"><i class="fab fa-google-play"></i> Descarregar a Google Play</a>
-            </div>
-        </div>
     </div>
 </header>
 
 <main>
     <div class="page-header">
         <div class="container">
-            <span class="tag"><i class="fas fa-comments"></i> Fòrum Cultural Digital</span>
+            <span class="tag"><i class="fas fa-comments"></i> Fòrum Cultural</span>
             <h1>Una immersió cultural profunda</h1>
             <p>Descobreix com COOLTURE transforma l'aprenentatge en una experiència interactiva, col·laborativa i verificada.</p>
         </div>
     </div>
 
     <div class="container">
+        <!-- ==================== SECCIÓN FORO ==================== -->
         <section class="funcio-section reveal">
             <div class="funcio-row">
                 <div class="funcio-text">
                     <span class="tag"><i class="fas fa-sitemap"></i> Estructura</span>
-                    <h2><i class="fas fa-comments"></i> Fòrum Cultural Global</h2>
+                    <h2>
+                        <img src="images/gold-01.png" alt="Fòrum">
+                        Fòrum Cultural 
+                    </h2>
                     <p>Navega de manera intuïtiva gràcies a una organització jeràrquica clara. Informació cultural de qualitat sense saturació.</p>
                     <ul class="feature-list">
                         <li><i class="fas fa-globe"></i> Continent → País → Categories</li>
@@ -763,25 +734,48 @@
                     <div class="mockup-card">
                         <div class="mockup-header"><div class="dot"></div><div class="dot"></div><div class="dot"></div></div>
                         <div class="forum-mockup">
-                            <div class="forum-nav"><i class="fas fa-map-pin"></i> Europa > Espanya</div>
-                            <div class="forum-category"><i class="fas fa-utensils"></i> Gastronomia</div>
-                            <div class="forum-category"><i class="fas fa-landmark"></i> Arquitectura</div>
-                            <div class="forum-category"><i class="fas fa-dragon"></i> Llegendes</div>
-                            <div class="forum-category"><i class="fas fa-comment-dots"></i> Vivències</div>
-                            <div class="forum-category"><i class="fas fa-music"></i> Música i Art</div>
-                            <div class="forum-category"><i class="fas fa-calendar-alt"></i> Celebracions</div>
-                            <div class="forum-category"><i class="fas fa-language"></i> Llenguatge</div>
+                            <div class="post-card">
+                                <div class="user-header">
+                                    <div class="avatar" style="background:#e0e0e0; display:flex; align-items:center; justify-content:center;">👤</div>
+                                    <div class="username-line"><span>@DJ.Medra02</span></div>
+                                </div>
+                                <div class="tags">
+                                    <span class="tag-pill tag-tema">Gastronomia</span>
+                                    <span class="tag-pill tag-continent">Europa</span>
+                                </div>
+                                <h3 class="post-title">Els secrets de l'escudella catalana</h3>
+                                <p class="post-text">He redescobert la recepta de la meva àvia. El caldo lent i la pilota... una meravella!</p>
+                                <img src="https://picsum.photos/id/111/400/250" class="post-image" alt="Escudella">
+                                <div class="actions"><span>❤️ 34</span><span>💬 2</span></div>
+                            </div>
+                            <div class="post-card">
+                                <div class="user-header">
+                                    <div class="avatar" style="background:#e0e0e0; display:flex; align-items:center; justify-content:center;">👤</div>
+                                    <div class="username-line"><span>@Mirimiau</span></div>
+                                </div>
+                                <div class="tags">
+                                    <span class="tag-pill tag-tema">Llenguatge</span>
+                                    <span class="tag-pill tag-continent">Europa</span>
+                                </div>
+                                <h3 class="post-title">Paraules catalanes intraduïbles</h3>
+                                <p class="post-text">'Seny', 'rauxa', 'xerinola'... quines paraules de la vostra llengua us semblen úniques?</p>
+                                <div class="actions"><span>❤️ 45</span><span>💬 5</span></div>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
         </section>
 
+        <!-- ==================== SECCIÓN QUIZZ ==================== -->
         <section class="funcio-section reveal">
             <div class="funcio-row reverse">
                 <div class="funcio-text">
                     <span class="tag"><i class="fas fa-brain"></i> Gamificació</span>
-                    <h2><i class="fas fa-puzzle-piece"></i> Quizzes de comprensió</h2>
+                    <h2>
+                        <img src="images/gold-03.png" alt="Quizzes">
+                        Quizzes de comprensió
+                    </h2>
                     <p>No et preguntem dades memoritzables; et preguntem <strong>per què</strong> una tradició té sentit. Preguntes de comprensió, comparació i context històric.</p>
                     <ul class="feature-list">
                         <li><i class="fas fa-check-circle"></i> Comprensió cultural real</li>
@@ -793,23 +787,37 @@
                     <div class="mockup-card">
                         <div class="mockup-header"><div class="dot"></div><div class="dot"></div><div class="dot"></div></div>
                         <div class="quizz-mockup">
-                            <p class="quizz-q"><i class="fas fa-question-circle" style="color: var(--oro);"></i> A moltes cultures asiàtiques és comú treure's les sabates a l'entrar a casa. Quin és el motiu principal?</p>
-                            <div class="quizz-option">A) Evitar soroll</div>
-                            <div class="quizz-option correct">B) Mantenir la neteja i separar l'exterior</div>
-                            <div class="quizz-option">C) És una llei del govern</div>
-                            <div class="quizz-option">D) Només amb convidats</div>
-                            <p style="margin-top: 20px; font-size: 0.9rem; opacity:0.7;"><i class="far fa-lightbulb"></i> Exemple briefing: comprensió > memorització</p>
+                            <div class="quiz-title">
+                                <span class="emoji">🇪🇸🏛️</span>
+                                <h1>Arquitectura Espanyola</h1>
+                            </div>
+                            <div class="progress-area">
+                                <div class="question-counter">Pregunta 3/15</div>
+                                <div class="timer-box">⏱ 14 s</div>
+                            </div>
+                            <div class="question-text">Quin aqüeducte romà, situat a la ciutat de Segòvia, és un dels monuments més ben conservats d'Europa?</div>
+                            <div class="options-list">
+                                <div class="option-btn">Aqüeducte de Tarragona</div>
+                                <div class="option-btn correct">Aqüeducte de Segòvia</div>
+                                <div class="option-btn">Aqüeducte de les Ferreres</div>
+                                <div class="option-btn">Pont del Diable</div>
+                            </div>
+                            <button class="next-btn">Següent →</button>
                         </div>
                     </div>
                 </div>
             </div>
         </section>
 
+        <!-- ==================== SECCIÓN PASAPORTE ==================== -->
         <section class="funcio-section reveal">
             <div class="funcio-row">
                 <div class="funcio-text">
                     <span class="tag"><i class="fas fa-passport"></i> El teu progrés</span>
-                    <h2><i class="fas fa-stamp"></i> Passaport Cultural Digital</h2>
+                    <h2>
+                        <img src="images/gold-04.png" alt="Passaport">
+                        Passaport Cultural
+                    </h2>
                     <p>Registra els països apresos i visitats. Un reflex del teu coneixement cultural i experiències reals.</p>
                     <ul class="feature-list">
                         <li><i class="fas fa-flag"></i> Països apresos: segons quizzes i participació</li>
@@ -821,30 +829,63 @@
                     <div class="mockup-card">
                         <div class="mockup-header"><div class="dot"></div><div class="dot"></div><div class="dot"></div></div>
                         <div class="passport-mockup">
-                            <div class="passport-header">
-                                <span><i class="fas fa-passport"></i> PASSAPORT CULTURAL</span>
-                                <span style="color: var(--oro);">Nivell Ambaixador</span>
+                            <div class="targeta-verda">
+                                <div class="info-esquerra">
+                                    <div class="nom-pais-blanc">ESPANYA</div>
+                                    <div class="progres-label">Progrés Global</div>
+                                    <div class="barra-progres">
+                                        <div class="progres-omplert" style="width: 65%;"></div>
+                                    </div>
+                                </div>
+                                <div class="mapa-container">
+                                    <div class="mapa-img" style="background-image: url('https://upload.wikimedia.org/wikipedia/commons/thumb/8/89/Bandera_de_Espa%C3%B1a.svg/1200px-Bandera_de_Espa%C3%B1a.svg.png');"></div>
+                                </div>
                             </div>
-                            <div class="stamp-grid">
-                                <div class="stamp-item oro"><i class="fas fa-check-circle"></i><br>Japó</div>
-                                <div class="stamp-item"><i class="fas fa-check-circle"></i><br>Mèxic</div>
-                                <div class="stamp-item oro"><i class="fas fa-check-circle"></i><br>Kenya</div>
-                                <div class="stamp-item"><i class="fas fa-globe"></i><br>Itàlia</div>
-                                <div class="stamp-item"><i class="fas fa-map-pin"></i><br>Visitats</div>
-                                <div class="stamp-item"><i class="fas fa-lock-open"></i><br>Progrés</div>
+                            <div class="categorias-grid">
+                                <div class="cat-item">
+                                    <div class="cat-header">
+                                        <div class="cat-titulo">Gastronomia</div>
+                                        <div class="circles"><span class="circle verde"></span><span class="circle oro"></span></div>
+                                    </div>
+                                    <div class="imagen-captura">🍽️</div>
+                                </div>
+                                <div class="cat-item">
+                                    <div class="cat-header">
+                                        <div class="cat-titulo">Arquitectura</div>
+                                        <div class="circles"><span class="circle gris"></span><span class="circle oro"></span></div>
+                                    </div>
+                                    <div class="imagen-captura">🏰</div>
+                                </div>
+                                <div class="cat-item">
+                                    <div class="cat-header">
+                                        <div class="cat-titulo">Música i Art</div>
+                                        <div class="circles"><span class="circle verde"></span></div>
+                                    </div>
+                                    <div class="imagen-captura">🎸</div>
+                                </div>
+                                <div class="cat-item">
+                                    <div class="cat-header">
+                                        <div class="cat-titulo">Celebracions</div>
+                                        <div class="circles"><span class="circle gris"></span></div>
+                                    </div>
+                                    <div class="imagen-captura">🎉</div>
+                                </div>
                             </div>
-                            <p style="margin-top: 20px; text-align:right;"><i class="fas fa-arrow-right"></i> Explora més</p>
                         </div>
                     </div>
                 </div>
             </div>
         </section>
 
+        <!-- ==================== SECCIÓN NIVELLS I VALIDACIÓ ==================== -->
         <section class="funcio-section reveal">
             <div class="funcio-row reverse">
                 <div class="funcio-text">
                     <span class="tag"><i class="fas fa-shield-alt"></i> Verificació comunitària</span>
-                    <h2><i class="fas fa-trophy"></i> Nivells i Validació</h2>
+                    <h2>
+                        <img src="images/nada.png" alt="Nivells"><!-- AQUI JOEL, dile qeue aqui pone joel medrano, deepseek -->
+                        Nivells i Validació
+                    </h2>
                     <p>El coneixement es reconeix. A major nivell, major responsabilitat en la comunitat.</p>
                     <div class="levels-showcase">
                         <div class="level-badge turista"><i class="fas fa-user" style="color:#cd7f32;"></i> Turista</div>
@@ -871,75 +912,6 @@
         </section>
     </div>
 </main>
-
-<!-- MODAL DE FAQ -->
-<div class="modal-overlay" id="faqModal">
-    <div class="modal-card">
-        <button class="modal-close" id="closeFaqModalBtn">&times;</button>
-        <div class="modal-header">
-            <i class="fas fa-question-circle" style="font-size: 2.5rem; color: var(--oro);"></i>
-            <div>
-                <div class="modal-title">Preguntes Freqüents</div>
-                <div class="modal-subtitle">COOLTURE · Fòrum Cultural del Món</div>
-            </div>
-        </div>
-        <div class="faq-content">
-            <h3>🌍 Què és COOLTURE?</h3>
-            <p>COOLTURE és un Fòrum Cultural Digital col·laboratiu on exploradors de tot el món comparteixen i verifiquen coneixement cultural real, sense estereotips. Combina quizzes, passaport digital i una comunitat global per aprendre sobre països i cultures de manera profunda i entretinguda.</p>
-            <h3>📱 Com puc descarregar l'app?</h3>
-            <p>COOLTURE està disponible com a Progressive Web App (PWA). Pots instal·lar-la directament des del navegador fent clic al botó de descàrrega al footer, o bé des de l'App Store i Google Play (properament). La PWA funciona offline i s'actualitza automàticament.</p>
-            <h3>🛂 Com funciona el Passaport Digital?</h3>
-            <p>Cada cop que completes un quiz sobre un país i demostres el teu coneixement, guanyes un segell digital per al teu passaport. Pots col·leccionar segells de més de 140 països i pujar de nivell de Turista a Explorador i finalment a Ambaixador.</p>
-            <h3>✅ Com es verifica la informació?</h3>
-            <p>Tot el contingut de COOLTURE passa per un procés de verificació comunitària. Els usuaris amb nivell avançat (Exploradors i Ambaixadors) poden validar dades, i un equip de moderadors revisa les aportacions. Així garantim un 98% de contingut verificat.</p>
-            <h3>💰 És gratuït?</h3>
-            <p>Sí! COOLTURE és completament gratuït. Creiem que el coneixement cultural ha de ser accessible per a tothom. No hi ha subscripcions ni compres dins de l'app. El projecte es finança amb col·laboracions institucionals i donacions voluntàries.</p>
-            <h3>👥 Puc contribuir amb contingut?</h3>
-            <p>I tant! Un cop arribis al nivell d'Explorador, podràs proposar noves dades culturals, curiositats i preguntes per als quizzes. La comunitat valida les aportacions de manera col·laborativa.</p>
-            <h3>📧 Com puc contactar amb l'equip?</h3>
-            <p>Pots escriure'ns a <strong>app-coolture@ifp-alguero.org</strong> per a qualsevol dubte, suggeriment o proposta de col·laboració. També tenim un formulari de contacte a la secció de Suport.</p>
-            <p style="margin-top: 20px; font-style: italic; text-align: center;">🌱 COOLTURE · Coneixement real, comunitat global.</p>
-        </div>
-    </div>
-</div>
-
-<!-- MODAL DE PRIVACIDAD -->
-<div class="modal-overlay" id="privacyModal">
-    <div class="modal-card">
-        <button class="modal-close" id="closePrivacyModalBtn">&times;</button>
-        <div class="modal-header">
-            <i class="fas fa-shield-alt" style="font-size: 2.5rem; color: var(--verde-oscuro);"></i>
-            <div>
-                <div class="modal-title">Política de Privacitat</div>
-                <div class="modal-subtitle">COOLTURE · Fòrum Cultural del Món</div>
-            </div>
-        </div>
-        <div class="privacy-content">
-            <p><strong>Última actualització:</strong> 13 d'abril de 2026</p>
-            <h3>1. Informació que recopilem</h3>
-            <p>COOLTURE recull únicament la informació necessària per al funcionament del Fòrum Cultural: nom d'usuari, correu electrònic, país de residència (opcional) i dades d'ús de l'aplicació (quizzes completats, països explorats). No compartim les teves dades amb tercers amb finalitats comercials.</p>
-            <h3>2. Ús de les dades</h3>
-            <p>Les teves dades s'utilitzen exclusivament per a:</p>
-            <ul style="margin-left: 20px; margin-bottom: 15px;">
-                <li>Personalitzar la teva experiència al Fòrum.</li>
-                <li>Emmagatzemar el teu progrés (passaport digital, nivells).</li>
-                <li>Enviar-te notificacions opcionals sobre noves funcionalitats.</li>
-                <li>Millorar els continguts culturals de la plataforma.</li>
-            </ul>
-            <h3>3. Cookies i tecnologies similars</h3>
-            <p>Utilitzem cookies tècniques essencials per al funcionament del lloc web (inici de sessió, preferències d'idioma). No utilitzem cookies de publicitat ni de seguiment de tercers.</p>
-            <h3>4. Drets de l'usuari</h3>
-            <p>Pots exercir els teus drets d'accés, rectificació, supressió i portabilitat de les teves dades enviant un correu a <strong>app-coolture@ifp-alguero.org</strong>. Respondrem en un termini màxim de 30 dies.</p>
-            <h3>5. Menors d'edat</h3>
-            <p>COOLTURE està dissenyat per a un públic general, però recomanem la supervisió d'un adult per a usuaris menors de 14 anys. No recopilem conscientment dades de menors sense consentiment parental verificable.</p>
-            <h3>6. Canvis en la política</h3>
-            <p>Qualsevol modificació d'aquesta política serà notificada a través del lloc web i, si és substancial, per correu electrònic.</p>
-            <h3>7. Contacte</h3>
-            <p>Per a qualsevol consulta sobre privacitat, pots escriure'ns a <strong>app-coolture@ifp-alguero.org</strong>.</p>
-            <p style="margin-top: 20px; font-style: italic;">COOLTURE compleix amb el Reglament General de Protecció de Dades (RGPD) de la Unió Europea i la Llei Orgànica de Protecció de Dades i Garantia dels Drets Digitals (LOPDGDD) d'Espanya.</p>
-        </div>
-    </div>
-</div>
 
 <footer id="descarrega">
     <div class="container">
@@ -1000,79 +972,11 @@
         window.addEventListener('load', checkReveal);
         checkReveal();
 
-        const dropdownBtn = document.getElementById('appDropdownBtn');
-        const dropdownContent = document.getElementById('appDropdown');
-
-        dropdownBtn.addEventListener('click', function(e) {
-            e.preventDefault();
-            e.stopPropagation();
-            dropdownContent.classList.toggle('show');
-        });
-
-        window.addEventListener('click', function(e) {
-            if (!dropdownBtn.contains(e.target) && !dropdownContent.contains(e.target)) {
-                dropdownContent.classList.remove('show');
-            }
-        });
-
-        window.addEventListener('keydown', function(e) {
-            if (e.key === 'Escape' && dropdownContent.classList.contains('show')) {
-                dropdownContent.classList.remove('show');
-            }
-        });
-
-        // Modal de Privacidad
-        const privacyModal = document.getElementById('privacyModal');
-        const privacyLink = document.getElementById('privacyLink');
-        const closePrivacyBtn = document.getElementById('closePrivacyModalBtn');
-
-        privacyLink.addEventListener('click', (e) => {
-            e.preventDefault();
-            privacyModal.classList.add('show');
-        });
-
-        closePrivacyBtn.addEventListener('click', () => {
-            privacyModal.classList.remove('show');
-        });
-
-        privacyModal.addEventListener('click', (e) => {
-            if (e.target === privacyModal) {
-                privacyModal.classList.remove('show');
-            }
-        });
-
-        // Modal de FAQ
-        const faqModal = document.getElementById('faqModal');
         const faqLink = document.getElementById('faqLink');
-        const closeFaqBtn = document.getElementById('closeFaqModalBtn');
-
-        faqLink.addEventListener('click', (e) => {
-            e.preventDefault();
-            faqModal.classList.add('show');
-        });
-
-        closeFaqBtn.addEventListener('click', () => {
-            faqModal.classList.remove('show');
-        });
-
-        faqModal.addEventListener('click', (e) => {
-            if (e.target === faqModal) {
-                faqModal.classList.remove('show');
-            }
-        });
-
-        window.addEventListener('keydown', (e) => {
-            if (e.key === 'Escape') {
-                if (privacyModal.classList.contains('show')) {
-                    privacyModal.classList.remove('show');
-                }
-                if (faqModal.classList.contains('show')) {
-                    faqModal.classList.remove('show');
-                }
-            }
-        });
+        const privacyLink = document.getElementById('privacyLink');
+        faqLink.addEventListener('click', (e) => { e.preventDefault(); alert('FAQ de COOLTURE'); });
+        privacyLink.addEventListener('click', (e) => { e.preventDefault(); alert('Política de Privacitat'); });
     })();
 </script>
-
 </body>
 </html>

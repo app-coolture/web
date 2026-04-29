@@ -27,12 +27,13 @@
             --verde: #a3e635;
             --verde-oscuro: #65a30d;
             --fondo: #F5F1E8;
-            --pin-color: #6b7c3a;
-            --pin-glow: rgba(107, 124, 58, 0.7);
+            --pin-color: #c6a75e;
+            --pin-glow: rgba(198, 167, 94, 0.9);
             --transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
             --transition-bounce: all 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
-            --shadow-sm: 0 10px 30px -10px rgba(0,0,0,0.1);
-            --shadow-lg: 0 30px 60px -15px rgba(0,0,0,0.2);
+            --shadow-sm: 0 10px 30px -10px rgba(0, 0, 0, 0.1);
+            --shadow-lg: 0 30px 60px -15px rgba(0, 0, 0, 0.2);
+            --shadow-card: 0 15px 35px -10px rgba(0, 0, 0, 0.15);
         }
 
         body {
@@ -50,7 +51,6 @@
             position: relative;
         }
 
-        /* ---------- HEADER (navegación idéntica a Com Funciona) ---------- */
         header {
             padding: 1rem 0;
             position: fixed;
@@ -59,7 +59,7 @@
             z-index: 1000;
             background: var(--blanco);
             border-bottom: 1px solid rgba(46, 46, 46, 0.08);
-            box-shadow: 0 2px 10px rgba(0,0,0,0.03);
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.03);
         }
 
         .navbar {
@@ -117,98 +117,6 @@
             width: 100%;
         }
 
-        .nav-buttons {
-            position: relative;
-        }
-
-        .btn {
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            padding: 12px 24px;
-            border-radius: 60px;
-            font-weight: 600;
-            text-decoration: none;
-            transition: var(--transition-bounce);
-            border: none;
-            cursor: pointer;
-            background: transparent;
-            font-size: 0.95rem;
-            white-space: nowrap;
-            justify-content: center;
-            text-align: center;
-        }
-
-        .btn-primary {
-            background: var(--negro);
-            color: white;
-            box-shadow: var(--shadow-sm);
-        }
-
-        .btn-primary:hover {
-            background: #1a1a1a;
-            transform: scale(1.05) translateY(-3px);
-            box-shadow: var(--shadow-lg);
-        }
-
-        .dropdown {
-            position: relative;
-            display: inline-block;
-        }
-
-        .dropdown-content {
-            display: none;
-            position: absolute;
-            top: 100%;
-            right: 0;
-            margin-top: 10px;
-            background: var(--blanco);
-            min-width: 220px;
-            border-radius: 20px;
-            box-shadow: var(--shadow-lg);
-            z-index: 1001;
-            overflow: hidden;
-            animation: slideDown 0.3s ease;
-            border: 1px solid rgba(0,0,0,0.05);
-        }
-
-        @keyframes slideDown {
-            from { opacity: 0; transform: translateY(-10px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        .dropdown-content.show {
-            display: block;
-        }
-
-        .dropdown-content a {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            padding: 16px 20px;
-            color: var(--negro);
-            text-decoration: none;
-            font-weight: 500;
-            transition: var(--transition);
-            border-bottom: 1px solid rgba(0,0,0,0.05);
-        }
-
-        .dropdown-content a:last-child {
-            border-bottom: none;
-        }
-
-        .dropdown-content a:hover {
-            background: var(--blanco-hueso);
-            padding-left: 25px;
-        }
-
-        .dropdown-content a i {
-            font-size: 1.3rem;
-            width: 24px;
-            color: var(--verde-header);
-        }
-
-        /* ---------- HERO ---------- */
         .hero {
             min-height: 100vh;
             display: flex;
@@ -283,27 +191,37 @@
             animation: scale-in 0.8s 0.2s both;
         }
 
-        /* ---------- GLOBO 3D ---------- */
         @keyframes float {
-            0% { transform: translateY(0px) rotateX(5deg) rotateY(-15deg); }
-            50% { transform: translateY(-20px) rotateX(3deg) rotateY(-18deg); }
-            100% { transform: translateY(0px) rotateX(5deg) rotateY(-15deg); }
+            0% {
+                transform: translateY(0px) rotateX(5deg) rotateY(-15deg);
+            }
+            50% {
+                transform: translateY(-20px) rotateX(3deg) rotateY(-18deg);
+            }
+            100% {
+                transform: translateY(0px) rotateX(5deg) rotateY(-15deg);
+            }
         }
 
-        @keyframes pulse-glow {
-            0% { box-shadow: 0 0 0 0 rgba(163, 230, 53, 0.5); }
-            70% { box-shadow: 0 0 0 25px rgba(163, 230, 53, 0); }
-            100% { box-shadow: 0 0 0 0 rgba(163, 230, 53, 0); }
+        @keyframes pin-appear {
+            from {
+                opacity: 0;
+                transform: translate(-50%, -50%) scale(0) rotate(-30deg);
+            }
+            to {
+                opacity: 1;
+                transform: translate(-50%, -50%) scale(1) rotate(0deg);
+            }
         }
 
-        @keyframes rotateGlobe3D {
-            from { background-position-x: 0%; }
-            to { background-position-x: -200%; }
-        }
-
-        @keyframes rotateClouds {
-            from { background-position-x: 0%; }
-            to { background-position-x: -200%; }
+        @keyframes pin-pulse-soft {
+            0%,
+            100% {
+                box-shadow: 0 0 20px var(--pin-glow), 0 0 0 0 rgba(198, 167, 94, 0.5);
+            }
+            50% {
+                box-shadow: 0 0 35px var(--pin-glow), 0 0 0 15px rgba(198, 167, 94, 0);
+            }
         }
 
         .atlas-container {
@@ -322,34 +240,38 @@
             overflow: hidden;
             animation: float 8s infinite ease-in-out;
             transform: rotateX(5deg) rotateY(-15deg);
-            transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
-            box-shadow: 0 0 0 4px rgba(255,255,255,0.08), 0 0 0 8px rgba(163,230,53,0.12), 0 30px 50px rgba(0,0,0,0.5);
+            /* ELIMINADA cualquier modificación en hover que desplace los pines */
+            transition: none; /* Quitamos transición para evitar interferencias */
+            box-shadow: 0 0 0 4px rgba(255, 255, 255, 0.08), 0 0 0 8px rgba(163, 230, 53, 0.12),
+                0 30px 50px rgba(0, 0, 0, 0.5);
             background: radial-gradient(circle at 35% 30%, #1b3b5c, #0a1a2f 80%);
         }
 
-        .globe:hover {
-            transform: rotateX(0deg) rotateY(-5deg) scale(1.02);
+        /* Solo pausamos la animación, sin mover la esfera */
+        .globe.paused {
             animation-play-state: paused;
         }
 
         .globe-map {
             position: absolute;
-            top: 0; left: 0;
-            width: 100%; height: 100%;
-            background: url('https://upload.wikimedia.org/wikipedia/commons/thumb/2/23/Blue_Marble_2002.png/1280px-Blue_Marble_2002.png') repeat-x;
-            background-size: 200% 100%;
-            animation: rotateGlobe3D 45s linear infinite;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('https://upload.wikimedia.org/wikipedia/commons/thumb/2/23/Blue_Marble_2002.png/1280px-Blue_Marble_2002.png') no-repeat;
+            background-size: 100% 100%;
             pointer-events: none;
             z-index: 1;
         }
 
         .globe-clouds {
             position: absolute;
-            top: 0; left: 0;
-            width: 100%; height: 100%;
-            background: url('https://upload.wikimedia.org/wikipedia/commons/thumb/5/5c/Earth_clouds_map.png/1280px-Earth_clouds_map.png') repeat-x;
-            background-size: 200% 100%;
-            animation: rotateClouds 30s linear infinite;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('https://upload.wikimedia.org/wikipedia/commons/thumb/5/5c/Earth_clouds_map.png/1280px-Earth_clouds_map.png') no-repeat;
+            background-size: 100% 100%;
             pointer-events: none;
             z-index: 2;
             opacity: 0.35;
@@ -358,30 +280,41 @@
 
         .globe-shadow {
             position: absolute;
-            top: 0; left: 0;
-            width: 100%; height: 100%;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
             border-radius: 50%;
-            background: radial-gradient(ellipse at 20% 30%, rgba(255,255,255,0.25) 0%, transparent 50%, rgba(0,0,0,0.55) 85%, rgba(0,0,0,0.7) 100%);
+            background: radial-gradient(ellipse at 20% 30%,
+                    rgba(255, 255, 255, 0.25) 0%,
+                    transparent 50%,
+                    rgba(0, 0, 0, 0.55) 85%,
+                    rgba(0, 0, 0, 0.7) 100%);
             pointer-events: none;
             z-index: 3;
-            box-shadow: inset -15px -5px 40px rgba(0,0,0,0.7), inset 10px 10px 20px rgba(255,255,255,0.15), inset 0 0 60px rgba(0,0,0,0.3);
+            box-shadow: inset -15px -5px 40px rgba(0, 0, 0, 0.7),
+                inset 10px 10px 20px rgba(255, 255, 255, 0.15),
+                inset 0 0 60px rgba(0, 0, 0, 0.3);
         }
 
         .globe-atmosphere {
-            width: 100%; height: 100%;
+            width: 100%;
+            height: 100%;
             position: absolute;
-            top: 0; left: 0;
+            top: 0;
+            left: 0;
             border-radius: 50%;
-            background: radial-gradient(ellipse at 40% 35%, rgba(255,255,255,0.12) 0%, transparent 65%);
+            background: radial-gradient(ellipse at 40% 35%, rgba(255, 255, 255, 0.12) 0%, transparent 65%);
             pointer-events: none;
             z-index: 4;
-            border: 1px solid rgba(255,255,255,0.1);
+            border: 1px solid rgba(255, 255, 255, 0.1);
         }
 
+        /* Pines mejorados y siempre por encima */
         .pin {
             position: absolute;
-            width: 22px;
-            height: 22px;
+            width: 28px;
+            height: 28px;
             background: var(--pin-color);
             border-radius: 50%;
             box-shadow: 0 0 20px var(--pin-glow);
@@ -390,6 +323,11 @@
             border: 3px solid white;
             z-index: 15;
             transform: translate(-50%, -50%);
+            opacity: 0;
+            animation: pin-appear 0.6s cubic-bezier(0.34, 1.56, 0.64, 1) forwards,
+                pin-pulse-soft 3s infinite 1.5s;
+            /* Aseguramos que el puntero del ratón sea visible */
+            pointer-events: auto;
         }
 
         .pin::after {
@@ -407,42 +345,381 @@
             white-space: nowrap;
             opacity: 0;
             pointer-events: none;
-            transition: 0.2s;
+            transition: all 0.3s ease;
             box-shadow: var(--shadow-sm);
             border: 1px solid var(--verde);
         }
 
         .pin:hover {
             background: var(--verde);
-            transform: translate(-50%, -50%) scale(1.5);
-            box-shadow: 0 0 30px var(--verde);
+            transform: translate(-50%, -50%) scale(1.6);
+            box-shadow: 0 0 40px var(--verde), 0 0 70px rgba(163, 230, 53, 0.5);
             z-index: 25;
+            border-color: var(--verde);
+            transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
         }
 
         .pin:hover::after {
             opacity: 1;
-            bottom: 180%;
+            bottom: 170%;
+            transition: all 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
         }
 
-        /* Posiciones de los pines (idénticas al index antiguo) */
-        .pin:nth-child(1) { top: 32%; left: 25%; animation: pulse-glow 2.5s infinite; }
-        .pin:nth-child(2) { top: 58%; left: 30%; animation: pulse-glow 2.8s infinite 0.2s; }
-        .pin:nth-child(3) { top: 28%; left: 48%; animation: pulse-glow 2.2s infinite 0.4s; }
-        .pin:nth-child(4) { top: 62%; left: 55%; animation: pulse-glow 3s infinite 0.6s; }
-        .pin:nth-child(5) { top: 45%; left: 78%; animation: pulse-glow 2.6s infinite 0.8s; }
-        .pin:nth-child(6) { top: 70%; left: 82%; animation: pulse-glow 2.4s infinite 1.0s; }
-        .pin:nth-child(7) { top: 38%; left: 62%; animation: pulse-glow 2.9s infinite 1.2s; }
-        .pin:nth-child(8) { top: 48%; left: 22%; animation: pulse-glow 2.7s infinite 1.4s; }
-        .pin:nth-child(9) { top: 42%; left: 88%; animation: pulse-glow 2.3s infinite 1.6s; }
-        .pin:nth-child(10) { top: 52%; left: 70%; animation: pulse-glow 2.5s infinite 1.8s; }
-        .pin:nth-child(11) { top: 34%; left: 38%; animation: pulse-glow 3.1s infinite 2.0s; }
+        .pin:nth-child(1) { animation-delay: 0.05s, 1.6s; }
+        .pin:nth-child(2) { animation-delay: 0.12s, 1.9s; }
+        .pin:nth-child(3) { animation-delay: 0.19s, 1.4s; }
+        .pin:nth-child(4) { animation-delay: 0.26s, 2.1s; }
+        .pin:nth-child(5) { animation-delay: 0.33s, 1.7s; }
+        .pin:nth-child(6) { animation-delay: 0.40s, 2.3s; }
+        .pin:nth-child(7) { animation-delay: 0.47s, 1.5s; }
+        .pin:nth-child(8) { animation-delay: 0.54s, 2.0s; }
+        .pin:nth-child(9) { animation-delay: 0.61s, 1.8s; }
+        .pin:nth-child(10) { animation-delay: 0.68s, 2.2s; }
+        .pin:nth-child(11) { animation-delay: 0.75s, 1.65s; }
 
-        /* ---------- MODALES ---------- */
+        /* Resto del CSS sin cambios... */
+        .recursos {
+            padding: 80px 0;
+            background: var(--blanco);
+            border-radius: 60px 60px 0 0;
+            margin-top: -40px;
+            position: relative;
+            z-index: 5;
+        }
+
+        .recursos-header {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .recursos-header h2 {
+            font-size: 3rem;
+            font-weight: 700;
+            color: var(--negro);
+            margin-bottom: 0.5rem;
+        }
+
+        .recursos-header h2 span {
+            background: linear-gradient(145deg, var(--verde), var(--oro));
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .recursos-header p {
+            font-size: 1.2rem;
+            opacity: 0.7;
+        }
+
+        .recursos-grid {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 30px;
+        }
+
+        .recurso-card {
+            background: var(--fondo);
+            border-radius: 30px;
+            padding: 35px 25px 30px;
+            text-align: center;
+            transition: var(--transition-bounce);
+            border: 1px solid rgba(0, 0, 0, 0.04);
+            box-shadow: var(--shadow-sm);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 1rem;
+            text-decoration: none;
+            color: inherit;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .recurso-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: linear-gradient(90deg, var(--verde), var(--oro));
+            transform: scaleX(0);
+            transition: transform 0.5s ease;
+        }
+
+        .recurso-card:hover {
+            transform: translateY(-12px);
+            box-shadow: var(--shadow-card);
+            border-color: rgba(163, 230, 53, 0.3);
+            background: #fff;
+        }
+
+        .recurso-card:hover::before {
+            transform: scaleX(1);
+        }
+
+        .recurso-icono {
+            width: 70px;
+            height: 70px;
+            background: white;
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2.2rem;
+            color: var(--verde-oscuro);
+            box-shadow: 0 10px 20px -5px rgba(0, 0, 0, 0.1);
+            transition: var(--transition-bounce);
+        }
+
+        .recurso-card:hover .recurso-icono {
+            transform: scale(1.1) rotate(3deg);
+            color: var(--negro);
+            box-shadow: 0 15px 25px -5px rgba(163, 230, 53, 0.3);
+        }
+
+        .recurso-titulo {
+            font-weight: 700;
+            font-size: 1.2rem;
+            color: var(--negro);
+            margin: 0;
+        }
+
+        .recurso-descripcion {
+            font-size: 0.9rem;
+            opacity: 0.7;
+            margin: 0;
+        }
+
+        .recurso-link {
+            margin-top: auto;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            font-weight: 600;
+            font-size: 0.9rem;
+            color: var(--verde-oscuro);
+            background: rgba(163, 230, 53, 0.1);
+            padding: 8px 18px;
+            border-radius: 30px;
+            transition: var(--transition);
+            text-decoration: none;
+            border: 1px solid transparent;
+        }
+
+        .recurso-card:hover .recurso-link {
+            background: var(--verde);
+            color: var(--negro);
+            border-color: var(--verde);
+            box-shadow: 0 5px 15px rgba(163, 230, 53, 0.3);
+        }
+
+        .video-seccion {
+            padding: 100px 0;
+            background: var(--blanco);
+            position: relative;
+            z-index: 5;
+        }
+
+        .video-header {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        .video-header h2 {
+            font-size: 3rem;
+            font-weight: 700;
+            color: var(--negro);
+        }
+
+        .video-header p {
+            font-size: 1.2rem;
+            opacity: 0.7;
+        }
+
+        .video-contenedor {
+            max-width: 800px;
+            margin: 0 auto;
+            background: var(--fondo);
+            border-radius: 30px;
+            box-shadow: var(--shadow-lg);
+            overflow: hidden;
+            border: 2px solid var(--oro);
+            transition: transform 0.4s ease, box-shadow 0.4s ease;
+        }
+
+        .video-contenedor video {
+            width: 100%;
+            display: block;
+            border-radius: 28px;
+            outline: none;
+        }
+
+        .features {
+            padding: 120px 0;
+            background: var(--blanco);
+            position: relative;
+            z-index: 5;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 80px;
+        }
+        .section-header h2 {
+            font-size: 3.5rem;
+            font-weight: 700;
+        }
+        .section-header h2 span {
+            background: linear-gradient(145deg, var(--verde), var(--oro));
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .section-subtitle {
+            font-size: 1.2rem;
+            opacity: 0.7;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 30px;
+        }
+
+        .feature-card {
+            background: var(--fondo);
+            padding: 40px 25px;
+            border-radius: 30px;
+            transition: var(--transition-bounce);
+            border: 1px solid rgba(0, 0, 0, 0.03);
+            box-shadow: var(--shadow-sm);
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+        }
+
+        .feature-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 6px;
+            background: linear-gradient(90deg, var(--verde), var(--oro));
+            transform: scaleX(0);
+            transition: transform 0.5s ease;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-15px);
+            box-shadow: var(--shadow-lg);
+            border-color: var(--verde);
+        }
+
+        .feature-card:hover::before {
+            transform: scaleX(1);
+        }
+
+        .feature-image {
+            width: 90px;
+            height: 90px;
+            margin-bottom: 35px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: transparent;
+            box-shadow: none;
+            border-radius: 0;
+            overflow: visible;
+        }
+
+        .feature-image img {
+            width: 90px;
+            height: auto;
+            object-fit: contain;
+            transition: transform 0.4s ease;
+        }
+
+        .feature-card:hover .feature-image img {
+            transform: scale(1.08);
+        }
+
+        .feature-card h3 {
+            font-size: 1.7rem;
+            font-weight: 600;
+            margin-bottom: 15px;
+        }
+        .feature-card p {
+            opacity: 0.7;
+        }
+
+        .tuto-preview {
+            padding: 60px 40px;
+            max-width: 1000px;
+            margin: 60px auto;
+            width: calc(100% - 40px);
+        }
+
+        .tuto-box {
+            background: var(--blanco);
+            border-radius: 30px;
+            overflow: hidden;
+            box-shadow: var(--shadow-lg);
+            border: 3px solid var(--oro);
+            transition: var(--transition);
+            margin: auto;
+        }
+
+        .tuto-box img {
+            width: 80%;
+            height: auto;
+            display: block;
+            border-radius: 27px;
+            margin: auto;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 12px 24px;
+            border-radius: 60px;
+            font-weight: 600;
+            text-decoration: none;
+            transition: var(--transition-bounce);
+            border: none;
+            cursor: pointer;
+            background: transparent;
+            font-size: 0.95rem;
+            white-space: nowrap;
+            justify-content: center;
+            text-align: center;
+        }
+
+        .btn-oro {
+            background: var(--oro);
+            color: var(--negro);
+            font-weight: 700;
+            box-shadow: 0 10px 20px -5px rgba(198, 167, 94, 0.3);
+        }
+
+        .btn-oro:hover {
+            background: #b8943f;
+            transform: scale(1.05) translateY(-3px);
+            box-shadow: 0 20px 30px -5px rgba(198, 167, 94, 0.4);
+        }
+
         .modal-overlay {
             position: fixed;
-            top: 0; left: 0;
-            width: 100%; height: 100%;
-            background: rgba(0,0,0,0.4);
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.4);
             backdrop-filter: blur(8px);
             display: flex;
             align-items: center;
@@ -468,20 +745,11 @@
             transform: scale(0.9);
             transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
             position: relative;
-            border: 1px solid rgba(163,230,53,0.3);
+            border: 1px solid rgba(163, 230, 53, 0.3);
         }
 
         .modal-overlay.show .modal-card {
             transform: scale(1);
-        }
-
-        .privacy-modal .modal-card,
-        .faq-modal .modal-card {
-            max-width: 600px;
-            max-height: 92vh;
-            overflow-y: auto;
-            padding: 25px;
-            scrollbar-width: none;
         }
 
         .modal-header {
@@ -493,9 +761,19 @@
             padding-bottom: 15px;
         }
 
-        .modal-flag { font-size: 3rem; }
-        .modal-title { font-size: 2rem; font-weight: 700; color: var(--negro); }
-        .modal-subtitle { font-size: 1rem; color: var(--verde-oscuro); font-weight: 500; }
+        .modal-flag {
+            font-size: 3rem;
+        }
+        .modal-title {
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--negro);
+        }
+        .modal-subtitle {
+            font-size: 1rem;
+            color: var(--verde-oscuro);
+            font-weight: 500;
+        }
 
         .modal-detail {
             margin: 20px 0;
@@ -507,7 +785,8 @@
 
         .modal-close {
             position: absolute;
-            top: 20px; right: 25px;
+            top: 20px;
+            right: 25px;
             background: none;
             border: none;
             font-size: 1.8rem;
@@ -523,136 +802,6 @@
             color: var(--verde-oscuro);
         }
 
-        .privacy-content, .faq-content { font-size: 0.95rem; line-height: 1.6; color: #333; }
-        .privacy-content h3, .faq-content h3 { margin: 20px 0 10px; color: var(--negro); }
-
-        /* ---------- FEATURES ---------- */
-        .features {
-            padding: 120px 0;
-            background: var(--blanco);
-            border-radius: 60px 60px 0 0;
-            margin-top: -40px;
-            position: relative;
-            z-index: 5;
-        }
-
-        .section-header { text-align: center; margin-bottom: 80px; }
-        .section-header h2 { font-size: 3.5rem; font-weight: 700; }
-        .section-header h2 span { background: linear-gradient(145deg, var(--verde), var(--oro)); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; }
-        .section-subtitle { font-size: 1.2rem; opacity: 0.7; }
-
-        .features-grid {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 30px;
-        }
-
-        .feature-card {
-            background: var(--fondo);
-            padding: 40px 25px;
-            border-radius: 30px;
-            transition: var(--transition-bounce);
-            border: 1px solid rgba(0,0,0,0.03);
-            box-shadow: var(--shadow-sm);
-            position: relative;
-            overflow: hidden;
-        }
-
-        .feature-card::before {
-            content: '';
-            position: absolute;
-            top: 0; left: 0;
-            width: 100%; height: 6px;
-            background: linear-gradient(90deg, var(--verde), var(--oro));
-            transform: scaleX(0);
-            transition: transform 0.5s ease;
-        }
-
-        .feature-card:hover {
-            transform: translateY(-15px);
-            box-shadow: var(--shadow-lg);
-            border-color: var(--verde);
-        }
-
-        .feature-card:hover::before { transform: scaleX(1); }
-
-        .feature-image {
-            width: 70px;
-            height: 70px;
-            margin-bottom: 35px;
-            margin-top: 5px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            border-radius: 20px;
-            box-shadow: 0 15px 25px -10px rgba(0,0,0,0.1);
-            overflow: hidden;
-            background: transparent;
-            position: relative;
-        }
-
-        .feature-image img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            object-position: 50% 0%;
-            border-radius: 20px;
-            transition: var(--transition);
-            transform: translateY(4px);
-        }
-        .features-grid .feature-card:nth-child(2) .feature-image img {
-            transform: translateY(0px);
-        }
-        .features-grid .feature-card:nth-child(3) .feature-image img {
-            transform: translateY(0px) scale(1.3);
-            object-position: 50% 45%;
-        }
-        .features-grid .feature-card:nth-child(4) .feature-image img {
-            transform: translateY(2px);
-        }
-
-        .feature-card h3 { font-size: 1.7rem; font-weight: 600; margin-bottom: 15px; }
-        .feature-card p { opacity: 0.7; }
-
-        /* ---------- TUTO PREVIEW (imagen con borde dorado) ---------- */
-        .tuto-preview {
-            padding: 60px 40px;
-            max-width: 1000px;
-            margin: 60px auto;
-            width: calc(100% - 40px);
-        }
-
-        .tuto-box {
-            background: var(--blanco);
-            border-radius: 30px;
-            overflow: hidden;
-            box-shadow: var(--shadow-lg);
-            border: 3px solid var(--oro);
-            transition: var(--transition);margin: auto;
-        }
-
-        .tuto-box img {
-            width: 80%;
-            height: auto;
-            display: block;
-            border-radius: 27px;
-            margin: auto;
-        }
-
-        .btn-oro {
-            background: var(--oro);
-            color: var(--negro);
-            font-weight: 700;
-            box-shadow: 0 10px 20px -5px rgba(198,167,94,0.3);
-        }
-
-        .btn-oro:hover {
-            background: #b8943f;
-            transform: scale(1.05) translateY(-3px);
-            box-shadow: 0 20px 30px -5px rgba(198,167,94,0.4);
-        }
-
-        /* ---------- FOOTER ---------- */
         footer {
             background: var(--gris-pizarra);
             color: #ccc;
@@ -665,15 +814,42 @@
             gap: 40px;
         }
 
-        .footer-logo-img { height: 40px; margin-bottom: 15px; }
-        .footer-text { margin-top: 20px; opacity: 0.8; }
-        .footer-decoration { margin-top: 30px; display: flex; gap: 12px; align-items: center; font-size: 0.85rem; opacity: 0.6; }
-        .footer-decoration i { font-size: 1.2rem; color: var(--oro); }
-        .footer-bottom { margin-top: 60px; text-align: center; opacity: 0.6; }
+        .footer-logo-img {
+            height: 40px;
+            margin-bottom: 15px;
+        }
+        .footer-text {
+            margin-top: 20px;
+            opacity: 0.8;
+        }
+        .footer-decoration {
+            margin-top: 30px;
+            display: flex;
+            gap: 12px;
+            align-items: center;
+            font-size: 0.85rem;
+            opacity: 0.6;
+        }
+        .footer-decoration i {
+            font-size: 1.2rem;
+            color: var(--oro);
+        }
+        .footer-bottom {
+            margin-top: 60px;
+            text-align: center;
+            opacity: 0.6;
+        }
 
-        .pwa-button { display: inline-block; transition: var(--transition-bounce); }
-        .pwa-button:hover { transform: scale(1.05) translateY(-3px); }
-        .pwa-button img { height: 55px; }
+        .pwa-button {
+            display: inline-block;
+            transition: var(--transition-bounce);
+        }
+        .pwa-button:hover {
+            transform: scale(1.05) translateY(-3px);
+        }
+        .pwa-button img {
+            height: 55px;
+        }
 
         .reveal {
             opacity: 0;
@@ -696,19 +872,22 @@
             to { opacity: 1; transform: scale(1); }
         }
 
-        /* Responsive */
+        /* Media queries (sin cambios) */
         @media (max-width: 1100px) {
             .hero h1 { font-size: 3.8rem; }
+            .recursos-grid { grid-template-columns: repeat(3, 1fr); }
         }
-
         @media (max-width: 1000px) {
             .hero { flex-direction: column; padding-top: 150px; text-align: center; gap: 40px; }
             .hero-text p { margin-left: auto; margin-right: auto; }
             .hero-stats { justify-content: center; }
             .features-grid { grid-template-columns: repeat(2, 1fr); gap: 20px; }
             .footer-grid { grid-template-columns: 1fr 1fr; }
+            .atlas-container { max-width: 450px; margin: 0 auto; }
+            .recursos-grid { grid-template-columns: repeat(2, 1fr); }
+            .recursos-header h2 { font-size: 2.5rem; }
+            .video-contenedor { max-width: 90%; }
         }
-
         @media (max-width: 600px) {
             .logo-img { height: 35px; }
             h1.main-title { font-size: 2.8rem; }
@@ -716,19 +895,11 @@
             .features-grid { grid-template-columns: 1fr; }
             .tuto-preview { padding: 40px 20px; }
             .footer-grid { grid-template-columns: 1fr; gap: 30px; }
-            .feature-image img {
-                transform: translateY(2px);
-            }
-            .features-grid .feature-card:nth-child(2) .feature-image img {
-                transform: translateY(0px);
-            }
-            .features-grid .feature-card:nth-child(3) .feature-image img {
-                transform: translateY(0px) scale(1.2);
-                object-position: 50% 40%;
-            }
-            .features-grid .feature-card:nth-child(4) .feature-image img {
-                transform: translateY(0px);
-            }
+            .atlas-container { max-width: 320px; }
+            .pin { width: 22px; height: 22px; }
+            .recursos-grid { grid-template-columns: 1fr; }
+            .video-seccion { padding: 60px 0; }
+            .video-contenedor { max-width: 95%; }
         }
     </style>
 </head>
@@ -743,16 +914,6 @@
                 <a href="com-funciona.html">Com Funciona</a>
                 <a href="comunitat.html">La Comunitat</a>
             </nav>
-            <div class="nav-buttons dropdown">
-                <button class="btn btn-primary" id="appDropdownBtn">
-                    <i class="fas fa-download"></i> App
-                    <i class="fas fa-chevron-down" style="font-size: 0.8rem;"></i>
-                </button>
-                <div class="dropdown-content" id="appDropdown">
-                    <a href="#" target="_blank"><i class="fab fa-apple"></i> Descarregar a l'App Store</a>
-                    <a href="#" target="_blank"><i class="fab fa-google-play"></i> Descarregar a Google Play</a>
-                </div>
-            </div>
         </div>
     </header>
 
@@ -767,7 +928,7 @@
                 <p>El Fòrum Cultural Digital on el coneixement es construeix de manera col·lectiva i verificada. Diu adéu als estereotips.</p>
                 <div style="display: flex; gap: 20px; flex-wrap: wrap;">
                     <a href="com-funciona.html" class="btn btn-oro"><i class="fas fa-compass"></i> Descobreix COOLTURE</a>
-                    <a href="#features" class="btn btn-outline" style="border:2px solid var(--negro); color:var(--negro);"><i class="fas fa-play"></i> Com funciona</a>
+                    <a href="#video" class="btn" style="border:2px solid var(--negro); color:var(--negro);"><i class="fas fa-play"></i> Vídeo</a>
                 </div>
                 <div class="hero-stats">
                     <div class="stat-item"><h3>+12k</h3><p>Exploradors</p></div>
@@ -777,116 +938,111 @@
             </div>
             <div class="hero-image">
                 <div class="atlas-container">
-                    <div class="globe">
+                    <div class="globe" id="globe">
                         <div class="globe-map"></div>
                         <div class="globe-clouds"></div>
                         <div class="globe-shadow"></div>
                         <div class="globe-atmosphere"></div>
-                        <div class="pin" data-title="Canadà" data-country="Canadà" data-capital="Ottawa" data-fact="El segon país més gran del món, conegut pels seus paisatges d'aurora boreal." data-flag="🇨🇦" style="top: 32%; left: 25%;"></div>
-                        <div class="pin" data-title="Brasil" data-country="Brasil" data-capital="Brasília" data-fact="La selva amazònica produeix el 20% de l'oxigen del planeta." data-flag="🇧🇷" style="top: 58%; left: 30%;"></div>
-                        <div class="pin" data-title="Espanya" data-country="Espanya" data-capital="Madrid" data-fact="Té la segona xarxa d'alta velocitat ferroviària més extensa del món." data-flag="🇪🇸" style="top: 28%; left: 48%;"></div>
-                        <div class="pin" data-title="Sud-àfrica" data-country="Sud-àfrica" data-capital="Pretoria (executiva)" data-fact="És l'únic país del món amb tres capitals oficials." data-flag="🇿🇦" style="top: 62%; left: 55%;"></div>
-                        <div class="pin" data-title="Xina" data-country="Xina" data-capital="Pequín" data-fact="La Gran Muralla no és visible des de l'espai a simple vista, però és impressionant." data-flag="🇨🇳" style="top: 45%; left: 78%;"></div>
-                        <div class="pin" data-title="Austràlia" data-country="Austràlia" data-capital="Canberra" data-fact="Hi ha més cangurs que persones." data-flag="🇦🇺" style="top: 70%; left: 82%;"></div>
-                        <div class="pin" data-title="Egipte" data-country="Egipte" data-capital="El Caire" data-fact="Les piràmides de Giza són l'única de les set meravelles antigues que encara existeix." data-flag="🇪🇬" style="top: 38%; left: 62%;"></div>
-                        <div class="pin" data-title="Mèxic" data-country="Mèxic" data-capital="Ciutat de Mèxic" data-fact="El xocolata es va originar a les civilitzacions mesoamericanes." data-flag="🇲🇽" style="top: 48%; left: 22%;"></div>
-                        <div class="pin" data-title="Japó" data-country="Japó" data-capital="Tòquio" data-fact="Té més de 6.800 illes i una taxa de puntualitat ferroviària llegendària." data-flag="🇯🇵" style="top: 42%; left: 88%;"></div>
-                        <div class="pin" data-title="Índia" data-country="Índia" data-capital="Nova Delhi" data-fact="És el major productor de pel·lícules del món (Bollywood)." data-flag="🇮🇳" style="top: 52%; left: 70%;"></div>
-                        <div class="pin" data-title="Regne Unit" data-country="Regne Unit" data-capital="Londres" data-fact="El metro de Londres és el més antic del món (1863)." data-flag="🇬🇧" style="top: 34%; left: 38%;"></div>
+
+                        <!-- Pines con datos -->
+                        <div class="pin" data-title="Canadà" data-country="Canadà" data-capital="Ottawa"
+                            data-fact="El segon país més gran del món, conegut pels seus paisatges d'aurora boreal."
+                            data-flag="🇨🇦" data-lat="56.1304" data-lng="-106.3468"></div>
+                        <div class="pin" data-title="Brasil" data-country="Brasil" data-capital="Brasília"
+                            data-fact="La selva amazònica produeix el 20% de l'oxigen del planeta." data-flag="🇧🇷"
+                            data-lat="-14.2350" data-lng="-51.9253"></div>
+                        <div class="pin" data-title="Espanya" data-country="Espanya" data-capital="Madrid"
+                            data-fact="Té la segona xarxa d'alta velocitat ferroviària més extensa del món."
+                            data-flag="🇪🇸" data-lat="40.4637" data-lng="-3.7492"></div>
+                        <div class="pin" data-title="Sud-àfrica" data-country="Sud-àfrica"
+                            data-capital="Pretoria (executiva)"
+                            data-fact="És l'únic país del món amb tres capitals oficials." data-flag="🇿🇦"
+                            data-lat="-30.5595" data-lng="22.9375"></div>
+                        <div class="pin" data-title="Xina" data-country="Xina" data-capital="Pequín"
+                            data-fact="La Gran Muralla no és visible des de l'espai a simple vista, però és impressionant."
+                            data-flag="🇨🇳" data-lat="35.8617" data-lng="104.1954"></div>
+                        <div class="pin" data-title="Austràlia" data-country="Austràlia" data-capital="Canberra"
+                            data-fact="Hi ha més cangurs que persones." data-flag="🇦🇺" data-lat="-25.2744"
+                            data-lng="133.7751"></div>
+                        <div class="pin" data-title="Egipte" data-country="Egipte" data-capital="El Caire"
+                            data-fact="Les piràmides de Giza són l'única de les set meravelles antigues que encara existeix."
+                            data-flag="🇪🇬" data-lat="26.8206" data-lng="30.8025"></div>
+                        <div class="pin" data-title="Mèxic" data-country="Mèxic" data-capital="Ciutat de Mèxic"
+                            data-fact="El xocolata es va originar a les civilitzacions mesoamericanes." data-flag="🇲🇽"
+                            data-lat="23.6345" data-lng="-102.5528"></div>
+                        <div class="pin" data-title="Japó" data-country="Japó" data-capital="Tòquio"
+                            data-fact="Té més de 6.800 illes i una taxa de puntualitat ferroviària llegendària."
+                            data-flag="🇯🇵" data-lat="36.2048" data-lng="138.2529"></div>
+                        <div class="pin" data-title="Índia" data-country="Índia" data-capital="Nova Delhi"
+                            data-fact="És el major productor de pel·lícules del món (Bollywood)." data-flag="🇮🇳"
+                            data-lat="20.5937" data-lng="78.9629"></div>
+                        <div class="pin" data-title="Regne Unit" data-country="Regne Unit" data-capital="Londres"
+                            data-fact="El metro de Londres és el més antic del món (1863)." data-flag="🇬🇧"
+                            data-lat="55.3781" data-lng="-3.4360"></div>
                     </div>
                 </div>
             </div>
         </div>
 
-        <!-- MODAL CULTURAL -->
-        <div class="modal-overlay" id="culturalModal">
-            <div class="modal-card">
-                <button class="modal-close" id="closeCulturalModalBtn">&times;</button>
-                <div class="modal-header">
-                    <span class="modal-flag" id="modalFlag">🌍</span>
-                    <div>
-                        <div class="modal-title" id="modalCountry">País</div>
-                        <div class="modal-subtitle" id="modalCapital">Capital</div>
+        <section id="recursos" class="recursos">
+            <!-- Contenido de recursos (sin cambios) -->
+            <div class="container">
+                <div class="recursos-header reveal">
+                    <h2>Caixa d'<span>eines</span> del projecte</h2>
+                    <p>Accés directe a tots els recursos, codi i prototips</p>
+                </div>
+                <div class="recursos-grid">
+                    <a href="https://drive.google.com/drive/folders/1SUkg6dCZxTktCA2bNiuTNWaJcoSxrrXt?usp=sharing" target="_blank" rel="noopener noreferrer" class="recurso-card reveal">
+                        <div class="recurso-icono"><i class="fab fa-google-drive"></i></div>
+                        <h3 class="recurso-titulo">Material del projecte</h3>
+                        <p class="recurso-descripcion">Documentació, assets i recursos compartits</p>
+                        <span class="recurso-link"><i class="fas fa-external-link-alt"></i> Obrir Drive</span>
+                    </a>
+                    <a href="https://github.com/app-coolture/web" target="_blank" rel="noopener noreferrer" class="recurso-card reveal">
+                        <div class="recurso-icono"><i class="fab fa-github"></i></div>
+                        <h3 class="recurso-titulo">Codi Web</h3>
+                        <p class="recurso-descripcion">Repositori del frontend i pàgina principal</p>
+                        <span class="recurso-link"><i class="fas fa-code"></i> GitHub</span>
+                    </a>
+                    <a href="https://github.com/app-coolture/app" target="_blank" rel="noopener noreferrer" class="recurso-card reveal">
+                        <div class="recurso-icono"><i class="fab fa-github"></i></div>
+                        <h3 class="recurso-titulo">Codi App</h3>
+                        <p class="recurso-descripcion">Repositori de l'aplicació mòbil</p>
+                        <span class="recurso-link"><i class="fas fa-code"></i> GitHub</span>
+                    </a>
+                    <a href="https://xd.adobe.com/view/50034048-69c8-4d44-b753-863ead69e5e6-0550/?fullscreen&hints=off" target="_blank" rel="noopener noreferrer" class="recurso-card reveal">
+                        <div class="recurso-icono"><i class="fas fa-pencil-ruler"></i></div>
+                        <h3 class="recurso-titulo">Prototip UI</h3>
+                        <p class="recurso-descripcion">Disseny visual i fluxos (Adobe XD)</p>
+                        <span class="recurso-link"><i class="fas fa-external-link-alt"></i> Veure</span>
+                    </a>
+                    <div class="recurso-card multi-link reveal">
+                        <div class="recurso-icono"><i class="fas fa-rocket"></i></div>
+                        <h3 class="recurso-titulo">Vista en viu</h3>
+                        <p class="recurso-descripcion">Desplegament web i app funcional</p>
+                        <div class="recurso-enlaces">
+                            <a href="https://app-coolture.github.io/web/index.html" target="_blank" rel="noopener noreferrer" class="recurso-link"><i class="fas fa-globe"></i> Web</a>
+                            <a href="https://app-coolture.github.io/app/index.html" target="_blank" rel="noopener noreferrer" class="recurso-link"><i class="fas fa-mobile-alt"></i> App</a>
+                        </div>
                     </div>
                 </div>
-                <div class="modal-detail">
-                    <p><i class="fas fa-lightbulb" style="color: var(--oro); margin-right: 8px;"></i> <strong>Dada cultural:</strong></p>
-                    <p id="modalFact">Fet interessant sobre el país.</p>
-                </div>
-                <div style="text-align: right; margin-top: 10px;">
-                    <span style="background: var(--verde); padding: 5px 12px; border-radius: 30px; font-size: 0.8rem; font-weight: 600;">🌱 COOLTURE · Coneixement real</span>
-                </div>
             </div>
-        </div>
+        </section>
 
-        <!-- MODAL DE PRIVACIDAD -->
-        <div class="modal-overlay privacy-modal" id="privacyModal">
-            <div class="modal-card">
-                <button class="modal-close" id="closePrivacyModalBtn">&times;</button>
-                <div class="modal-header">
-                    <i class="fas fa-shield-alt" style="font-size: 2.5rem; color: var(--verde-oscuro);"></i>
-                    <div>
-                        <div class="modal-title">Política de Privacitat</div>
-                        <div class="modal-subtitle">COOLTURE · Fòrum Cultural del Món</div>
-                    </div>
+        <section id="video" class="video-seccion">
+            <div class="container">
+                <div class="video-header reveal">
+                    <h2>🎥 Vídeo <span style="background: linear-gradient(145deg, var(--verde), var(--oro)); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent;">promocional</span></h2>
+                    <p>Descobreix COOLTURE en menys de dos minuts</p>
                 </div>
-                <div class="privacy-content">
-                    <p><strong>Última actualització:</strong> 13 d'abril de 2026</p>
-                    <h3>1. Informació que recopilem</h3>
-                    <p>COOLTURE recull únicament la informació necessària per al funcionament del Fòrum Cultural: nom d'usuari, correu electrònic, país de residència (opcional) i dades d'ús de l'aplicació (quizzes completats, països explorats). No compartim les teves dades amb tercers amb finalitats comercials.</p>
-                    <h3>2. Ús de les dades</h3>
-                    <p>Les teves dades s'utilitzen exclusivament per a:</p>
-                    <ul style="margin-left: 20px; margin-bottom: 15px;">
-                        <li>Personalitzar la teva experiència al Fòrum.</li>
-                        <li>Emmagatzemar el teu progrés (passaport digital, nivells).</li>
-                        <li>Enviar-te notificacions opcionals sobre noves funcionalitats.</li>
-                        <li>Millorar els continguts culturals de la plataforma.</li>
-                    </ul>
-                    <h3>3. Cookies i tecnologies similars</h3>
-                    <p>Utilitzem cookies tècniques essencials per al funcionament del lloc web (inici de sessió, preferències d'idioma). No utilitzem cookies de publicitat ni de seguiment de tercers.</p>
-                    <h3>4. Drets de l'usuari</h3>
-                    <p>Pots exercir els teus drets d'accés, rectificació, supressió i portabilitat de les teves dades enviant un correu a <strong>app-coolture@ifp-alguero.org</strong>. Respondrem en un termini màxim de 30 dies.</p>
-                    <h3>5. Menors d'edat</h3>
-                    <p>COOLTURE està dissenyat per a un públic general, però recomanem la supervisió d'un adult per a usuaris menors de 14 anys. No recopilem conscientment dades de menors sense consentiment parental verificable.</p>
-                    <h3>6. Canvis en la política</h3>
-                    <p>Qualsevol modificació d'aquesta política serà notificada a través del lloc web i, si és substancial, per correu electrònic.</p>
-                    <h3>7. Contacte</h3>
-                    <p>Per a qualsevol consulta sobre privacitat, pots escriure'ns a <strong>app-coolture@ifp-alguero.org</strong>.</p>
-                    <p style="margin-top: 20px; font-style: italic;">COOLTURE compleix amb el Reglament General de Protecció de Dades (RGPD) de la Unió Europea i la Llei Orgànica de Protecció de Dades i Garantia dels Drets Digitals (LOPDGDD) d'Espanya.</p>
+                <div class="video-contenedor reveal">
+                    <video autoplay muted loop playsinline controls poster="images/video-poster.jpg">
+                        <source src="videos/promocional.mp4" type="video/mp4">
+                        El teu navegador no suporta l'etiqueta de vídeo.
+                    </video>
                 </div>
             </div>
-        </div>
-
-        <!-- MODAL DE FAQ -->
-        <div class="modal-overlay faq-modal" id="faqModal">
-            <div class="modal-card">
-                <button class="modal-close" id="closeFaqModalBtn">&times;</button>
-                <div class="modal-header">
-                    <i class="fas fa-question-circle" style="font-size: 2.5rem; color: var(--oro);"></i>
-                    <div>
-                        <div class="modal-title">Preguntes Freqüents</div>
-                        <div class="modal-subtitle">COOLTURE · Fòrum Cultural del Món</div>
-                    </div>
-                </div>
-                <div class="faq-content">
-                    <h3>🌍 Què és COOLTURE?</h3>
-                    <p>COOLTURE és un Fòrum Cultural Digital col·laboratiu on exploradors de tot el món comparteixen i verifiquen coneixement cultural real, sense estereotips. Combina quizzes, passaport digital i una comunitat global per aprendre sobre països i cultures de manera profunda i entretinguda.</p>
-                    <h3>📱 Com puc descarregar l'app?</h3>
-                    <p>COOLTURE està disponible com a Progressive Web App (PWA). Pots instal·lar-la directament des del navegador fent clic al botó de descàrrega al footer, o bé des de l'App Store i Google Play (properament). La PWA funciona offline i s'actualitza automàticament.</p>
-                    <h3>🛂 Com funciona el Passaport Digital?</h3>
-                    <p>Cada cop que completes un quiz sobre un país i demostres el teu coneixement, guanyes un segell digital per al teu passaport. Pots col·leccionar segells de més de 140 països i pujar de nivell de Turista a Explorador i finalment a Ambaixador.</p>
-                    <h3>✅ Com es verifica la informació?</h3>
-                    <p>Tot el contingut de COOLTURE passa per un procés de verificació comunitària. Els usuaris amb nivell avançat (Exploradors i Ambaixadors) poden validar dades, i un equip de moderadors revisa les aportacions. Així garantim un 98% de contingut verificat.</p>
-                    <h3>💰 És gratuït?</h3>
-                    <p>Sí! COOLTURE és completament gratuït. Creiem que el coneixement cultural ha de ser accessible per a tothom. No hi ha subscripcions ni compres dins de l'app. El projecte es finança amb col·laboracions institucionals i donacions voluntàries.</p>
-                    <h3>👥 Puc contribuir amb contingut?</h3>
-                    <p>I tant! Un cop arribis al nivell d'Explorador, podràs proposar noves dades culturals, curiositats i preguntes per als quizzes. La comunitat valida les aportacions de manera col·laborativa.</p>
-                    <h3>📧 Com puc contactar amb l'equip?</h3>
-                    <p>Pots escriure'ns a <strong>app-coolture@ifp-alguero.org</strong> per a qualsevol dubte, suggeriment o proposta de col·laboració. També tenim un formulari de contacte a la secció de Suport.</p>
-                    <p style="margin-top: 20px; font-style: italic; text-align: center;">🌱 COOLTURE · Coneixement real, comunitat global.</p>
-                </div>
-            </div>
-        </div>
+        </section>
 
         <section id="features" class="features">
             <div class="container">
@@ -919,7 +1075,6 @@
             </div>
         </section>
 
-        <!-- NUEVA SECCIÓN: TUTO PREVIEW -->
         <div class="tuto-preview reveal">
             <div class="tuto-box">
                 <img src="images/tuto.png" alt="Tutorial Coolture">
@@ -927,17 +1082,79 @@
         </div>
     </main>
 
-    <footer id="descarrega">
+    <!-- Modales (sin cambios) -->
+    <div class="modal-overlay" id="culturalModal">
+        <div class="modal-card">
+            <button class="modal-close" id="closeCulturalModalBtn">&times;</button>
+            <div class="modal-header">
+                <span class="modal-flag" id="modalFlag">🌍</span>
+                <div>
+                    <div class="modal-title" id="modalCountry">País</div>
+                    <div class="modal-subtitle" id="modalCapital">Capital</div>
+                </div>
+            </div>
+            <div class="modal-detail">
+                <p><i class="fas fa-lightbulb" style="color: var(--oro); margin-right: 8px;"></i> <strong>Dada cultural:</strong></p>
+                <p id="modalFact">Fet interessant sobre el país.</p>
+            </div>
+            <div style="text-align: right; margin-top: 10px;">
+                <span style="background: var(--verde); padding: 5px 12px; border-radius: 30px; font-size: 0.8rem; font-weight: 600;">🌱 COOLTURE · Coneixement real</span>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal-overlay privacy-modal" id="privacyModal">
+        <div class="modal-card">
+            <button class="modal-close" id="closePrivacyModalBtn">&times;</button>
+            <div class="modal-header">
+                <i class="fas fa-shield-alt" style="font-size: 2.5rem; color: var(--verde-oscuro);"></i>
+                <div>
+                    <div class="modal-title">Política de Privacitat</div>
+                    <div class="modal-subtitle">COOLTURE · Fòrum Cultural del Món</div>
+                </div>
+            </div>
+            <div class="privacy-content">
+                <p><strong>Última actualització:</strong> 13 d'abril de 2026</p>
+                <h3>1. Informació que recopilem</h3>
+                <p>COOLTURE recull únicament la informació necessària per al funcionament del Fòrum Cultural.</p>
+                <h3>2. Ús de les dades</h3>
+                <p>Personalitzar l'experiència, emmagatzemar progrés, notificacions opcionals.</p>
+                <h3>3. Cookies</h3>
+                <p>Cookies tècniques, sense publicitat.</p>
+                <h3>4. Drets</h3>
+                <p>Accés, rectificació, supressió a <strong>app-coolture@ifp-alguero.org</strong>.</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal-overlay faq-modal" id="faqModal">
+        <div class="modal-card">
+            <button class="modal-close" id="closeFaqModalBtn">&times;</button>
+            <div class="modal-header">
+                <i class="fas fa-question-circle" style="font-size: 2.5rem; color: var(--oro);"></i>
+                <div>
+                    <div class="modal-title">Preguntes Freqüents</div>
+                    <div class="modal-subtitle">COOLTURE · Fòrum Cultural del Món</div>
+                </div>
+            </div>
+            <div class="faq-content">
+                <h3>🌍 Què és COOLTURE?</h3>
+                <p>Un Fòrum Cultural Digital col·laboratiu.</p>
+                <h3>📱 Com descarregar l'app?</h3>
+                <p>Disponible com a PWA instal·lable des del navegador.</p>
+                <h3>💰 És gratuït?</h3>
+                <p>Sí, totalment gratuït.</p>
+            </div>
+        </div>
+    </div>
+
+    <footer>
         <div class="container">
             <div class="footer-grid">
                 <div>
                     <img src="images/logos-02.png" alt="COOLTURE" class="footer-logo-img">
                     <p class="footer-text">Fòrum cultural col·laboratiu. Coneixement real, comunitat global.</p>
-                    <div class="footer-decoration">
-                        <i class="fas fa-globe"></i>
-                        <span>Coneixement sense fronteres</span>
-                        <i class="fas fa-leaf"></i>
-                    </div>
+                    <div class="footer-decoration"><i class="fas fa-globe"></i><span>Coneixement sense fronteres</span><i class="fas fa-leaf"></i></div>
                 </div>
                 <div>
                     <h4 style="color: white;">Explora</h4>
@@ -971,7 +1188,58 @@
     </footer>
 
     <script>
-        (function() {
+        (function () {
+            const globe = document.getElementById('globe');
+
+            // Función para colocar los pines correctamente
+            function positionPins() {
+                if (!globe) return;
+                const pins = globe.querySelectorAll('.pin');
+                pins.forEach(pin => {
+                    const lat = parseFloat(pin.dataset.lat);
+                    const lng = parseFloat(pin.dataset.lng);
+                    if (isNaN(lat) || isNaN(lng)) return;
+                    const x = (lng + 180) / 360;
+                    const y = (90 - lat) / 180;
+                    pin.style.left = (x * 100) + '%';
+                    pin.style.top = (y * 100) + '%';
+                });
+            }
+
+            window.addEventListener('load', positionPins);
+            window.addEventListener('resize', positionPins);
+            window.addEventListener('load', () => setTimeout(positionPins, 200));
+
+            // Pausar la animación del globo al entrar en cualquier pin (para clics fiables)
+            if (globe) {
+                globe.addEventListener('mouseenter', (e) => {
+                    const pin = e.target.closest('.pin');
+                    if (pin) {
+                        globe.classList.add('paused');
+                    }
+                }, true); // Fase de captura para mayor rapidez
+
+                globe.addEventListener('mouseleave', (e) => {
+                    const pin = e.target.closest('.pin');
+                    if (pin && !globe.contains(e.relatedTarget)) {
+                        globe.classList.remove('paused');
+                    } else if (!pin) {
+                        globe.classList.remove('paused');
+                    }
+                }, true);
+
+                // También pausar al hacer clic (por si acaso)
+                globe.addEventListener('click', function (e) {
+                    const pin = e.target.closest('.pin');
+                    if (pin) {
+                        globe.classList.add('paused');
+                        e.stopPropagation();
+                        openCulturalModal(pin);
+                    }
+                });
+            }
+
+            // Revelar elementos al hacer scroll
             const reveals = document.querySelectorAll('.reveal');
             function checkReveal() {
                 reveals.forEach(el => {
@@ -984,6 +1252,7 @@
             window.addEventListener('load', checkReveal);
             checkReveal();
 
+            // Gestión del modal cultural
             const culturalModal = document.getElementById('culturalModal');
             const modalFlag = document.getElementById('modalFlag');
             const modalCountry = document.getElementById('modalCountry');
@@ -997,45 +1266,75 @@
                 modalCapital.textContent = pin.getAttribute('data-capital') || 'Capital';
                 modalFact.textContent = pin.getAttribute('data-fact') || 'Descobreix més a COOLTURE.';
                 culturalModal.classList.add('show');
+                document.body.style.overflow = 'hidden';
             }
 
-            document.querySelectorAll('.pin').forEach(pin => {
-                pin.addEventListener('click', (e) => {
-                    e.stopPropagation();
-                    openCulturalModal(pin);
-                });
+            function closeCulturalModalFn() {
+                culturalModal.classList.remove('show');
+                document.body.style.overflow = '';
+                // Reanudar animación si el modal se cierra (excepto si hay hover en pin)
+                if (globe && !globe.querySelector('.pin:hover')) {
+                    globe.classList.remove('paused');
+                }
+            }
+
+            closeCulturalBtn.addEventListener('click', closeCulturalModalFn);
+            culturalModal.addEventListener('click', function (e) {
+                if (e.target === culturalModal) closeCulturalModalFn();
             });
 
-            closeCulturalBtn.addEventListener('click', () => culturalModal.classList.remove('show'));
-            culturalModal.addEventListener('click', (e) => { if (e.target === culturalModal) culturalModal.classList.remove('show'); });
-
+            // Modales de privacidad y FAQ
             const privacyModal = document.getElementById('privacyModal');
-            document.getElementById('privacyLink').addEventListener('click', (e) => { e.preventDefault(); privacyModal.classList.add('show'); });
-            document.getElementById('closePrivacyModalBtn').addEventListener('click', () => privacyModal.classList.remove('show'));
-            privacyModal.addEventListener('click', (e) => { if (e.target === privacyModal) privacyModal.classList.remove('show'); });
-
-            const faqModal = document.getElementById('faqModal');
-            document.getElementById('faqLink').addEventListener('click', (e) => { e.preventDefault(); faqModal.classList.add('show'); });
-            document.getElementById('closeFaqModalBtn').addEventListener('click', () => faqModal.classList.remove('show'));
-            faqModal.addEventListener('click', (e) => { if (e.target === faqModal) faqModal.classList.remove('show'); });
-
-            window.addEventListener('keydown', (e) => {
-                if (e.key === 'Escape') {
-                    if (culturalModal.classList.contains('show')) culturalModal.classList.remove('show');
-                    if (privacyModal.classList.contains('show')) privacyModal.classList.remove('show');
-                    if (faqModal.classList.contains('show')) faqModal.classList.remove('show');
+            const privacyLink = document.getElementById('privacyLink');
+            const closePrivacyBtn = document.getElementById('closePrivacyModalBtn');
+            privacyLink?.addEventListener('click', (e) => {
+                e.preventDefault();
+                privacyModal.classList.add('show');
+                document.body.style.overflow = 'hidden';
+            });
+            closePrivacyBtn?.addEventListener('click', () => {
+                privacyModal.classList.remove('show');
+                document.body.style.overflow = '';
+            });
+            privacyModal?.addEventListener('click', (e) => {
+                if (e.target === privacyModal) {
+                    privacyModal.classList.remove('show');
+                    document.body.style.overflow = '';
                 }
             });
 
-            const dropdownBtn = document.getElementById('appDropdownBtn');
-            const dropdownContent = document.getElementById('appDropdown');
-            dropdownBtn.addEventListener('click', function(e) {
+            const faqModal = document.getElementById('faqModal');
+            const faqLink = document.getElementById('faqLink');
+            const closeFaqBtn = document.getElementById('closeFaqModalBtn');
+            faqLink?.addEventListener('click', (e) => {
                 e.preventDefault();
-                e.stopPropagation();
-                dropdownContent.classList.toggle('show');
+                faqModal.classList.add('show');
+                document.body.style.overflow = 'hidden';
             });
-            window.addEventListener('click', function(e) {
-                if (!dropdownBtn.contains(e.target) && !dropdownContent.contains(e.target)) dropdownContent.classList.remove('show');
+            closeFaqBtn?.addEventListener('click', () => {
+                faqModal.classList.remove('show');
+                document.body.style.overflow = '';
+            });
+            faqModal?.addEventListener('click', (e) => {
+                if (e.target === faqModal) {
+                    faqModal.classList.remove('show');
+                    document.body.style.overflow = '';
+                }
+            });
+
+            // Cerrar modales con Escape
+            window.addEventListener('keydown', function (e) {
+                if (e.key === 'Escape') {
+                    if (culturalModal.classList.contains('show')) closeCulturalModalFn();
+                    if (privacyModal.classList.contains('show')) {
+                        privacyModal.classList.remove('show');
+                        document.body.style.overflow = '';
+                    }
+                    if (faqModal.classList.contains('show')) {
+                        faqModal.classList.remove('show');
+                        document.body.style.overflow = '';
+                    }
+                }
             });
         })();
     </script>
