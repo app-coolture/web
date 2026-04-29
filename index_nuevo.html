@@ -424,18 +424,17 @@
             bottom: 180%;
         }
 
-        /* Posiciones de los pines (idénticas al index antiguo) */
-        .pin:nth-child(1) { top: 32%; left: 25%; animation: pulse-glow 2.5s infinite; }
-        .pin:nth-child(2) { top: 58%; left: 30%; animation: pulse-glow 2.8s infinite 0.2s; }
-        .pin:nth-child(3) { top: 28%; left: 48%; animation: pulse-glow 2.2s infinite 0.4s; }
-        .pin:nth-child(4) { top: 62%; left: 55%; animation: pulse-glow 3s infinite 0.6s; }
-        .pin:nth-child(5) { top: 45%; left: 78%; animation: pulse-glow 2.6s infinite 0.8s; }
-        .pin:nth-child(6) { top: 70%; left: 82%; animation: pulse-glow 2.4s infinite 1.0s; }
-        .pin:nth-child(7) { top: 38%; left: 62%; animation: pulse-glow 2.9s infinite 1.2s; }
-        .pin:nth-child(8) { top: 48%; left: 22%; animation: pulse-glow 2.7s infinite 1.4s; }
-        .pin:nth-child(9) { top: 42%; left: 88%; animation: pulse-glow 2.3s infinite 1.6s; }
-        .pin:nth-child(10) { top: 52%; left: 70%; animation: pulse-glow 2.5s infinite 1.8s; }
-        .pin:nth-child(11) { top: 34%; left: 38%; animation: pulse-glow 3.1s infinite 2.0s; }
+        .pin:nth-child(1) { top: 22%; left: 22%; animation: pulse-glow 2.5s infinite; }
+        .pin:nth-child(2) { top: 62%; left: 32%; animation: pulse-glow 2.8s infinite 0.2s; }
+        .pin:nth-child(3) { top: 28%; left: 47%; animation: pulse-glow 2.2s infinite 0.4s; }
+        .pin:nth-child(4) { top: 68%; left: 54%; animation: pulse-glow 3s infinite 0.6s; }
+        .pin:nth-child(5) { top: 38%; left: 75%; animation: pulse-glow 2.6s infinite 0.8s; }
+        .pin:nth-child(6) { top: 72%; left: 82%; animation: pulse-glow 2.4s infinite 1.0s; }
+        .pin:nth-child(7) { top: 40%; left: 56%; animation: pulse-glow 2.9s infinite 1.2s; }
+        .pin:nth-child(8) { top: 48%; left: 20%; animation: pulse-glow 2.7s infinite 1.4s; }
+        .pin:nth-child(9) { top: 34%; left: 86%; animation: pulse-glow 2.3s infinite 1.6s; }
+        .pin:nth-child(10) { top: 50%; left: 68%; animation: pulse-glow 2.5s infinite 1.8s; }
+        .pin:nth-child(11) { top: 26%; left: 44%; animation: pulse-glow 3.1s infinite 2.0s; }
 
         /* ---------- MODALES ---------- */
         .modal-overlay {
@@ -614,29 +613,77 @@
         .feature-card h3 { font-size: 1.7rem; font-weight: 600; margin-bottom: 15px; }
         .feature-card p { opacity: 0.7; }
 
-        /* ---------- TUTO PREVIEW (imagen con borde dorado) ---------- */
-        .tuto-preview {
-            padding: 60px 40px;
+        /* ---------- PASSPORT PREVIEW (fondo crema, texto gris oscuro, iconos verdes) ---------- */
+        .passport-preview {
+            padding: 100px 60px;
+            background: #F2EDE2;
+            color: #232323;
+            border-radius: 60px;
             max-width: 1000px;
             margin: 60px auto;
             width: calc(100% - 40px);
-        }
-
-        .tuto-box {
-            background: var(--blanco);
-            border-radius: 30px;
-            overflow: hidden;
             box-shadow: var(--shadow-lg);
-            border: 3px solid var(--oro);
-            transition: var(--transition);margin: auto;
         }
 
-        .tuto-box img {
-            width: 80%;
-            height: auto;
-            display: block;
-            border-radius: 27px;
-            margin: auto;
+        .passport-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
+        }
+
+        .passport-text h3 {
+            font-size: 3rem;
+            color: #232323;
+            margin-bottom: 20px;
+        }
+
+        .passport-text h3 i {
+            color: #596D44;
+        }
+
+        .passport-text p {
+            font-size: 1.3rem;
+            margin-bottom: 30px;
+            opacity: 0.9;
+        }
+
+        .stamp-collection {
+            display: flex;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        .stamp {
+            background: rgba(89,109,68,0.08);
+            backdrop-filter: blur(6px);
+            padding: 20px 30px;
+            border-radius: 20px;
+            border: 1px dashed #596D44;
+            font-weight: 600;
+            transition: var(--transition);
+            transform: rotate(-3deg);
+            color: #232323;
+        }
+
+        .stamp i {
+            color: #596D44;
+        }
+
+        .stamp:hover {
+            background: #596D44;
+            color: #F2EDE2;
+            border-color: #F2EDE2;
+            transform: rotate(0deg) scale(1.1);
+        }
+
+        .stamp:hover i {
+            color: #F2EDE2;
+        }
+
+        .passport-link {
+            margin-top: 40px;
+            display: inline-block;
         }
 
         .btn-oro {
@@ -650,6 +697,52 @@
             background: #b8943f;
             transform: scale(1.05) translateY(-3px);
             box-shadow: 0 20px 30px -5px rgba(198,167,94,0.4);
+        }
+
+        .passport-link .btn-oro {
+            background: #596D44;
+            color: #F2EDE2;
+            box-shadow: 0 10px 20px -5px rgba(89,109,68,0.4);
+            border: none;
+        }
+
+        .passport-link .btn-oro:hover {
+            background: #4a5a36;
+        }
+
+        .explorers-box {
+            background: rgba(35,35,35,0.04);
+            border-radius: 30px;
+            padding: 30px;
+            backdrop-filter: blur(8px);
+            border: 1px solid rgba(89,109,68,0.2);
+            color: #232323;
+        }
+
+        .explorers-title {
+            font-size: 1.5rem;
+            margin-bottom: 20px;
+            font-weight: 600;
+        }
+
+        .explorer-item {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            padding: 10px 0;
+            border-bottom: 1px solid rgba(0,0,0,0.05);
+        }
+
+        .rank-number {
+            width: 30px;
+            height: 30px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            font-weight: bold;
+            color: #F2EDE2;
+            background: #596D44;
         }
 
         /* ---------- FOOTER ---------- */
@@ -696,8 +789,8 @@
             to { opacity: 1; transform: scale(1); }
         }
 
-        /* Responsive */
-        @media (max-width: 1100px) {
+   /* Responsive */
+   @media (max-width: 1100px) {
             .hero h1 { font-size: 3.8rem; }
         }
 
@@ -706,6 +799,9 @@
             .hero-text p { margin-left: auto; margin-right: auto; }
             .hero-stats { justify-content: center; }
             .features-grid { grid-template-columns: repeat(2, 1fr); gap: 20px; }
+            .passport-grid { grid-template-columns: 1fr; gap: 40px; text-align: center; }
+            .passport-text, .explorers-box { text-align: center; }
+            .stamp-collection { justify-content: center; }
             .footer-grid { grid-template-columns: 1fr 1fr; }
         }
 
@@ -714,7 +810,8 @@
             h1.main-title { font-size: 2.8rem; }
             .section-header h2 { font-size: 2.5rem; }
             .features-grid { grid-template-columns: 1fr; }
-            .tuto-preview { padding: 40px 20px; }
+            .passport-preview { padding: 60px 30px; }
+            .passport-text h3 { font-size: 2.5rem; }
             .footer-grid { grid-template-columns: 1fr; gap: 30px; }
             .feature-image img {
                 transform: translateY(2px);
@@ -782,17 +879,17 @@
                         <div class="globe-clouds"></div>
                         <div class="globe-shadow"></div>
                         <div class="globe-atmosphere"></div>
-                        <div class="pin" data-title="Canadà" data-country="Canadà" data-capital="Ottawa" data-fact="El segon país més gran del món, conegut pels seus paisatges d'aurora boreal." data-flag="🇨🇦" style="top: 32%; left: 25%;"></div>
-                        <div class="pin" data-title="Brasil" data-country="Brasil" data-capital="Brasília" data-fact="La selva amazònica produeix el 20% de l'oxigen del planeta." data-flag="🇧🇷" style="top: 58%; left: 30%;"></div>
-                        <div class="pin" data-title="Espanya" data-country="Espanya" data-capital="Madrid" data-fact="Té la segona xarxa d'alta velocitat ferroviària més extensa del món." data-flag="🇪🇸" style="top: 28%; left: 48%;"></div>
-                        <div class="pin" data-title="Sud-àfrica" data-country="Sud-àfrica" data-capital="Pretoria (executiva)" data-fact="És l'únic país del món amb tres capitals oficials." data-flag="🇿🇦" style="top: 62%; left: 55%;"></div>
-                        <div class="pin" data-title="Xina" data-country="Xina" data-capital="Pequín" data-fact="La Gran Muralla no és visible des de l'espai a simple vista, però és impressionant." data-flag="🇨🇳" style="top: 45%; left: 78%;"></div>
-                        <div class="pin" data-title="Austràlia" data-country="Austràlia" data-capital="Canberra" data-fact="Hi ha més cangurs que persones." data-flag="🇦🇺" style="top: 70%; left: 82%;"></div>
-                        <div class="pin" data-title="Egipte" data-country="Egipte" data-capital="El Caire" data-fact="Les piràmides de Giza són l'única de les set meravelles antigues que encara existeix." data-flag="🇪🇬" style="top: 38%; left: 62%;"></div>
-                        <div class="pin" data-title="Mèxic" data-country="Mèxic" data-capital="Ciutat de Mèxic" data-fact="El xocolata es va originar a les civilitzacions mesoamericanes." data-flag="🇲🇽" style="top: 48%; left: 22%;"></div>
-                        <div class="pin" data-title="Japó" data-country="Japó" data-capital="Tòquio" data-fact="Té més de 6.800 illes i una taxa de puntualitat ferroviària llegendària." data-flag="🇯🇵" style="top: 42%; left: 88%;"></div>
-                        <div class="pin" data-title="Índia" data-country="Índia" data-capital="Nova Delhi" data-fact="És el major productor de pel·lícules del món (Bollywood)." data-flag="🇮🇳" style="top: 52%; left: 70%;"></div>
-                        <div class="pin" data-title="Regne Unit" data-country="Regne Unit" data-capital="Londres" data-fact="El metro de Londres és el més antic del món (1863)." data-flag="🇬🇧" style="top: 34%; left: 38%;"></div>
+                        <div class="pin" data-title="Canadà" data-country="Canadà" data-capital="Ottawa" data-fact="El segon país més gran del món, conegut pels seus paisatges d'aurora boreal." data-flag="🇨🇦" style="top: 22%; left: 22%;"></div>
+                        <div class="pin" data-title="Brasil" data-country="Brasil" data-capital="Brasília" data-fact="La selva amazònica produeix el 20% de l'oxigen del planeta." data-flag="🇧🇷" style="top: 62%; left: 32%;"></div>
+                        <div class="pin" data-title="Espanya" data-country="Espanya" data-capital="Madrid" data-fact="Té la segona xarxa d'alta velocitat ferroviària més extensa del món." data-flag="🇪🇸" style="top: 28%; left: 47%;"></div>
+                        <div class="pin" data-title="Sud-àfrica" data-country="Sud-àfrica" data-capital="Pretoria (executiva)" data-fact="És l'únic país del món amb tres capitals oficials." data-flag="🇿🇦" style="top: 68%; left: 54%;"></div>
+                        <div class="pin" data-title="Xina" data-country="Xina" data-capital="Pequín" data-fact="La Gran Muralla no és visible des de l'espai a simple vista, però és impressionant." data-flag="🇨🇳" style="top: 38%; left: 75%;"></div>
+                        <div class="pin" data-title="Austràlia" data-country="Austràlia" data-capital="Canberra" data-fact="Hi ha més cangurs que persones." data-flag="🇦🇺" style="top: 72%; left: 82%;"></div>
+                        <div class="pin" data-title="Egipte" data-country="Egipte" data-capital="El Caire" data-fact="Les piràmides de Giza són l'única de les set meravelles antigues que encara existeix." data-flag="🇪🇬" style="top: 40%; left: 56%;"></div>
+                        <div class="pin" data-title="Mèxic" data-country="Mèxic" data-capital="Ciutat de Mèxic" data-fact="El xocolata es va originar a les civilitzacions mesoamericanes." data-flag="🇲🇽" style="top: 48%; left: 20%;"></div>
+                        <div class="pin" data-title="Japó" data-country="Japó" data-capital="Tòquio" data-fact="Té més de 6.800 illes i una taxa de puntualitat ferroviària llegendària." data-flag="🇯🇵" style="top: 34%; left: 86%;"></div>
+                        <div class="pin" data-title="Índia" data-country="Índia" data-capital="Nova Delhi" data-fact="És el major productor de pel·lícules del món (Bollywood)." data-flag="🇮🇳" style="top: 50%; left: 68%;"></div>
+                        <div class="pin" data-title="Regne Unit" data-country="Regne Unit" data-capital="Londres" data-fact="El metro de Londres és el més antic del món (1863)." data-flag="🇬🇧" style="top: 26%; left: 44%;"></div>
                     </div>
                 </div>
             </div>
@@ -919,10 +1016,33 @@
             </div>
         </section>
 
-        <!-- NUEVA SECCIÓN: TUTO PREVIEW -->
-        <div class="tuto-preview reveal">
-            <div class="tuto-box">
-                <img src="images/tuto.png" alt="Tutorial Coolture">
+        <div class="passport-preview reveal">
+            <div class="passport-grid">
+                <div class="passport-text">
+                    <h3><i class="fas fa-stamp"></i> Passaport Cultural</h3>
+                    <p>Cada país après és un segell. Cada viatge, una història.</p>
+                    <div class="stamp-collection">
+                        <div class="stamp"><i class="fas fa-check-circle"></i> Japó</div>
+                        <div class="stamp"><i class="fas fa-check-circle"></i> Mèxic</div>
+                        <div class="stamp"><i class="fas fa-check-circle"></i> Kenya</div>
+                        <div class="stamp"><i class="fas fa-plus-circle"></i> Proper viatge</div>
+                    </div>
+                    <a href="#" class="btn btn-oro passport-link">Obre el teu passaport <i class="fas fa-arrow-right"></i></a>
+                </div>
+                <div class="explorers-box">
+                    <div class="explorers-title">🌍 Top exploradors</div>
+                    <div style="display: flex; flex-direction: column;">
+                        <div class="explorer-item">
+                            <span class="rank-number">1</span> Maria · 42 països <span style="margin-left: auto;">🏅</span>
+                        </div>
+                        <div class="explorer-item">
+                            <span class="rank-number" style="background: #b0b0b0;">2</span> Àlex · 39 països
+                        </div>
+                        <div class="explorer-item">
+                            <span class="rank-number" style="background: #cd7f32;">3</span> Núria · 35 països
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </main>
