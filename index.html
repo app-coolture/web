@@ -191,45 +191,15 @@
             animation: scale-in 0.8s 0.2s both;
         }
 
-        @keyframes float {
-            0% {
-                transform: translateY(0px) rotateX(5deg) rotateY(-15deg);
-            }
-            50% {
-                transform: translateY(-20px) rotateX(3deg) rotateY(-18deg);
-            }
-            100% {
-                transform: translateY(0px) rotateX(5deg) rotateY(-15deg);
-            }
-        }
-
-        @keyframes pin-appear {
-            from {
-                opacity: 0;
-                transform: translate(-50%, -50%) scale(0) rotate(-30deg);
-            }
-            to {
-                opacity: 1;
-                transform: translate(-50%, -50%) scale(1) rotate(0deg);
-            }
-        }
-
-        @keyframes pin-pulse-soft {
-            0%,
-            100% {
-                box-shadow: 0 0 20px var(--pin-glow), 0 0 0 0 rgba(198, 167, 94, 0.5);
-            }
-            50% {
-                box-shadow: 0 0 35px var(--pin-glow), 0 0 0 15px rgba(198, 167, 94, 0);
-            }
+        @keyframes floatVertical {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-12px); }
         }
 
         .atlas-container {
             position: relative;
             width: 100%;
             aspect-ratio: 1/1;
-            transform-style: preserve-3d;
-            perspective: 1000px;
         }
 
         .globe {
@@ -238,16 +208,12 @@
             border-radius: 50%;
             position: relative;
             overflow: hidden;
-            animation: float 8s infinite ease-in-out;
-            transform: rotateX(5deg) rotateY(-15deg);
-            /* ELIMINADA cualquier modificación en hover que desplace los pines */
-            transition: none; /* Quitamos transición para evitar interferencias */
+            animation: floatVertical 6s infinite ease-in-out;
             box-shadow: 0 0 0 4px rgba(255, 255, 255, 0.08), 0 0 0 8px rgba(163, 230, 53, 0.12),
                 0 30px 50px rgba(0, 0, 0, 0.5);
             background: radial-gradient(circle at 35% 30%, #1b3b5c, #0a1a2f 80%);
         }
 
-        /* Solo pausamos la animación, sin mover la esfera */
         .globe.paused {
             animation-play-state: paused;
         }
@@ -310,74 +276,204 @@
             border: 1px solid rgba(255, 255, 255, 0.1);
         }
 
-        /* Pines mejorados y siempre por encima */
+        /* PINES */
         .pin {
             position: absolute;
             width: 28px;
             height: 28px;
-            background: var(--pin-color);
-            border-radius: 50%;
-            box-shadow: 0 0 20px var(--pin-glow);
+            background: transparent;
+            border: none;
             cursor: pointer;
-            transition: var(--transition-bounce);
-            border: 3px solid white;
-            z-index: 15;
+            z-index: 50;
             transform: translate(-50%, -50%);
-            opacity: 0;
-            animation: pin-appear 0.6s cubic-bezier(0.34, 1.56, 0.64, 1) forwards,
-                pin-pulse-soft 3s infinite 1.5s;
-            /* Aseguramos que el puntero del ratón sea visible */
             pointer-events: auto;
+            transition: transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+
+        .pin::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 14px;
+            height: 14px;
+            background: var(--pin-color);
+            border: 3px solid white;
+            border-radius: 50%;
+            transform: translate(-50%, -50%);
+            box-shadow: 0 0 20px var(--pin-glow);
+            transition: background 0.3s, border-color 0.3s, box-shadow 0.3s;
+            animation: pinPulse 2.5s infinite ease-in-out;
+            pointer-events: none;
         }
 
         .pin::after {
-            content: attr(data-title);
+            content: '';
             position: absolute;
-            bottom: 150%;
+            top: 50%;
+            left: 50%;
+            width: 14px;
+            height: 14px;
+            border-radius: 50%;
+            background: transparent;
+            box-shadow: 0 0 0 0 rgba(198, 167, 94, 0.7);
+            transform: translate(-50%, -50%);
+            animation: pinRipple 2.5s infinite ease-in-out;
+            pointer-events: none;
+        }
+
+        .pin:hover::before {
+            background: var(--verde);
+            border-color: var(--verde);
+            box-shadow: 0 0 40px var(--verde), 0 0 70px rgba(163, 230, 53, 0.5);
+            animation: none;
+        }
+
+        .pin:hover::after {
+            animation: none;
+            box-shadow: 0 0 0 0 rgba(163, 230, 53, 0);
+        }
+
+        .pin:active {
+            transform: translate(-50%, -50%) scale(0.9);
+        }
+
+        @keyframes pinPulse {
+            0%, 100% { box-shadow: 0 0 20px var(--pin-glow); }
+            50% { box-shadow: 0 0 35px var(--pin-glow), 0 0 0 15px rgba(198, 167, 94, 0); }
+        }
+
+        @keyframes pinRipple {
+            0% { box-shadow: 0 0 0 0 rgba(198, 167, 94, 0.8); width: 14px; height: 14px; }
+            100% { box-shadow: 0 0 0 28px rgba(198, 167, 94, 0); width: 56px; height: 56px; }
+        }
+
+        .pin-tooltip {
+            position: absolute;
+            bottom: calc(100% + 12px);
             left: 50%;
             transform: translateX(-50%);
             background: var(--negro);
             color: white;
-            padding: 6px 14px;
+            padding: 6px 12px;
             border-radius: 30px;
-            font-size: 0.8rem;
+            font-size: 0.85rem;
             font-weight: 600;
             white-space: nowrap;
+            pointer-events: none;
+            opacity: 0;
+            transition: opacity 0.2s, transform 0.2s;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.3);
+            z-index: 100;
+        }
+
+        .pin:hover .pin-tooltip {
+            opacity: 1;
+            transform: translateX(-50%) translateY(-4px);
+        }
+
+        /* POPUP DE PAÍS */
+        .pin-popup-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            backdrop-filter: blur(6px);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 3000;
             opacity: 0;
             pointer-events: none;
-            transition: all 0.3s ease;
-            box-shadow: var(--shadow-sm);
-            border: 1px solid var(--verde);
+            transition: opacity 0.35s ease;
         }
 
-        .pin:hover {
-            background: var(--verde);
-            transform: translate(-50%, -50%) scale(1.6);
-            box-shadow: 0 0 40px var(--verde), 0 0 70px rgba(163, 230, 53, 0.5);
-            z-index: 25;
-            border-color: var(--verde);
-            transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
-        }
-
-        .pin:hover::after {
+        .pin-popup-overlay.show {
             opacity: 1;
-            bottom: 170%;
-            transition: all 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
+            pointer-events: auto;
         }
 
-        .pin:nth-child(1) { animation-delay: 0.05s, 1.6s; }
-        .pin:nth-child(2) { animation-delay: 0.12s, 1.9s; }
-        .pin:nth-child(3) { animation-delay: 0.19s, 1.4s; }
-        .pin:nth-child(4) { animation-delay: 0.26s, 2.1s; }
-        .pin:nth-child(5) { animation-delay: 0.33s, 1.7s; }
-        .pin:nth-child(6) { animation-delay: 0.40s, 2.3s; }
-        .pin:nth-child(7) { animation-delay: 0.47s, 1.5s; }
-        .pin:nth-child(8) { animation-delay: 0.54s, 2.0s; }
-        .pin:nth-child(9) { animation-delay: 0.61s, 1.8s; }
-        .pin:nth-child(10) { animation-delay: 0.68s, 2.2s; }
-        .pin:nth-child(11) { animation-delay: 0.75s, 1.65s; }
+        .pin-popup-card {
+            background: var(--blanco);
+            max-width: 420px;
+            width: 90%;
+            border-radius: 36px;
+            padding: 35px 30px 30px;
+            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.35), 0 0 0 3px var(--oro), 0 0 0 6px rgba(163, 230, 53, 0.3);
+            text-align: center;
+            position: relative;
+            transform: scale(0.85) translateY(20px);
+            transition: transform 0.45s cubic-bezier(0.34, 1.56, 0.64, 1);
+            border: 2px solid rgba(198, 167, 94, 0.4);
+        }
 
-        /* Resto del CSS sin cambios... */
+        .pin-popup-overlay.show .pin-popup-card {
+            transform: scale(1) translateY(0);
+        }
+
+        .popup-emoji {
+            font-size: 4rem;
+            margin-bottom: 10px;
+            line-height: 1;
+        }
+
+        .popup-title {
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--negro);
+            margin-bottom: 12px;
+        }
+
+        .popup-text {
+            font-size: 1.05rem;
+            color: var(--gris-pizarra);
+            opacity: 0.85;
+            line-height: 1.6;
+            margin-bottom: 20px;
+        }
+
+        .popup-badge {
+            display: inline-block;
+            background: rgba(163, 230, 53, 0.15);
+            color: var(--verde-oscuro);
+            font-weight: 600;
+            font-size: 0.85rem;
+            padding: 6px 16px;
+            border-radius: 30px;
+            border: 1px solid rgba(163, 230, 53, 0.4);
+        }
+
+        .popup-close {
+            position: absolute;
+            top: 16px;
+            right: 20px;
+            background: none;
+            border: none;
+            font-size: 2rem;
+            cursor: pointer;
+            color: var(--negro);
+            opacity: 0.45;
+            transition: var(--transition);
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .popup-close:hover {
+            opacity: 1;
+            background: rgba(0, 0, 0, 0.06);
+            transform: rotate(90deg);
+        }
+
+        /* SECCIONES */
         .recursos {
             padding: 80px 0;
             background: var(--blanco);
@@ -512,6 +608,13 @@
             color: var(--negro);
             border-color: var(--verde);
             box-shadow: 0 5px 15px rgba(163, 230, 53, 0.3);
+        }
+
+        .recurso-enlaces {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+            justify-content: center;
         }
 
         .video-seccion {
@@ -657,31 +760,6 @@
             opacity: 0.7;
         }
 
-        .tuto-preview {
-            padding: 60px 40px;
-            max-width: 1000px;
-            margin: 60px auto;
-            width: calc(100% - 40px);
-        }
-
-        .tuto-box {
-            background: var(--blanco);
-            border-radius: 30px;
-            overflow: hidden;
-            box-shadow: var(--shadow-lg);
-            border: 3px solid var(--oro);
-            transition: var(--transition);
-            margin: auto;
-        }
-
-        .tuto-box img {
-            width: 80%;
-            height: auto;
-            display: block;
-            border-radius: 27px;
-            margin: auto;
-        }
-
         .btn {
             display: inline-flex;
             align-items: center;
@@ -802,6 +880,12 @@
             color: var(--verde-oscuro);
         }
 
+        .privacy-content h3,
+        .faq-content h3 {
+            margin-top: 15px;
+            margin-bottom: 8px;
+        }
+
         footer {
             background: var(--gris-pizarra);
             color: #ccc;
@@ -872,7 +956,6 @@
             to { opacity: 1; transform: scale(1); }
         }
 
-        /* Media queries (sin cambios) */
         @media (max-width: 1100px) {
             .hero h1 { font-size: 3.8rem; }
             .recursos-grid { grid-template-columns: repeat(3, 1fr); }
@@ -893,7 +976,6 @@
             h1.main-title { font-size: 2.8rem; }
             .section-header h2 { font-size: 2.5rem; }
             .features-grid { grid-template-columns: 1fr; }
-            .tuto-preview { padding: 40px 20px; }
             .footer-grid { grid-template-columns: 1fr; gap: 30px; }
             .atlas-container { max-width: 320px; }
             .pin { width: 22px; height: 22px; }
@@ -944,48 +1026,48 @@
                         <div class="globe-shadow"></div>
                         <div class="globe-atmosphere"></div>
 
-                        <!-- Pines con datos -->
-                        <div class="pin" data-title="Canadà" data-country="Canadà" data-capital="Ottawa"
-                            data-fact="El segon país més gran del món, conegut pels seus paisatges d'aurora boreal."
-                            data-flag="🇨🇦" data-lat="56.1304" data-lng="-106.3468"></div>
-                        <div class="pin" data-title="Brasil" data-country="Brasil" data-capital="Brasília"
-                            data-fact="La selva amazònica produeix el 20% de l'oxigen del planeta." data-flag="🇧🇷"
-                            data-lat="-14.2350" data-lng="-51.9253"></div>
-                        <div class="pin" data-title="Espanya" data-country="Espanya" data-capital="Madrid"
-                            data-fact="Té la segona xarxa d'alta velocitat ferroviària més extensa del món."
-                            data-flag="🇪🇸" data-lat="40.4637" data-lng="-3.7492"></div>
-                        <div class="pin" data-title="Sud-àfrica" data-country="Sud-àfrica"
-                            data-capital="Pretoria (executiva)"
-                            data-fact="És l'únic país del món amb tres capitals oficials." data-flag="🇿🇦"
-                            data-lat="-30.5595" data-lng="22.9375"></div>
-                        <div class="pin" data-title="Xina" data-country="Xina" data-capital="Pequín"
-                            data-fact="La Gran Muralla no és visible des de l'espai a simple vista, però és impressionant."
-                            data-flag="🇨🇳" data-lat="35.8617" data-lng="104.1954"></div>
-                        <div class="pin" data-title="Austràlia" data-country="Austràlia" data-capital="Canberra"
-                            data-fact="Hi ha més cangurs que persones." data-flag="🇦🇺" data-lat="-25.2744"
-                            data-lng="133.7751"></div>
-                        <div class="pin" data-title="Egipte" data-country="Egipte" data-capital="El Caire"
-                            data-fact="Les piràmides de Giza són l'única de les set meravelles antigues que encara existeix."
-                            data-flag="🇪🇬" data-lat="26.8206" data-lng="30.8025"></div>
-                        <div class="pin" data-title="Mèxic" data-country="Mèxic" data-capital="Ciutat de Mèxic"
-                            data-fact="El xocolata es va originar a les civilitzacions mesoamericanes." data-flag="🇲🇽"
-                            data-lat="23.6345" data-lng="-102.5528"></div>
-                        <div class="pin" data-title="Japó" data-country="Japó" data-capital="Tòquio"
-                            data-fact="Té més de 6.800 illes i una taxa de puntualitat ferroviària llegendària."
-                            data-flag="🇯🇵" data-lat="36.2048" data-lng="138.2529"></div>
-                        <div class="pin" data-title="Índia" data-country="Índia" data-capital="Nova Delhi"
-                            data-fact="És el major productor de pel·lícules del món (Bollywood)." data-flag="🇮🇳"
-                            data-lat="20.5937" data-lng="78.9629"></div>
-                        <div class="pin" data-title="Regne Unit" data-country="Regne Unit" data-capital="Londres"
-                            data-fact="El metro de Londres és el més antic del món (1863)." data-flag="🇬🇧"
-                            data-lat="55.3781" data-lng="-3.4360"></div>
+                        <!-- PINES -->
+                        <div class="pin" style="top: 30.6%; left: 84.6%;"
+                             data-country="Japó" data-emoji="🇯🇵"
+                             data-info="Al Japó, el silenci durant una conversa es considera un signe de respecte i reflexió, no d'incomoditat.">
+                            <span class="pin-tooltip">🇯🇵 Japó</span>
+                        </div>
+                        <div class="pin" style="top: 39.4%; left: 18.5%;"
+                             data-country="Mèxic" data-emoji="🇲🇽"
+                             data-info="El Dia de Morts mexicà va ser declarat Patrimoni Cultural Immaterial de la Humanitat per la UNESCO el 2008.">
+                            <span class="pin-tooltip">🇲🇽 Mèxic</span>
+                        </div>
+                        <div class="pin" style="top: 34.4%; left: 67.4%;"
+                             data-country="Índia" data-emoji="🇮🇳"
+                             data-info="L'Índia reconeix 22 idiomes oficials i més de 1.600 dialectes diferents arreu del seu territori.">
+                            <span class="pin-tooltip">🇮🇳 Índia</span>
+                        </div>
+                        <div class="pin" style="top: 50.6%; left: 56%;"
+                             data-country="Kènia" data-emoji="🇰🇪"
+                             data-info="Els massais de Kènia consideren que saltar alt és un símbol de força, valentia i prestigi dins la seva cultura.">
+                            <span class="pin-tooltip">🇰🇪 Kènia</span>
+                        </div>
+                        <div class="pin" style="top: 27.8%; left: 45.2%;"
+                             data-country="Espanya" data-emoji="🇪🇸"
+                             data-info="La migdiada espanyola té origen en la necessitat de descansar durant les hores de més calor al camp, especialment a l'estiu.">
+                            <span class="pin-tooltip">🇪🇸 Espanya</span>
+                        </div>
+                        <div class="pin" style="top: 62.2%; left: 34.1%;"
+                             data-country="Brasil" data-emoji="🇧🇷"
+                             data-info="El Carnaval de Rio de Janeiro atrau més de 2 milions de persones al carrer cada dia de festa, sent la major celebració del món.">
+                            <span class="pin-tooltip">🇧🇷 Brasil</span>
+                        </div>
+                        <div class="pin" style="top: 68.3%; left: 87.9%;"
+                             data-country="Austràlia" data-emoji="🇦🇺"
+                             data-info="El didgeridoo, instrument de vent aborigen australià, té més de 1.500 anys d'antiguitat i és un dels més antics del món.">
+                            <span class="pin-tooltip">🇦🇺 Austràlia</span>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
 
         <section id="recursos" class="recursos">
-            <!-- Contenido de recursos (sin cambios) -->
             <div class="container">
                 <div class="recursos-header reveal">
                     <h2>Caixa d'<span>eines</span> del projecte</h2>
@@ -1074,35 +1156,73 @@
                 </div>
             </div>
         </section>
-
-        <div class="tuto-preview reveal">
-            <div class="tuto-box">
-                <img src="images/tuto.png" alt="Tutorial Coolture">
-            </div>
-        </div>
     </main>
 
-    <!-- Modales (sin cambios) -->
-    <div class="modal-overlay" id="culturalModal">
+    <!-- POPUP DE PAÍS -->
+    <div class="pin-popup-overlay" id="countryPopup">
+        <div class="pin-popup-card">
+            <button class="popup-close" id="closePopupBtn">&times;</button>
+            <div class="popup-emoji" id="popupEmoji"></div>
+            <div class="popup-title" id="popupTitle"></div>
+            <p class="popup-text" id="popupText"></p>
+            <span class="popup-badge"><i class="fas fa-map-pin"></i> COOLTURE · Fòrum Cultural</span>
+        </div>
+    </div>
+
+    <!-- MODAL FAQ -->
+    <div class="modal-overlay faq-modal" id="faqModal">
         <div class="modal-card">
-            <button class="modal-close" id="closeCulturalModalBtn">&times;</button>
+            <button class="modal-close" id="closeFaqModalBtn">&times;</button>
             <div class="modal-header">
-                <span class="modal-flag" id="modalFlag">🌍</span>
+                <i class="fas fa-question-circle" style="font-size: 2.5rem; color: var(--oro);"></i>
                 <div>
-                    <div class="modal-title" id="modalCountry">País</div>
-                    <div class="modal-subtitle" id="modalCapital">Capital</div>
+                    <div class="modal-title">Preguntes Freqüents</div>
+                    <div class="modal-subtitle">COOLTURE · Fòrum Cultural del Món</div>
                 </div>
             </div>
-            <div class="modal-detail">
-                <p><i class="fas fa-lightbulb" style="color: var(--oro); margin-right: 8px;"></i> <strong>Dada cultural:</strong></p>
-                <p id="modalFact">Fet interessant sobre el país.</p>
-            </div>
-            <div style="text-align: right; margin-top: 10px;">
-                <span style="background: var(--verde); padding: 5px 12px; border-radius: 30px; font-size: 0.8rem; font-weight: 600;">🌱 COOLTURE · Coneixement real</span>
+            <div class="faq-content" style="max-height: 60vh; overflow-y: auto; padding-right: 10px;">
+                <div style="margin-bottom: 20px;">
+                    <h3 style="color: var(--negro); font-size: 1.1rem; margin-bottom: 8px;">🌍 Què és COOLTURE?</h3>
+                    <p style="opacity: 0.8; font-size: 0.95rem;">COOLTURE és un Fòrum Cultural Digital col·laboratiu on el coneixement es construeix de manera conjunta i verificada. Una plataforma per aprendre sobre cultures del món, compartir coneixements reals i combatre els estereotips mitjançant dades contrastades.</p>
+                </div>
+                
+                <div style="margin-bottom: 20px;">
+                    <h3 style="color: var(--negro); font-size: 1.1rem; margin-bottom: 8px;">📱 Com puc descarregar l'app?</h3>
+                    <p style="opacity: 0.8; font-size: 0.95rem;">COOLTURE funciona com una Progressive Web App (PWA). Pots instal·lar-la directament des del navegador al teu dispositiu mòbil o ordinador. Busca la icona d'instal·lació a la barra del navegador o visita la secció de descàrrega al footer.</p>
+                </div>
+                
+                <div style="margin-bottom: 20px;">
+                    <h3 style="color: var(--negro); font-size: 1.1rem; margin-bottom: 8px;">💰 És gratuït l'ús de COOLTURE?</h3>
+                    <p style="opacity: 0.8; font-size: 0.95rem;">Sí, totalment gratuït. COOLTURE és un projecte educatiu sense ànim de lucre. No hi ha subscripcions, pagaments ni publicitat. Tot el contingut és accessible per a tothom.</p>
+                </div>
+                
+                <div style="margin-bottom: 20px;">
+                    <h3 style="color: var(--negro); font-size: 1.1rem; margin-bottom: 8px;">👥 Com funciona la comunitat?</h3>
+                    <p style="opacity: 0.8; font-size: 0.95rem;">La comunitat s'organitza en tres nivells: Turistes (nous usuaris), Exploradors (usuaris actius que validen contingut) i Ambaixadors (moderadors de confiança). Pots pujar de nivell participant en debats, completant quizzes i verificant informació.</p>
+                </div>
+                
+                <div style="margin-bottom: 20px;">
+                    <h3 style="color: var(--negro); font-size: 1.1rem; margin-bottom: 8px;">🔍 Com es verifica la informació?</h3>
+                    <p style="opacity: 0.8; font-size: 0.95rem;">El 98% del contingut està verificat per la comunitat. Els Exploradors i Ambaixadors revisen les dades, citen fonts fiables i moderen les discussions per garantir que la informació sigui precisa i lliure d'estereotips.</p>
+                </div>
+                
+                <div style="margin-bottom: 20px;">
+                    <h3 style="color: var(--negro); font-size: 1.1rem; margin-bottom: 8px;">🎮 Què són els quizzes i el passaport?</h3>
+                    <p style="opacity: 0.8; font-size: 0.95rem;">Els quizzes són preguntes dissenyades per entendre les cultures, no per memoritzar dades. El Passaport Digital registra els països que has après i visitats virtualment, col·leccionant segells exclusius per cada fita aconseguida.</p>
+                </div>
+                
+                <div style="margin-bottom: 20px;">
+                    <h3 style="color: var(--negro); font-size: 1.1rem; margin-bottom: 8px;">📧 Com puc contactar amb l'equip?</h3>
+                    <p style="opacity: 0.8; font-size: 0.95rem;">Pots escriure'ns a <strong>app-coolture@ifp-alguero.org</strong> per a qualsevol dubte, suggeriment o col·laboració. També pots seguir-nos a GitHub per veure el codi i contribuir al projecte.</p>
+                </div>
+                
+                <div style="text-align: center; margin-top: 25px; padding-top: 15px; border-top: 2px dashed var(--verde);">
+                </div>
             </div>
         </div>
     </div>
 
+    <!-- MODAL PRIVACIDAD -->
     <div class="modal-overlay privacy-modal" id="privacyModal">
         <div class="modal-card">
             <button class="modal-close" id="closePrivacyModalBtn">&times;</button>
@@ -1123,27 +1243,6 @@
                 <p>Cookies tècniques, sense publicitat.</p>
                 <h3>4. Drets</h3>
                 <p>Accés, rectificació, supressió a <strong>app-coolture@ifp-alguero.org</strong>.</p>
-            </div>
-        </div>
-    </div>
-
-    <div class="modal-overlay faq-modal" id="faqModal">
-        <div class="modal-card">
-            <button class="modal-close" id="closeFaqModalBtn">&times;</button>
-            <div class="modal-header">
-                <i class="fas fa-question-circle" style="font-size: 2.5rem; color: var(--oro);"></i>
-                <div>
-                    <div class="modal-title">Preguntes Freqüents</div>
-                    <div class="modal-subtitle">COOLTURE · Fòrum Cultural del Món</div>
-                </div>
-            </div>
-            <div class="faq-content">
-                <h3>🌍 Què és COOLTURE?</h3>
-                <p>Un Fòrum Cultural Digital col·laboratiu.</p>
-                <h3>📱 Com descarregar l'app?</h3>
-                <p>Disponible com a PWA instal·lable des del navegador.</p>
-                <h3>💰 És gratuït?</h3>
-                <p>Sí, totalment gratuït.</p>
             </div>
         </div>
     </div>
@@ -1191,33 +1290,11 @@
         (function () {
             const globe = document.getElementById('globe');
 
-            // Función para colocar los pines correctamente
-            function positionPins() {
-                if (!globe) return;
-                const pins = globe.querySelectorAll('.pin');
-                pins.forEach(pin => {
-                    const lat = parseFloat(pin.dataset.lat);
-                    const lng = parseFloat(pin.dataset.lng);
-                    if (isNaN(lat) || isNaN(lng)) return;
-                    const x = (lng + 180) / 360;
-                    const y = (90 - lat) / 180;
-                    pin.style.left = (x * 100) + '%';
-                    pin.style.top = (y * 100) + '%';
-                });
-            }
-
-            window.addEventListener('load', positionPins);
-            window.addEventListener('resize', positionPins);
-            window.addEventListener('load', () => setTimeout(positionPins, 200));
-
-            // Pausar la animación del globo al entrar en cualquier pin (para clics fiables)
             if (globe) {
                 globe.addEventListener('mouseenter', (e) => {
                     const pin = e.target.closest('.pin');
-                    if (pin) {
-                        globe.classList.add('paused');
-                    }
-                }, true); // Fase de captura para mayor rapidez
+                    if (pin) globe.classList.add('paused');
+                }, true);
 
                 globe.addEventListener('mouseleave', (e) => {
                     const pin = e.target.closest('.pin');
@@ -1228,65 +1305,52 @@
                     }
                 }, true);
 
-                // También pausar al hacer clic (por si acaso)
                 globe.addEventListener('click', function (e) {
                     const pin = e.target.closest('.pin');
-                    if (pin) {
-                        globe.classList.add('paused');
-                        e.stopPropagation();
-                        openCulturalModal(pin);
-                    }
+                    if (pin) globe.classList.add('paused');
                 });
             }
 
-            // Revelar elementos al hacer scroll
-            const reveals = document.querySelectorAll('.reveal');
-            function checkReveal() {
-                reveals.forEach(el => {
-                    const windowHeight = window.innerHeight;
-                    const elementTop = el.getBoundingClientRect().top;
-                    if (elementTop < windowHeight - 100) el.classList.add('visible');
+            // POPUP DE PAÍS
+            const popupOverlay = document.getElementById('countryPopup');
+            const popupEmoji = document.getElementById('popupEmoji');
+            const popupTitle = document.getElementById('popupTitle');
+            const popupText = document.getElementById('popupText');
+            const closePopupBtn = document.getElementById('closePopupBtn');
+            const allPins = document.querySelectorAll('.pin');
+
+            allPins.forEach(pin => {
+                pin.addEventListener('click', function(e) {
+                    e.stopPropagation();
+                    const country = this.dataset.country;
+                    const emoji = this.dataset.emoji;
+                    const info = this.dataset.info;
+                    popupEmoji.textContent = emoji;
+                    popupTitle.textContent = country;
+                    popupText.textContent = info;
+                    popupOverlay.classList.add('show');
+                    document.body.style.overflow = 'hidden';
                 });
-            }
-            window.addEventListener('scroll', checkReveal);
-            window.addEventListener('load', checkReveal);
-            checkReveal();
+            });
 
-            // Gestión del modal cultural
-            const culturalModal = document.getElementById('culturalModal');
-            const modalFlag = document.getElementById('modalFlag');
-            const modalCountry = document.getElementById('modalCountry');
-            const modalCapital = document.getElementById('modalCapital');
-            const modalFact = document.getElementById('modalFact');
-            const closeCulturalBtn = document.getElementById('closeCulturalModalBtn');
-
-            function openCulturalModal(pin) {
-                modalFlag.textContent = pin.getAttribute('data-flag') || '🌍';
-                modalCountry.textContent = pin.getAttribute('data-country') || 'País';
-                modalCapital.textContent = pin.getAttribute('data-capital') || 'Capital';
-                modalFact.textContent = pin.getAttribute('data-fact') || 'Descobreix més a COOLTURE.';
-                culturalModal.classList.add('show');
-                document.body.style.overflow = 'hidden';
-            }
-
-            function closeCulturalModalFn() {
-                culturalModal.classList.remove('show');
+            function closeCountryPopup() {
+                popupOverlay.classList.remove('show');
                 document.body.style.overflow = '';
-                // Reanudar animación si el modal se cierra (excepto si hay hover en pin)
                 if (globe && !globe.querySelector('.pin:hover')) {
                     globe.classList.remove('paused');
                 }
             }
 
-            closeCulturalBtn.addEventListener('click', closeCulturalModalFn);
-            culturalModal.addEventListener('click', function (e) {
-                if (e.target === culturalModal) closeCulturalModalFn();
+            closePopupBtn.addEventListener('click', closeCountryPopup);
+            popupOverlay.addEventListener('click', (e) => {
+                if (e.target === popupOverlay) closeCountryPopup();
             });
 
-            // Modales de privacidad y FAQ
+            // MODALES PRIVACIDAD Y FAQ
             const privacyModal = document.getElementById('privacyModal');
             const privacyLink = document.getElementById('privacyLink');
             const closePrivacyBtn = document.getElementById('closePrivacyModalBtn');
+
             privacyLink?.addEventListener('click', (e) => {
                 e.preventDefault();
                 privacyModal.classList.add('show');
@@ -1306,6 +1370,7 @@
             const faqModal = document.getElementById('faqModal');
             const faqLink = document.getElementById('faqLink');
             const closeFaqBtn = document.getElementById('closeFaqModalBtn');
+
             faqLink?.addEventListener('click', (e) => {
                 e.preventDefault();
                 faqModal.classList.add('show');
@@ -1322,10 +1387,10 @@
                 }
             });
 
-            // Cerrar modales con Escape
+            // CERRAR CON ESCAPE
             window.addEventListener('keydown', function (e) {
                 if (e.key === 'Escape') {
-                    if (culturalModal.classList.contains('show')) closeCulturalModalFn();
+                    if (popupOverlay.classList.contains('show')) closeCountryPopup();
                     if (privacyModal.classList.contains('show')) {
                         privacyModal.classList.remove('show');
                         document.body.style.overflow = '';
@@ -1336,6 +1401,19 @@
                     }
                 }
             });
+
+            // REVEAL AL SCROLL
+            const reveals = document.querySelectorAll('.reveal');
+            function checkReveal() {
+                reveals.forEach(el => {
+                    const windowHeight = window.innerHeight;
+                    const elementTop = el.getBoundingClientRect().top;
+                    if (elementTop < windowHeight - 100) el.classList.add('visible');
+                });
+            }
+            window.addEventListener('scroll', checkReveal);
+            window.addEventListener('load', checkReveal);
+            checkReveal();
         })();
     </script>
 </body>

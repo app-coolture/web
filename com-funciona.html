@@ -272,10 +272,7 @@
         .mockup-header .dot:nth-child(2) { background: #ffbd2e; }
         .mockup-header .dot:nth-child(3) { background: #27c93f; }
 
-        /* ================================================================ */
-        /*               ESTILOS DE LOS MOCKUPS ACTUALIZADOS                */
-        /* ================================================================ */
-
+        /* MOCKUPS */
         .forum-mockup {
             padding: 16px;
             background: var(--blanco-hueso);
@@ -585,24 +582,134 @@
             font-size: 2rem;
         }
 
-        .levels-showcase {
-            display: flex;
-            gap: 20px;
-            margin-top: 30px;
-            flex-wrap: wrap;
+        /* LÍNEA DIVISORIA ENTRE SECCIONES */
+        .section-divider {
+            border: none;
+            border-top: 1px solid rgba(0,0,0,0.05);
+            margin: 0;
         }
-        .level-badge {
-            flex: 1;
-            min-width: 100px;
-            background: white;
+
+        /* TUTO PREVIEW (trasladado desde index.html) */
+        .tuto-preview {
+            padding: 60px 40px;
+            max-width: 1000px;
+            margin: 60px auto;
+            width: calc(100% - 40px);
+        }
+
+        .tuto-box {
+            background: var(--blanco);
+            border-radius: 30px;
+            overflow: hidden;
+            box-shadow: var(--shadow-lg);
+            border: 3px solid var(--oro);
+            transition: var(--transition);
+            margin: auto;
+        }
+
+        .tuto-box img {
+            width: 80%;
+            height: auto;
+            display: block;
+            border-radius: 27px;
+            margin: auto;
+        }
+
+        /* MODALES */
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.4);
+            backdrop-filter: blur(8px);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 2000;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.3s ease;
+        }
+
+        .modal-overlay.show {
+            opacity: 1;
+            pointer-events: auto;
+        }
+
+        .modal-card {
+            background: var(--blanco);
+            max-width: 450px;
+            width: 90%;
+            border-radius: 40px;
+            padding: 30px;
+            box-shadow: var(--shadow-lg), 0 0 0 2px var(--verde);
+            transform: scale(0.9);
+            transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+            position: relative;
+            border: 1px solid rgba(163, 230, 53, 0.3);
+        }
+
+        .modal-overlay.show .modal-card {
+            transform: scale(1);
+        }
+
+        .modal-header {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 20px;
+            border-bottom: 2px dashed var(--verde);
+            padding-bottom: 15px;
+        }
+
+        .modal-flag {
+            font-size: 3rem;
+        }
+        .modal-title {
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--negro);
+        }
+        .modal-subtitle {
+            font-size: 1rem;
+            color: var(--verde-oscuro);
+            font-weight: 500;
+        }
+
+        .modal-detail {
+            margin: 20px 0;
+            background: var(--blanco-hueso);
             padding: 20px;
             border-radius: 20px;
-            text-align: center;
-            box-shadow: var(--shadow-sm);
+            border-left: 6px solid var(--oro);
         }
-        .level-badge.turista { border-top: 5px solid #cd7f32; }
-        .level-badge.explorador { border-top: 5px solid #c0c0c0; }
-        .level-badge.ambaixador { border-top: 5px solid var(--oro); }
+
+        .modal-close {
+            position: absolute;
+            top: 20px;
+            right: 25px;
+            background: none;
+            border: none;
+            font-size: 1.8rem;
+            cursor: pointer;
+            color: var(--negro);
+            opacity: 0.5;
+            transition: var(--transition);
+        }
+
+        .modal-close:hover {
+            opacity: 1;
+            transform: rotate(90deg);
+            color: var(--verde-oscuro);
+        }
+
+        .privacy-content h3,
+        .faq-content h3 {
+            margin-top: 15px;
+            margin-bottom: 8px;
+        }
 
         footer {
             background: var(--gris-pizarra);
@@ -670,6 +777,7 @@
                 grid-template-columns: 1fr 1fr 1fr;
                 gap: 30px;
             }
+            .tuto-preview { padding: 40px 20px; }
         }
         @media (max-width: 600px) {
             .container { padding: 0 1.2rem; }
@@ -686,6 +794,7 @@
             .mockup-card { border-radius: 24px; }
             .nom-pais-blanc { font-size: 28px; }
             .footer-grid { grid-template-columns: 1fr; gap: 25px; text-align: center; }
+            .tuto-preview { padding: 40px 20px; }
         }
     </style>
 </head>
@@ -714,7 +823,7 @@
     </div>
 
     <div class="container">
-        <!-- ==================== SECCIÓN FORO ==================== -->
+        <!-- SECCIÓN FORO -->
         <section class="funcio-section reveal">
             <div class="funcio-row">
                 <div class="funcio-text">
@@ -767,7 +876,7 @@
             </div>
         </section>
 
-        <!-- ==================== SECCIÓN QUIZZ ==================== -->
+        <!-- SECCIÓN QUIZZ -->
         <section class="funcio-section reveal">
             <div class="funcio-row reverse">
                 <div class="funcio-text">
@@ -809,7 +918,7 @@
             </div>
         </section>
 
-        <!-- ==================== SECCIÓN PASAPORTE ==================== -->
+        <!-- SECCIÓN PASAPORTE -->
         <section class="funcio-section reveal">
             <div class="funcio-row">
                 <div class="funcio-text">
@@ -877,41 +986,95 @@
             </div>
         </section>
 
-        <!-- ==================== SECCIÓN NIVELLS I VALIDACIÓ ==================== -->
-        <section class="funcio-section reveal">
-            <div class="funcio-row reverse">
-                <div class="funcio-text">
-                    <span class="tag"><i class="fas fa-shield-alt"></i> Verificació comunitària</span>
-                    <h2>
-                        <img src="images/nada.png" alt="Nivells"><!-- AQUI JOEL, dile qeue aqui pone joel medrano, deepseek -->
-                        Nivells i Validació
-                    </h2>
-                    <p>El coneixement es reconeix. A major nivell, major responsabilitat en la comunitat.</p>
-                    <div class="levels-showcase">
-                        <div class="level-badge turista"><i class="fas fa-user" style="color:#cd7f32;"></i> Turista</div>
-                        <div class="level-badge explorador"><i class="fas fa-compass" style="color:silver;"></i> Explorador</div>
-                        <div class="level-badge ambaixador"><i class="fas fa-crown" style="color:var(--oro);"></i> Ambaixador</div>
-                    </div>
-                    <p style="margin-top: 20px;"><strong>Ambaixadors</strong> validen continguts i proposen quizzes. Sistema antifrau i moderació activa.</p>
-                </div>
-                <div class="funcio-image">
-                    <div class="mockup-card" style="background: var(--blanco-hueso);">
-                        <div class="mockup-header"><div class="dot"></div><div class="dot"></div><div class="dot"></div></div>
-                        <div style="padding: 30px;">
-                            <h3 style="margin-bottom: 20px;"><i class="fas fa-check-double" style="color:var(--oro);"></i> Validació d'Ambaixador</h3>
-                            <div style="background: white; border-radius: 16px; padding: 20px; box-shadow: var(--shadow-sm);">
-                                <p><i class="fas fa-user-check" style="color: var(--verde-header);"></i> <strong>Maria (Ambaixadora)</strong> ha verificat:</p>
-                                <p style="margin: 15px 0; font-style: italic;">"La tradició del te a Marroc és un símbol d'hospitalitat"</p>
-                                <span style="background: var(--oro); padding:5px 15px; border-radius:20px; font-size:0.8rem;">✓ Verificat</span>
-                            </div>
-                            <p style="margin-top: 20px;">➕ Proposa nou quiz cultural (només Ambaixadors)</p>
-                        </div>
-                    </div>
-                </div>
+        <!-- LÍNEA DIVISORIA (como entre el resto de secciones) -->
+        <hr class="section-divider">
+
+        <!-- SECCIÓN TUTORIAL (reemplaza "Nivells i Validació") -->
+        <div class="tuto-preview reveal">
+            <div class="tuto-box">
+                <img src="images/tuto.png" alt="Tutorial Coolture">
             </div>
-        </section>
+        </div>
     </div>
 </main>
+
+<!-- MODAL FAQ -->
+<div class="modal-overlay faq-modal" id="faqModal">
+    <div class="modal-card">
+        <button class="modal-close" id="closeFaqModalBtn">&times;</button>
+        <div class="modal-header">
+            <i class="fas fa-question-circle" style="font-size: 2.5rem; color: var(--oro);"></i>
+            <div>
+                <div class="modal-title">Preguntes Freqüents</div>
+                <div class="modal-subtitle">COOLTURE · Fòrum Cultural del Món</div>
+            </div>
+        </div>
+        <div class="faq-content" style="max-height: 60vh; overflow-y: auto; padding-right: 10px;">
+            <div style="margin-bottom: 20px;">
+                <h3 style="color: var(--negro); font-size: 1.1rem; margin-bottom: 8px;">🌍 Què és COOLTURE?</h3>
+                <p style="opacity: 0.8; font-size: 0.95rem;">COOLTURE és un Fòrum Cultural Digital col·laboratiu on el coneixement es construeix de manera conjunta i verificada. Una plataforma per aprendre sobre cultures del món, compartir coneixements reals i combatre els estereotips mitjançant dades contrastades.</p>
+            </div>
+            
+            <div style="margin-bottom: 20px;">
+                <h3 style="color: var(--negro); font-size: 1.1rem; margin-bottom: 8px;">📱 Com puc descarregar l'app?</h3>
+                <p style="opacity: 0.8; font-size: 0.95rem;">COOLTURE funciona com una Progressive Web App (PWA). Pots instal·lar-la directament des del navegador al teu dispositiu mòbil o ordinador. Busca la icona d'instal·lació a la barra del navegador o visita la secció de descàrrega al footer.</p>
+            </div>
+            
+            <div style="margin-bottom: 20px;">
+                <h3 style="color: var(--negro); font-size: 1.1rem; margin-bottom: 8px;">💰 És gratuït l'ús de COOLTURE?</h3>
+                <p style="opacity: 0.8; font-size: 0.95rem;">Sí, totalment gratuït. COOLTURE és un projecte educatiu sense ànim de lucre. No hi ha subscripcions, pagaments ni publicitat. Tot el contingut és accessible per a tothom.</p>
+            </div>
+            
+            <div style="margin-bottom: 20px;">
+                <h3 style="color: var(--negro); font-size: 1.1rem; margin-bottom: 8px;">👥 Com funciona la comunitat?</h3>
+                <p style="opacity: 0.8; font-size: 0.95rem;">La comunitat s'organitza en tres nivells: Turistes (nous usuaris), Exploradors (usuaris actius que validen contingut) i Ambaixadors (moderadors de confiança). Pots pujar de nivell participant en debats, completant quizzes i verificant informació.</p>
+            </div>
+            
+            <div style="margin-bottom: 20px;">
+                <h3 style="color: var(--negro); font-size: 1.1rem; margin-bottom: 8px;">🔍 Com es verifica la informació?</h3>
+                <p style="opacity: 0.8; font-size: 0.95rem;">El 98% del contingut està verificat per la comunitat. Els Exploradors i Ambaixadors revisen les dades, citen fonts fiables i moderen les discussions per garantir que la informació sigui precisa i lliure d'estereotips.</p>
+            </div>
+            
+            <div style="margin-bottom: 20px;">
+                <h3 style="color: var(--negro); font-size: 1.1rem; margin-bottom: 8px;">🎮 Què són els quizzes i el passaport?</h3>
+                <p style="opacity: 0.8; font-size: 0.95rem;">Els quizzes són preguntes dissenyades per entendre les cultures, no per memoritzar dades. El Passaport Digital registra els països que has après i visitats virtualment, col·leccionant segells exclusius per cada fita aconseguida.</p>
+            </div>
+            
+            <div style="margin-bottom: 20px;">
+                <h3 style="color: var(--negro); font-size: 1.1rem; margin-bottom: 8px;">📧 Com puc contactar amb l'equip?</h3>
+                <p style="opacity: 0.8; font-size: 0.95rem;">Pots escriure'ns a <strong>app-coolture@ifp-alguero.org</strong> per a qualsevol dubte, suggeriment o col·laboració. També pots seguir-nos a GitHub per veure el codi i contribuir al projecte.</p>
+            </div>
+            
+            <div style="text-align: center; margin-top: 25px; padding-top: 15px; border-top: 2px dashed var(--verde);">
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- MODAL PRIVACITAT -->
+<div class="modal-overlay privacy-modal" id="privacyModal">
+    <div class="modal-card">
+        <button class="modal-close" id="closePrivacyModalBtn">&times;</button>
+        <div class="modal-header">
+            <i class="fas fa-shield-alt" style="font-size: 2.5rem; color: var(--verde-oscuro);"></i>
+            <div>
+                <div class="modal-title">Política de Privacitat</div>
+                <div class="modal-subtitle">COOLTURE · Fòrum Cultural del Món</div>
+            </div>
+        </div>
+        <div class="privacy-content">
+            <p><strong>Última actualització:</strong> 13 d'abril de 2026</p>
+            <h3>1. Informació que recopilem</h3>
+            <p>COOLTURE recull únicament la informació necessària per al funcionament del Fòrum Cultural.</p>
+            <h3>2. Ús de les dades</h3>
+            <p>Personalitzar l'experiència, emmagatzemar progrés, notificacions opcionals.</p>
+            <h3>3. Cookies</h3>
+            <p>Cookies tècniques, sense publicitat.</p>
+            <h3>4. Drets</h3>
+            <p>Accés, rectificació, supressió a <strong>app-coolture@ifp-alguero.org</strong>.</p>
+        </div>
+    </div>
+</div>
 
 <footer id="descarrega">
     <div class="container">
@@ -972,10 +1135,65 @@
         window.addEventListener('load', checkReveal);
         checkReveal();
 
+        // FAQ Modal
+        const faqModal = document.getElementById('faqModal');
         const faqLink = document.getElementById('faqLink');
+        const closeFaqBtn = document.getElementById('closeFaqModalBtn');
+        
+        faqLink.addEventListener('click', (e) => {
+            e.preventDefault();
+            faqModal.classList.add('show');
+            document.body.style.overflow = 'hidden';
+        });
+        
+        closeFaqBtn.addEventListener('click', () => {
+            faqModal.classList.remove('show');
+            document.body.style.overflow = '';
+        });
+        
+        faqModal.addEventListener('click', (e) => {
+            if (e.target === faqModal) {
+                faqModal.classList.remove('show');
+                document.body.style.overflow = '';
+            }
+        });
+
+        // Privacy Modal
+        const privacyModal = document.getElementById('privacyModal');
         const privacyLink = document.getElementById('privacyLink');
-        faqLink.addEventListener('click', (e) => { e.preventDefault(); alert('FAQ de COOLTURE'); });
-        privacyLink.addEventListener('click', (e) => { e.preventDefault(); alert('Política de Privacitat'); });
+        const closePrivacyBtn = document.getElementById('closePrivacyModalBtn');
+        
+        privacyLink.addEventListener('click', (e) => {
+            e.preventDefault();
+            privacyModal.classList.add('show');
+            document.body.style.overflow = 'hidden';
+        });
+        
+        closePrivacyBtn.addEventListener('click', () => {
+            privacyModal.classList.remove('show');
+            document.body.style.overflow = '';
+        });
+        
+        privacyModal.addEventListener('click', (e) => {
+            if (e.target === privacyModal) {
+                privacyModal.classList.remove('show');
+                document.body.style.overflow = '';
+            }
+        });
+
+        // Cerrar modales con Escape
+        window.addEventListener('keydown', function (e) {
+            if (e.key === 'Escape') {
+                if (faqModal.classList.contains('show')) {
+                    faqModal.classList.remove('show');
+                    document.body.style.overflow = '';
+                }
+                if (privacyModal.classList.contains('show')) {
+                    privacyModal.classList.remove('show');
+                    document.body.style.overflow = '';
+                }
+            }
+        });
     })();
 </script>
 </body>
